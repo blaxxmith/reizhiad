@@ -73,15 +73,16 @@ in {
         };
         telescope = {
           enable = true;
-          settings.layout_config.prompt_position = "top";
+          # settings.defaults.layout_config.prompt_position = "top";
         };
         web-devicons.enable = true;
         rainbow-delimiters.enable = true;
         fugitive.enable = true;
         copilot-vim = {
-          enable = false;
+          enable = true;
           package = pkgs.vimPlugins.copilot-vim;
         };
+        opencode.enable = true;
         conform-nvim = {
           enable = true;
           settings = {

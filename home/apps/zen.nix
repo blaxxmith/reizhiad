@@ -74,40 +74,40 @@ in {
         };
       };
 
-      # spacesForce = true;
-      # spaces = let
-      #   containers = config.programs.zen-browser.profiles.default.containers;
-      # in {
-      #   main = {
-      #     id = "e7ffa4fd-5357-4790-a1a9-06ed3b79b75e";
-      #     position = 1000;
-      #   };
-      #   pro = {
-      #     id = "96c336b5-dbfd-41ef-b69b-85f281478bc9";
-      #     container = containers.work.id;
-      #     position = 2000;
-      #   };
-      #   sanctuaris = {
-      #     id = "b559bf10-2d78-4e7b-99aa-82831a6487b9";
-      #     container = containers.work.id;
-      #     position = 3000;
-      #   };
-      #   perso = {
-      #     id = "be5b02d2-a0c7-4221-ba79-32f7141962c1";
-      #     container = containers.personal.id;
-      #     position = 4000;
-      #   };
-      #   forge = {
-      #     id = "900dbc0e-fead-4b3a-bebe-2c106f35c2a6";
-      #     container = containers.forge.id;
-      #     position = 5000;
-      #   };
-      #   school = {
-      #     id = "11cc5917-29a9-41a3-b633-871e06401705";
-      #     container = containers.school.id;
-      #     position = 6000;
-      #   };
-      # };
+      spacesForce = true;
+      spaces = let
+        containers = config.programs.zen-browser.profiles.default.containers;
+      in {
+        main = {
+          id = "e7ffa4fd-5357-4790-a1a9-06ed3b79b75e";
+          position = 1000;
+        };
+        pro = {
+          id = "96c336b5-dbfd-41ef-b69b-85f281478bc9";
+          container = containers.work.id;
+          position = 2000;
+        };
+        sanctuaris = {
+          id = "b559bf10-2d78-4e7b-99aa-82831a6487b9";
+          container = containers.work.id;
+          position = 3000;
+        };
+        perso = {
+          id = "be5b02d2-a0c7-4221-ba79-32f7141962c1";
+          container = containers.personal.id;
+          position = 4000;
+        };
+        forge = {
+          id = "900dbc0e-fead-4b3a-bebe-2c106f35c2a6";
+          container = containers.forge.id;
+          position = 5000;
+        };
+        school = {
+          id = "11cc5917-29a9-41a3-b633-871e06401705";
+          container = containers.school.id;
+          position = 6000;
+        };
+      };
 
       search = {
         force = true;

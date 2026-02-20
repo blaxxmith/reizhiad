@@ -42,6 +42,7 @@ in {
         feh
         jetbrains.pycharm
         tor-browser
+        anytype
       ];
     })
   ];

@@ -54,6 +54,11 @@ in {
   users.groups.libvirtd.members = ["eagle"];
   programs.virt-manager.enable = false;
 
+  services.netbird = {
+    enable = true;
+    ui.enable = true;
+  };
+
   # to move to the users file
   users.users."${user}" = {
     isNormalUser = true;
