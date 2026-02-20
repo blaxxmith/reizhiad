@@ -10,7 +10,7 @@
     ./wm.nix
     ./yubikey.nix
 
-    inputs.sops.nixosModules.sops
+    # inputs.sops.nixosModules.sops
   ];
 
   # Set your time zone.
@@ -42,6 +42,7 @@
   security.polkit.enable = true;
 
   programs.nano.enable = false;
+  programs.zsh.enable = true;
 
   documentation = {
     enable = true;
@@ -70,5 +71,5 @@
 
   '';
 
-  sops.age.keyFile = "/home/eagle/.config/sops/age/keys.txt";
+  # sops.age.keyFile = "/home/eagle/.config/sops/age/keys.txt";
 }

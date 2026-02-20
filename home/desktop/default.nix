@@ -37,10 +37,7 @@ in {
       config = {
         defaultWorkspace = "workspace number 1";
         output = {
-          "eDP-1" = {
-            mode = "1920x1200@60.002Hz";
-            position = "1440,1778";
-          };
+          "eDP-1" = with cfg.primaryScreen; {inherit mode scale position;};
           "DP-4" = {
             mode = "2560x1440@59.951Hz";
             position = "0,0";
@@ -60,7 +57,7 @@ in {
 
     programs.swaylock = {
       enable = cfg.enableLock;
-      settings.image = "/home/eagle/Documents/assets/wallpaper.jpg";
+      settings.image = "${config.home.homeDirectory}/.assets/wallpaper.png";
     };
 
     home.packages = with pkgs; [

@@ -15,6 +15,7 @@ in {
     ./git.nix
     ./ripgrep.nix
     ./skim.nix
+    ./ssh.nix
     ./zellij.nix
   ];
 
@@ -36,6 +37,7 @@ in {
       forgeOS.tools.eza.addAlias = true;
       forgeOS.tools.git.enable = true;
       forgeOS.tools.zellij.enable = true;
+      forgeOS.tools.ssh.enable = true;
 
       programs.htop.enable = true;
 

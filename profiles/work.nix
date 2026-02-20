@@ -1,50 +1,51 @@
 {
   config,
+  inputs,
   pkgs,
   ...
 }: let
   user = "pex";
 in {
-  sops.secrets = let
-    mode = "0400";
-    format = "binary";
-    owner = user;
-  in {
-    gitconfig = {
-      inherit owner mode format;
-      sopsFile = ../secrets/work/gitconfig.sops;
-    };
-    alpes-si-crt = {
-      inherit mode format;
-      sopsFile = ../secrets/work/alpes-si.crt.sops;
-    };
-    multi-crt = {
-      inherit mode format;
-      sopsFile = ../secrets/work/multi.crt.sops;
-    };
-    tavel-crt = {
-      inherit mode format;
-      sopsFile = ../secrets/work/tavel.crt.sops;
-    };
-    telex-crt = {
-      inherit mode format;
-      sopsFile = ../secrets/work/telex.crt.sops;
-    };
-    vigan-crt = {
-      inherit mode format;
-      sopsFile = ../secrets/work/vigan.crt.sops;
-    };
-    backdooris-wg = {
-      inherit mode format;
-      sopsFile = ../secrets/work/backdooris.wg.sops;
-    };
-  };
+  # sops.secrets = let
+  #   mode = "0400";
+  #   format = "binary";
+  #   owner = user;
+  # in {
+  #   gitconfig = {
+  #     inherit owner mode format;
+  #     sopsFile = ../secrets/work/gitconfig.sops;
+  #   };
+  #   alpes-si-crt = {
+  #     inherit mode format;
+  #     sopsFile = ../secrets/work/alpes-si.crt.sops;
+  #   };
+  #   multi-crt = {
+  #     inherit mode format;
+  #     sopsFile = ../secrets/work/multi.crt.sops;
+  #   };
+  #   tavel-crt = {
+  #     inherit mode format;
+  #     sopsFile = ../secrets/work/tavel.crt.sops;
+  #   };
+  #   telex-crt = {
+  #     inherit mode format;
+  #     sopsFile = ../secrets/work/telex.crt.sops;
+  #   };
+  #   vigan-crt = {
+  #     inherit mode format;
+  #     sopsFile = ../secrets/work/vigan.crt.sops;
+  #   };
+  #   backdooris-wg = {
+  #     inherit mode format;
+  #     sopsFile = ../secrets/work/backdooris.wg.sops;
+  #   };
+  # };
 
   users.users."${user}" = {
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "Work Account";
-    extraGroups = ["networkmanager" "docker"];
+    extraGroups = ["networkmanager" "docker" "wheel"];
   };
 
   security.pki.certificateFiles = [
@@ -81,7 +82,7 @@ in {
           oxydize = true;
           git = {
             additionalRemotes = ["git@gitlab.alpes.si"];
-            extraConfigPath = config.sops.secrets.gitconfig.path;
+            # extraConfigPath = config.sops.secrets.gitconfig.path;
           };
         };
         apps = {
