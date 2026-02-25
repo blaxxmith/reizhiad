@@ -14,7 +14,7 @@ in {
     ./kitty.nix
     ./vscode.nix
     ./yazi.nix
-    # ./zen.nix
+    ./zen.nix
   ];
 
   options.forgeOS.apps = {

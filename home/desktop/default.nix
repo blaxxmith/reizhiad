@@ -60,11 +60,16 @@ in {
       settings.image = "${config.home.homeDirectory}/.assets/wallpaper.png";
     };
 
+    programs.rofi = {
+      enable = true;
+      theme = "Monokai";
+    };
+
     home.packages = with pkgs; [
-      rofi
       brightnessctl
-      wl-clipboard-rs
       wdisplays
+      cliphist
+      wl-clipboard
     ];
   };
 }

@@ -6,6 +6,10 @@
   modifier = "Mod4";
   km = config.forgeOS.desktop.keymap;
 in {
+  wayland.windowManager.sway.extraConfig = ''
+    bindgesture swipe:right workspace prev
+    bindgesture swipe:left workspace next
+  '';
   wayland.windowManager.sway.config = {
     modifier = modifier;
 
@@ -33,6 +37,7 @@ in {
         "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer --increase 5";
         "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer --decrease 5";
         "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer --toggle-mute";
+        "${modifier}+v" = "exec ${pkgs.cliphist}/bin/cliphist list | ${pkgs.rofi}/bin/rofi -dmenu -display-columns 2 | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
         "${modifier}+r" = "mode resize";
         "${modifier}+Shift+e" = "mode menu";
         # Focus next window

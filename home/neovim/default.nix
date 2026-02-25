@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  cfg = config.nvim;
+  cfg = config.forgeOS.tools.nvim;
 in {
   imports = [
     inputs.nixvim.homeModules.nixvim
@@ -16,9 +16,7 @@ in {
     ./theme.nix
   ];
 
-  options = {
-    nvim.enable = lib.mkEnableOption "NeoVIM configuration";
-  };
+  options.forgeOS.tools.nvim.enable = lib.mkEnableOption "NeoVIM configuration";
 
   config = lib.mkIf cfg.enable {
     nixpkgs.config.allowUnfreePredicate = pkg:

@@ -9,4 +9,6 @@
     # Enable the firewall.
     firewall.enable = true;
   };
+
+  services.netbird.enable = true;
 }

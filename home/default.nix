@@ -1,8 +1,11 @@
 {
+  config,
   lib,
   vars,
   ...
-}: {
+}: let
+  hd = config.home.homeDirectory;
+in {
   imports = [
     ./apps
     ./desktop
@@ -49,7 +52,7 @@
     nixpkgs.config.allowUnfree = true;
     programs.home-manager.enable = true;
 
-    nvim.enable = lib.mkDefault true;
+    forgeOS.tools.nvim.enable = lib.mkDefault true;
     forgeOS.shell.enable = lib.mkDefault true;
     forgeOS.tools.enable = lib.mkDefault true;
     forgeOS.tools.enableEssentialTools = lib.mkDefault true;
@@ -59,6 +62,12 @@
     forgeOS.tools.oxydize = lib.mkDefault true;
     forgeOS.apps.enableGUIApps = lib.mkDefault true;
     forgeOS.desktop.enable = lib.mkDefault false;
+
+    xdg.userDirs = {
+      createDirectories = false;
+      documents = "${hd}/documents";
+      download = "${hd}/downloads";
+    };
 
     home = {
       stateVersion = "24.05";

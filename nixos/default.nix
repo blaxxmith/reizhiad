@@ -38,7 +38,7 @@
     expose = lib.mkDefault false;
   };
 
-  yubikey.enable = lib.mkDefault false;
+  forgeOS.system.yubikey.enable = lib.mkDefault false;
   security.polkit.enable = true;
 
   programs.nano.enable = false;
@@ -51,7 +51,7 @@
     info.enable = true;
   };
 
-  wm.enable = lib.mkDefault false;
+  forgeOS.system.wm.enable = lib.mkDefault false;
 
   environment.etc.issue.text = ''
          __________   ______   .______      _______  _______   ______        _______.

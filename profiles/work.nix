@@ -72,12 +72,12 @@ in {
         homeDirectory = "/home/${user}";
       };
 
-      nvim.enable = true;
       forgeOS = {
         desktop.enable = true;
         shell.enable = true;
         tools = {
           enable = true;
+          nvim.enable = true;
           enableExtendedTools = true;
           oxydize = true;
           git = {
@@ -86,6 +86,7 @@ in {
           };
         };
         apps = {
+          zen.enable = true;
           enable = true;
           enableGUIApps = true;
           enableTUIApps = true;

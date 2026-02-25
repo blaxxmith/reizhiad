@@ -3,11 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.wm;
+  cfg = config.forgeOS.system.wm;
 in {
-  options = {
-    wm.enable = lib.mkEnableOption "Graphical environment";
-  };
+  options.forgeOS.system.wm.enable = lib.mkEnableOption "Graphical environment";
 
   config = lib.mkIf cfg.enable {
     environment.sessionVariables = {NIXOS_OZONE_WL = "1";};
@@ -28,5 +26,7 @@ in {
       graphics.enable = true;
       nvidia.modesetting.enable = true;
     };
+
+    services.netbird.ui.enable = true;
   };
 }
