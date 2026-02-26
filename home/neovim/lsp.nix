@@ -6,6 +6,7 @@
       clangd.enable = true;
       bashls.enable = true;
       markdown_oxide.enable = true;
+      cmake.enable = true;
       rust_analyzer = {
         enable = true;
         installCargo = false;
