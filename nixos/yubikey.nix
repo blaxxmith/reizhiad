@@ -3,11 +3,11 @@
   lib,
   ...
 }: let
-  cfg = config.yubikey;
+  cfg = config.forgeOS.system.yubikey;
 in {
-  options.yubikey = {
-    enable = lib.mkEnableOption "Enable Yubikey for PAM";
-    waylandEnable = lib.mkEnableOption "Enable Yubikey for Wayland";
+  options.forgeOS.system.yubikey = {
+    enable = lib.mkEnableOption "Yubikey passwordless for PAM";
+    waylandEnable = lib.mkEnableOption "Yubikey passwordless for Wayland";
   };
 
   config = lib.mkIf cfg.enable {

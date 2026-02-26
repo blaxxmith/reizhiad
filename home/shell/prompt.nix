@@ -43,6 +43,13 @@ $nix_shell$sudo$character";
             style = "bold blue";
           };
 
+          cpp = {
+            format = "[$symbol $name::$version]($style) ";
+            symbol = "";
+            version_format = "\${raw}";
+            style = "bold blue";
+          };
+
           character = {
             success_symbol = "[➜](bold green)";
             error_symbol = "[➜](bold red)";

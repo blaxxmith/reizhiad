@@ -4,7 +4,8 @@
   ...
 }: let
   cfg = config.forgeOS.desktop.theme;
-  wallpaper = "/home/eagle/Documents/assets/wallpaper.jpg";
+  wallpaper = "${config.home.homeDirectory}/.assets/wallpaper.png";
+  wallpaperSrc = ../../.assets/wallpaper.png;
 in {
   options.forgeOS.desktop.theme.enable = lib.mkEnableOption "Theme Configuration";
 
@@ -18,6 +19,8 @@ in {
       [Settings]
       gtk-application-prefer-dark-theme=1
     '';
+
+    home.file.".assets/wallpaper.png".source = wallpaperSrc;
 
     wayland.windowManager.sway.config = {
       startup = [

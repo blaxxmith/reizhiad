@@ -10,7 +10,7 @@
     ./wm.nix
     ./yubikey.nix
 
-    inputs.sops.nixosModules.sops
+    # inputs.sops.nixosModules.sops
   ];
 
   # Set your time zone.
@@ -38,10 +38,11 @@
     expose = lib.mkDefault false;
   };
 
-  yubikey.enable = lib.mkDefault false;
+  forgeOS.system.yubikey.enable = lib.mkDefault false;
   security.polkit.enable = true;
 
   programs.nano.enable = false;
+  programs.zsh.enable = true;
 
   documentation = {
     enable = true;
@@ -50,7 +51,7 @@
     info.enable = true;
   };
 
-  wm.enable = lib.mkDefault false;
+  forgeOS.system.wm.enable = lib.mkDefault false;
 
   environment.etc.issue.text = ''
          __________   ______   .______      _______  _______   ______        _______.
@@ -70,5 +71,5 @@
 
   '';
 
-  sops.age.keyFile = "/home/eagle/.config/sops/age/keys.txt";
+  # sops.age.keyFile = "/home/eagle/.config/sops/age/keys.txt";
 }

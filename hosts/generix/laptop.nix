@@ -33,6 +33,8 @@ in {
     jack.enable = false;
   };
 
+  services.tlp.enable = true;
+
   # Install needed packages
   environment.systemPackages = with pkgs; [
     brightnessctl
@@ -41,5 +43,8 @@ in {
   ];
 
   # Enable Modules
-  wm.enable = true;
+  forgeOS.system.wm.enable = true;
+
+  # Enable FIDO support
+  forgeOS.system.yubikey.enable = true;
 }

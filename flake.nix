@@ -74,7 +74,7 @@
           inputs.home-manager.nixosModules.default
         ];
       };
-      coruscant = nixpkgs.nixosSystem {
+      coruscant = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/coruscant

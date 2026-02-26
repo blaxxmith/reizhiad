@@ -12,7 +12,7 @@
   ghConfig = {
     name = "Xavier2p";
     email = "git@Xavier2p.fr";
-    signingkey = "~/.ssh/gh-sign.pub";
+    signingkey = "~/.ssh/github-sign.pub";
   };
 in {
   options.forgeOS.tools.git = {
