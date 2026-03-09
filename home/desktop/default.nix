@@ -55,14 +55,12 @@ in {
       };
     };
 
-    programs.swaylock = {
-      enable = cfg.enableLock;
-      settings.image = "${config.home.homeDirectory}/.assets/wallpaper.png";
-    };
-
-    programs.rofi = {
-      enable = true;
-      theme = "Monokai";
+    programs = {
+      swaylock.enable = cfg.enableLock;
+      rofi = {
+        enable = true;
+        theme = "Monokai";
+      };
     };
 
     home.packages = with pkgs; [

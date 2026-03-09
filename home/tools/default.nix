@@ -37,7 +37,7 @@ in {
       forgeOS.tools.eza.addAlias = true;
       forgeOS.tools.git.enable = true;
       forgeOS.tools.zellij.enable = true;
-      forgeOS.tools.ssh.enable = true;
+      forgeOS.tools.ssh.enable = lib.mkDefault true;
 
       programs.htop.enable = true;
 

@@ -57,7 +57,7 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/geonosis
-          inputs.home-manager.nixosModules.default
+          # inputs.home-manager.nixosModules.default
         ];
       };
       nevarro = nixpkgs.lib.nixosSystem {
@@ -93,19 +93,32 @@
       ];
     };
 
-    devShells.${system}.default = pkgs.mkShell {
-      name = "nix";
-      shellHook = ''
-        echo "direnv: env reloaded"
-      '';
-      packages = [
-        pkgs.sbctl
-        nixdocs.packages.${system}.default
-        deploy-rs.packages.${system}.default
-        pkgs.sops
-        pkgs.age
-        pkgs.ssh-to-age
-      ];
+    apps.${system} = {
+      default = self.apps.${system}.docs;
+
+      docs = {
+        type = "app";
+        program = "${pkgs.writeShellScript "run-docs" ''
+          ${nixdocs.packages."${system}".default}/bin/nix-options-doc --strip-prefix --out ref.md --progress
+        ''}";
+        meta.description = "Generate a markdown reference of my options";
+      };
+    };
+
+    devShells.${system} = {
+      default = self.devShells.${system}.nix;
+
+      nix = pkgs.mkShell {
+        name = "nix";
+        packages = [
+          pkgs.sbctl
+          nixdocs.packages.${system}.default
+          deploy-rs.packages.${system}.default
+          pkgs.sops
+          pkgs.age
+          pkgs.ssh-to-age
+        ];
+      };
     };
   };
 }

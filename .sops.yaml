@@ -1,7 +1,9 @@
 keys:
   - &primary age10mfj8trak6n4dl5tpsf4jmjdu6z096zmqmurhcy424kw867g69cqysqn4t
+  - &nixbookpro age1m3a7rflhgvasqrqdd4mzwknm0wz8ywhy4jka2wmjcn9q6uhsguaqga5mk8
 creation_rules:
   - path_regex: secrets/.*\.sops$
     key_groups:
       - age:
         - *primary
+        - *nixbookpro

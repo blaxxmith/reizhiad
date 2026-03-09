@@ -2,10 +2,10 @@
   config,
   inputs,
   lib,
-  pkgs,
   ...
 }: let
   cfg = config.forgeOS.host;
+  sops = config.sops;
   vars = {
     keymap = cfg.keymap;
     screenMode = cfg.screen.mode;
@@ -13,9 +13,11 @@
     screenScale = cfg.screen.scale;
   };
 in {
-  # imports = [
-  #   ./work.nix
-  # ];
+  imports = [
+    inputs.sops.nixosModules.sops
+
+    ./work.nix
+  ];
 
   options.forgeOS.host = {
     keymap = lib.mkOption {
@@ -36,7 +38,6 @@ in {
         description = "Sway mode of the primary screen";
         example = "1920x1080@60.000Hz";
       };
-
       position = lib.mkOption {
         type = lib.types.str;
         description = "Position of the primary screen";
@@ -47,8 +48,45 @@ in {
   };
 
   config = {
+    sops.age.keyFile = "/root/.sops/keys.txt";
+    sops.secrets = let
+      mode = "0400";
+      format = "binary";
+      owner = "eagle";
+    in {
+      work-gitconfig = {
+        inherit owner mode format;
+        sopsFile = ../secrets/work/gitconfig.sops;
+      };
+      epita-gitconfig = {
+        inherit owner mode format;
+        sopsFile = ../secrets/epita.gitconfig.sops;
+      };
+      github-gitconfig = {
+        inherit owner mode format;
+        sopsFile = ../secrets/github.gitconfig.sops;
+      };
+      glwork-ssh = {
+        inherit owner mode format;
+        sopsFile = ../secrets/work/gitlab.ssh.sops;
+      };
+      intra-ssh = {
+        inherit owner mode format;
+        sopsFile = ../secrets/school/intra.ssh.sops;
+      };
+      glcri-ssh = {
+        inherit owner mode format;
+        sopsFile = ../secrets/school/gitlab.ssh.sops;
+      };
+      github-ssh = {
+        inherit owner mode format;
+        sopsFile = ../secrets/github.ssh.sops;
+      };
+    };
+
     home-manager = {
-      extraSpecialArgs = {inherit inputs vars;};
+      extraSpecialArgs = {inherit inputs vars sops;};
+      backupFileExtension = "forgeos.bak";
     };
   };
 }

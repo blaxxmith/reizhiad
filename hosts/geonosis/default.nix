@@ -13,7 +13,7 @@ in {
     inputs.lanzaboote.nixosModules.lanzaboote
     ../../nixos
     ../generix/laptop.nix
-    ../../profiles/work.nix
+    ../../profiles
   ];
 
   # Bootloader.
@@ -54,11 +54,6 @@ in {
   users.groups.libvirtd.members = ["eagle"];
   programs.virt-manager.enable = false;
 
-  services.netbird = {
-    enable = true;
-    ui.enable = true;
-  };
-
   # to move to the users file
   users.users."${user}" = {
     isNormalUser = true;
@@ -67,10 +62,11 @@ in {
     extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
-  # Variabilize the user name and add to template host file
+  forgeOS.host.screen.mode = "1920x1200@60.002Hz";
+  forgeOS.host.screen.position = "1440,1778";
+
+  # Add to right profile
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
-    # users."${user}" = import ./home.nix;
     users."${user}" = {
       imports = [./../../home];
 
@@ -83,21 +79,38 @@ in {
       # gui.enable = true;
       forgeOS.desktop.enable = true;
       forgeOS.apps.zen.enable = true;
-      nvim.enable = true;
-      # iamb.enable = true;
+      forgeOS.tools.nvim.enable = true;
+      forgeOS.tools.ssh.enable = true;
+      forgeOS.tools.nvim.opencode = true;
+      forgeOS.tools.git.extraAccounts = {
+        "github.com" = {
+          remote = "git@github.com";
+          gitConfig = "github-gitconfig";
+          sshConfig = "github-ssh";
+        };
+        "git.forge.epita.fr" = {
+          remote = "xavier.de-place@git.forge.epita.fr";
+          gitConfig = "epita-gitconfig";
+          sshConfig = "intra-ssh";
+        };
+        "gitlab.epita.fr" = {
+          remote = "git@gitlab.cri.epita.fr";
+          gitConfig = "epita-gitconfig";
+          sshConfig = "glcri-ssh";
+        };
+        "gitlab.alpes.si" = {
+          remote = "git@gitlab.alpes.si";
+          gitConfig = "work-gitconfig";
+          sshConfig = "glwork-ssh";
+        };
+      };
     };
   };
 
-  yubikey = {
+  forgeOS.system.yubikey = {
     enable = true;
     waylandEnable = false;
   };
 
-  # move this line to the home-manager config
-  fonts.packages = [pkgs.nerd-fonts.hack];
-
   system.stateVersion = "24.05";
-
-  # check if this line is mandatory
-  programs.zsh.enable = true;
 }

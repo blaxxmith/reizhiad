@@ -1,44 +1,62 @@
 {
   config,
   lib,
+  sops,
   ...
 }: let
   cfg = config.forgeOS.tools.git;
-  epitaConfig = {
-    name = "Xavier de Place";
-    email = "xavier.de-place@epita.fr";
-    signingkey = "~/.ssh/epita.pub";
-  };
-  ghConfig = {
-    name = "Xavier2p";
-    email = "git@Xavier2p.fr";
-    signingkey = "~/.ssh/github-sign.pub";
-  };
 in {
   options.forgeOS.tools.git = {
-    enable = lib.mkEnableOption "Enable git";
+    enable = lib.mkEnableOption "git, a powerful version control system";
     addAlias = lib.mkOption {
       type = lib.types.bool;
       default = true;
       description = "Use git command aliases";
     };
-
-    additionalRemotes = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [];
-      description = "List of additional git remotes to add globally.";
+    addSSHConfig = lib.mkOption {
+      type = lib.types.bool;
+      default = config.forgeOS.tools.ssh.enable;
+      description = "Auto add SSH configuration for GIT remotes";
     };
 
-    extraConfigPath = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      description = "Path to an extra git config file to include.";
+    extraAccounts = lib.mkOption {
+      type = lib.types.attrsOf (lib.types.submodule ({name, ...}: {
+        options = {
+          name = lib.mkOption {
+            type = lib.types.str;
+            default = name;
+            description = "Name of the Git Account. Must be the FQDN for the SSH Config";
+          };
+          remote = lib.mkOption {
+            type = lib.types.str;
+            description = "Git IncludeIf pattern of the Account";
+          };
+          gitConfig = lib.mkOption {
+            type = lib.types.str;
+            description = "SOPS ID of the Git Config for this account";
+          };
+          sshConfig = lib.mkOption {
+            type = lib.types.str;
+            description = "SOPS ID of the SSH Config for this remote";
+          };
+        };
+      }));
+      default = {};
+      description = "Extra GIT accounts to add";
     };
   };
 
   config = lib.mkIf cfg.enable {
     programs = lib.mkMerge [
       (lib.mkIf cfg.addAlias {zsh.shellAliases.g = "git";})
+
+      (lib.mkIf cfg.addSSHConfig {
+        ssh.includes =
+          lib.mapAttrsToList (
+            _: item: sops.secrets.${item.sshConfig}.path
+          )
+          cfg.extraAccounts;
+      })
 
       {
         delta = {
@@ -53,37 +71,12 @@ in {
         git = {
           enable = true;
 
-          includes = [
-            {
-              condition = "hasconfig:remote.*.url:xavier.de-place@git.forge.epita.fr:*/**";
-              contents.user = epitaConfig;
-            }
-            {
-              condition = "hasconfig:remote.*.url:git@gitlab.cri.epita.fr:*/**";
-              contents.user = epitaConfig;
-            }
-            {
-              condition = "hasconfig:remote.*.url:git@gitlab.alpes.si:*/**";
-              contents.user = {
-                name = "PEX";
-                email = "pex@cartesian-lab.com";
-                signingkey = "~/.ssh/gh-sign.pub";
-              };
-            }
-            {
-              condition = "hasconfig:remote.*.url:git@github.com:*/**";
-              contents.user = ghConfig;
-            }
-            {
-              condition = "hasconfig:remote.*.url:gh:*/**";
-              contents.user = ghConfig;
-            }
-          ];
-          # ++ lib.listToAttrs (map (remote: {
-          #     condition = "hasconfig:remote.*.url:${remote}:*/**";
-          #     path = cfg.extraConfigPath;
-          #   })
-          #   cfg.additionalRemotes);
+          includes =
+            lib.mapAttrsToList (_: item: {
+              condition = "hasconfig:remote.*.url:${item.remote}:*/**";
+              path = sops.secrets."${item.gitConfig}".path;
+            })
+            cfg.extraAccounts;
 
           lfs.enable = true;
 
@@ -112,11 +105,6 @@ in {
               default = "current";
             };
             pull.default = "current";
-
-            url = {
-              "git@github.com:".insteadOf = "gh:";
-              "git@gitlab.cri.epita.fr:".insteadOf = "glcri:";
-            };
 
             alias = {
               a = "add";

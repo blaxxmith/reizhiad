@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.forgeOS.system.wm;
@@ -9,6 +10,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.sessionVariables = {NIXOS_OZONE_WL = "1";};
+
+    fonts.packages = [pkgs.nerd-fonts.hack];
 
     programs.sway = {
       enable = true;

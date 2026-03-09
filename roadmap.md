@@ -8,9 +8,6 @@
     - make a theme from wallpaper
     - use this theme everywhere
 
-- Assets
-    - put all assets in a single folder in the nix tree
-
 - Various
     - make options with if for settings like docker
     - create file for firefox

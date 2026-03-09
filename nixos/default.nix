@@ -9,8 +9,6 @@
     ./nix.nix
     ./wm.nix
     ./yubikey.nix
-
-    # inputs.sops.nixosModules.sops
   ];
 
   # Set your time zone.
@@ -70,6 +68,4 @@
     [1;31m<<< Unauthorized access is prohibited and will be reported >>>[0m
 
   '';
-
-  # sops.age.keyFile = "/home/eagle/.config/sops/age/keys.txt";
 }

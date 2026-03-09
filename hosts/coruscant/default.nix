@@ -9,7 +9,6 @@
     ./hardware.nix
     ../../nixos
     ../generix/laptop.nix
-    ../../profiles/work.nix
     ../../profiles
   ];
 
@@ -32,9 +31,9 @@
     };
   };
 
-  networking.hostName = "coruscant";
-  fonts.packages = [pkgs.nerd-fonts.hack];
+  networking.hostName = "nixbook-pro";
 
+  forgeOS.profiles.work.enable = true;
   forgeOS.host.keymap = "mac";
   forgeOS.host.screen = {
     scale = "1.50";

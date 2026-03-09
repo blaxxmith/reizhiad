@@ -12,11 +12,14 @@ in {
     ./keymapping.nix
     ./lightline.nix
     ./lsp.nix
+    ./opencode.nix
     ./options.nix
     ./theme.nix
   ];
 
-  options.forgeOS.tools.nvim.enable = lib.mkEnableOption "NeoVIM configuration";
+  options.forgeOS.tools.nvim = {
+    enable = lib.mkEnableOption "NeoVIM configuration";
+  };
 
   config = lib.mkIf cfg.enable {
     nixpkgs.config.allowUnfreePredicate = pkg:
@@ -80,7 +83,6 @@ in {
           enable = true;
           package = pkgs.vimPlugins.copilot-vim;
         };
-        opencode.enable = true;
         conform-nvim = {
           enable = true;
           settings = {

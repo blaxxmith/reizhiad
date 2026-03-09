@@ -4,10 +4,15 @@
   ...
 }: let
   cfg = config.forgeOS.tools.ssh;
-  hd = config.home.homeDirectory;
+  sshPath = config.home.homeDirectory + "/.ssh";
 in {
   options.forgeOS.tools.ssh = {
     enable = lib.mkEnableOption "Secure Shell Access";
+    extraFiles = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      description = "SOPS IDs to extra SSH config files to include";
+      default = [];
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -15,18 +20,17 @@ in {
       enable = true;
       package = null;
       enableDefaultConfig = false;
-      matchBlocks = {
-        "*" = {
-          controlMaster = "auto";
-          controlPath = "${hd}/.ssh/sockets/%r@%h-%p";
-          controlPersist = "3600";
-          serverAliveInterval = 60;
-        };
-        "github.com" = {
-          user = "git";
-          identityFile = "${hd}/.ssh/github";
-        };
-      };
+      includes = cfg.extraFiles;
+      matchBlocks = lib.mkMerge [
+        {
+          "*" = {
+            controlMaster = "auto";
+            controlPath = "${sshPath}/sockets/%r@%h-%p";
+            controlPersist = "3600";
+            serverAliveInterval = 60;
+          };
+        }
+      ];
     };
   };
 }

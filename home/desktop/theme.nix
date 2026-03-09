@@ -5,9 +5,15 @@
 }: let
   cfg = config.forgeOS.desktop.theme;
   wallpaper = "${config.home.homeDirectory}/.assets/wallpaper.png";
-  wallpaperSrc = ../../.assets/wallpaper.png;
 in {
-  options.forgeOS.desktop.theme.enable = lib.mkEnableOption "Theme Configuration";
+  options.forgeOS.desktop.theme = {
+    enable = lib.mkEnableOption "Theme Configuration";
+    wallpaper = lib.mkOption {
+      type = lib.types.path;
+      default = ../../.assets/wallpaper.png;
+      description = "Path to the wallpaper image.";
+    };
+  };
 
   config = lib.mkIf cfg.enable {
     home.file.".config/gtk-3.0/settings.ini".text = ''
@@ -20,7 +26,9 @@ in {
       gtk-application-prefer-dark-theme=1
     '';
 
-    home.file.".assets/wallpaper.png".source = wallpaperSrc;
+    home.file.".assets/wallpaper.png".source = cfg.wallpaper;
+
+    programs.swaylock.settings.image = "${wallpaper}";
 
     wayland.windowManager.sway.config = {
       startup = [
