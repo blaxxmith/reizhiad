@@ -12,11 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,7 +39,6 @@
   outputs = {
     self,
     nixpkgs,
-    darwin,
     nixdocs,
     deploy-rs,
     ...
@@ -81,16 +75,11 @@
           inputs.home-manager.nixosModules.default
         ];
       };
-    };
-
-    darwinConfigurations.kamino = darwin.lib.darwinSystem {
-      specialArgs = {inherit inputs;};
-      system = "aarch64-darwin";
-      pkgs = import nixpkgs {system = "aarch64-darwin";};
-      modules = [
-        ./hosts/kamino
-        inputs.home-manager.darwinModules.home-manager
-      ];
+      mustafar = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        system = "aarch64-linux";
+        modules = [./hosts/mustafar];
+      };
     };
 
     apps.${system} = {
