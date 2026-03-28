@@ -10,11 +10,13 @@ in {
   imports = [
     inputs.nixvim.homeModules.nixvim
     ./keymapping.nix
-    ./lightline.nix
     ./lsp.nix
     ./opencode.nix
     ./options.nix
     ./theme.nix
+    ./plugins/lightline.nix
+    ./plugins/telescope.nix
+    ./plugins/neo-tree.nix
   ];
 
   options.forgeOS.tools.nvim = {
@@ -55,26 +57,12 @@ in {
             sign_removed_firstLine = "ø";
           };
         };
-        neo-tree = {
-          enable = true;
-          settings = {
-            close_if_last_window = true;
-            window = {
-              width = 30;
-              auto_expand_width = false;
-            };
-          };
-        };
         treesitter = {
           enable = true;
           settings = {
             highlight.enable = true;
             indent.enable = true;
           };
-        };
-        telescope = {
-          enable = true;
-          # settings.defaults.layout_config.prompt_position = "top";
         };
         web-devicons.enable = true;
         rainbow-delimiters.enable = true;
@@ -94,6 +82,7 @@ in {
               nix = ["alejandra"];
               cpp = ["clang-format"];
               c = ["clang-format"];
+              rust = ["rustfmt"];
             };
           };
         };

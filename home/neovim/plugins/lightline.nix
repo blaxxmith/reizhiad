@@ -2,7 +2,7 @@
   programs.nixvim.plugins.lightline = {
     enable = true;
     settings = {
-      colorscheme = "wombat";
+      colorscheme = "material";
       active = {
         left = [
           ["mode" "paste"]

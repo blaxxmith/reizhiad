@@ -36,6 +36,13 @@ in {
           size = 9;
           normal.family = "Hack Nerd Font";
         };
+        keyboard.bindings = [
+          {
+            key = "F";
+            mods = "Control|Shift";
+            action = "ReceiveChar";
+          }
+        ];
       };
     };
   };
