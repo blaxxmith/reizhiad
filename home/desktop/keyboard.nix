@@ -25,11 +25,10 @@ in {
 
     keybindings =
       {
-        # General
-        "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+        "${modifier}+Return" = "exec ${pkgs.ghostty}/bin/ghostty +new-window";
         "${modifier}+Shift+r" = "reload";
         "${modifier}+Escape" = "exec ${pkgs.swaylock}/bin/swaylock";
-        "${modifier}+f" = "fullscreen toggle global";
+        "${modifier}+f" = "fullscreen toggle";
         "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
         "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%+";
         "Shift+XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -d 'tpacpi::kbd_backlight' set 0";

@@ -10,6 +10,7 @@ in {
     ./alacritty.nix
     ./chromium.nix
     ./firefox.nix
+    ./ghostty.nix
     ./iamb.nix
     ./kitty.nix
     ./vscode.nix
@@ -35,6 +36,7 @@ in {
       forgeOS.apps.kitty.enable = lib.mkDefault true;
       forgeOS.apps.chromium.enable = lib.mkDefault true;
       forgeOS.apps.vscode.enable = lib.mkDefault false;
+      forgeOS.apps.ghostty.enable = lib.mkDefault true;
 
       home.packages = with pkgs; [
         signal-desktop
