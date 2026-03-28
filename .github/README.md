@@ -18,6 +18,12 @@ nix run github:xavier2p/system#<host>
 
 ### Specifics
 
+#### Rebuild mustafar
+
+```sh
+sudo nixos-rebuild switch --flake .#mustafar --target-host nixos@mustafar.forge --build-host nixos@mustafar.forge --sudo
+```
+
 #### Yubikeys
 
 Add a Yubikey to the system:

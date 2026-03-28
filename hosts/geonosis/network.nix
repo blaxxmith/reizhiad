@@ -19,6 +19,8 @@
 
       # Tavel
       # "10.100.0.51" = ["portal.si-dr.fr" "signal.si-dr.fr" "signal1.si-dr.fr" "signal2.si-dr.fr" "turn1.si-dr.fr" "turn2.si-dr.fr"];
+
+      "127.0.0.1" = ["local.si-dr.fr" "office.si-dr.fr"];
     };
 
     firewall = {

@@ -47,12 +47,13 @@ in {
     /home/eagle/.nixnotsync/certs/tavel.crt
     /home/eagle/.nixnotsync/certs/vigan.crt
     /home/eagle/.nixnotsync/certs/alpes.si.crt
+    /home/eagle/dev/carl/offline/certs/ca.crt
   ];
 
-  virtualisation.libvirtd.enable = false;
-  virtualisation.spiceUSBRedirection.enable = false;
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
   users.groups.libvirtd.members = ["eagle"];
-  programs.virt-manager.enable = false;
+  programs.virt-manager.enable = true;
 
   # to move to the users file
   users.users."${user}" = {
@@ -98,8 +99,8 @@ in {
           gitConfig = "epita-gitconfig";
           sshConfig = "glcri-ssh";
         };
-        "gitlab.alpes.si" = {
-          remote = "git@gitlab.alpes.si";
+        "drakkar.cartesian-lab.fr" = {
+          remote = "git@drakkar.cartesian-lab.fr";
           gitConfig = "work-gitconfig";
           sshConfig = "glwork-ssh";
         };

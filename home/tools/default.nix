@@ -61,8 +61,7 @@ in {
         presenterm
         proton-pass-cli
         glab
-        # TEMPORARY: Disable exegol due to build issues
-        # exegol
+        exegol
       ];
     })
 

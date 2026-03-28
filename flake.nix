@@ -49,31 +49,19 @@
     nixosConfigurations = {
       geonosis = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/geonosis
-          # inputs.home-manager.nixosModules.default
-        ];
+        modules = [./hosts/geonosis];
       };
       nevarro = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/nevarro
-          inputs.home-manager.nixosModules.default
-        ];
+        modules = [./hosts/nevarro];
       };
       mandalore = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/mandalore
-          inputs.home-manager.nixosModules.default
-        ];
+        modules = [./hosts/mandalore];
       };
       coruscant = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/coruscant
-          inputs.home-manager.nixosModules.default
-        ];
+        modules = [./hosts/coruscant];
       };
       mustafar = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};

@@ -10,5 +10,5 @@
     firewall.enable = true;
   };
 
-  services.netbird.enable = true;
+  services.netbird.enable = false;
 }

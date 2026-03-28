@@ -15,6 +15,7 @@
 in {
   imports = [
     inputs.sops.nixosModules.sops
+    inputs.home-manager.nixosModules.home-manager
 
     ./work.nix
   ];

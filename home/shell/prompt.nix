@@ -26,7 +26,7 @@ $nix_shell$sudo$character";
           palette = "main";
 
           palettes.main = {
-            blue = "21";
+            blue = "26";
             cyan = "51";
             green = "118";
             red = "196";
@@ -129,8 +129,7 @@ $nix_shell$sudo$character";
 
           kubernetes = {
             disabled = false;
-            # format = "[$symbol$user@$cluster:$context/$namespace]($style)";
-            format = "[$symbol$context/$namespace]($style)";
+            format = "[$symbol$user@$cluster:$context/$namespace]($style)";
             style = "bold blue";
           };
 

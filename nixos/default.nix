@@ -1,6 +1,6 @@
 {
   lib,
-  inputs,
+  pkgs,
   ...
 }: {
   imports = [
@@ -41,6 +41,8 @@
 
   programs.nano.enable = false;
   programs.zsh.enable = true;
+
+  environment.systemPackages = [pkgs.nfs-utils];
 
   documentation = {
     enable = true;

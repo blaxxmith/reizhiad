@@ -24,31 +24,31 @@ in {
         sopsFile = ../secrets/work/gitlab.ssh.sops;
       };
       alpes-si-crt = {
-        inherit mode format;
+        inherit owner mode format;
         sopsFile = ../secrets/work/alpes-si.crt.sops;
       };
       multi-crt = {
-        inherit mode format;
+        inherit owner mode format;
         sopsFile = ../secrets/work/multi.crt.sops;
       };
       tavel-crt = {
-        inherit mode format;
+        inherit owner mode format;
         sopsFile = ../secrets/work/tavel.crt.sops;
       };
       telex-crt = {
-        inherit mode format;
+        inherit owner mode format;
         sopsFile = ../secrets/work/telex.crt.sops;
       };
       vigan-crt = {
-        inherit mode format;
+        inherit owner mode format;
         sopsFile = ../secrets/work/vigan.crt.sops;
       };
       backdooris-wg = {
-        inherit mode format;
+        inherit owner mode format;
         sopsFile = ../secrets/work/backdooris.wg.sops;
       };
       work-ssh-config = {
-        inherit mode format;
+        inherit owner mode format;
         sopsFile = ../secrets/work/config.ssh.sops;
       };
     };
@@ -61,15 +61,27 @@ in {
     };
 
     security.pki.certificateFiles = [
-      # config.sops.secrets.alpes-si-crt.path
-      # config.sops.secrets.multi-crt.path
-      # config.sops.secrets.tavel-crt.path
-      # config.sops.secrets.telex-crt.path
-      # config.sops.secrets.vigan-crt.path
+      (builtins.readFile config.sops.secrets.alpes-si-crt.path)
+      (builtins.readFile config.sops.secrets.multi-crt.path)
+      (builtins.readFile config.sops.secrets.tavel-crt.path)
+      (builtins.readFile config.sops.secrets.telex-crt.path)
+      (builtins.readFile config.sops.secrets.vigan-crt.path)
     ];
 
     networking = {
-      hostFiles = [];
+      hosts = {
+        # Multi
+        "10.102.0.61" = ["gestionnaire.si-dr.fr"];
+        "10.101.0.51" = ["portal.si-dr.fr"];
+        "10.101.0.61" = ["signal.si-dr.fr" "signal1.si-dr.fr" "signal2.si-dr.fr" "turn1.si-dr.fr" "turn2.si-dr.fr"];
+        # "10.100.4.81" = ["influx.si-dr.fr" "monitoring.si-dr.fr"];
+        "10.100.55.81" = ["influx.si-dr.fr" "monitoring.si-dr.fr" "metrics.si-dr.fr"];
+
+        # Tavel
+        # "10.100.0.51" = ["portal.si-dr.fr" "signal.si-dr.fr" "signal1.si-dr.fr" "signal2.si-dr.fr" "turn1.si-dr.fr" "turn2.si-dr.fr"];
+
+        "127.0.0.1" = ["local.si-dr.fr" "office.si-dr.fr"];
+      };
       wg-quick.interfaces = {
         # backdooris.configFile = config.sops.secrets.backdooris-wg.path;
       };
@@ -94,8 +106,13 @@ in {
             enableExtendedTools = true;
             oxydize = true;
             git.extraAccounts = {
-              "gitlab.alpes.si" = {
-                remote = "git@gitlab.alpes.si";
+              "github.com" = {
+                remote = "git@github.com";
+                gitConfig = "github-gitconfig";
+                sshConfig = "github-ssh";
+              };
+              "drakkar.cartesian-lab.fr" = {
+                remote = "git@drakkar.cartesian-lab.fr";
                 gitConfig = "work-gitconfig";
                 sshConfig = "glwork-ssh";
               };
