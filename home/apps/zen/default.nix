@@ -8,27 +8,7 @@
   cfg = config.forgeOS.apps.zen;
 in {
   imports = [
-    inputs.zen-browser.homeModules.twilight.override
-    {
-      policies = {
-        AutofillAddressEnabled = true;
-        AutofillCreditCardEnabled = false;
-        DisableAppUpdate = true;
-        DisableFeedbackCommands = true;
-        DisableFirefoxStudies = true;
-        DisablePocket = true;
-        DisableTelemetry = true;
-        DontCheckDefaultBrowser = true;
-        NoDefaultBookmarks = true;
-        OfferToSaveLogins = false;
-        EnableTrackingProtection = {
-          Value = true;
-          Locked = true;
-          Cryptomining = true;
-          Fingerprinting = true;
-        };
-      };
-    }
+    inputs.zen-browser.homeModules.twilight
   ];
 
   options.forgeOS.apps.zen = {
@@ -37,24 +17,25 @@ in {
 
   config.programs.zen-browser = {
     enable = cfg.enable;
-    # policies = {
-    #   AutofillAddressEnabled = true;
-    #   AutofillCreditCardEnabled = false;
-    #   DisableAppUpdate = true;
-    #   DisableFeedbackCommands = true;
-    #   DisableFirefoxStudies = true;
-    #   DisablePocket = true;
-    #   DisableTelemetry = true;
-    #   DontCheckDefaultBrowser = true;
-    #   NoDefaultBookmarks = true;
-    #   OfferToSaveLogins = false;
-    #   EnableTrackingProtection = {
-    #     Value = true;
-    #     Locked = true;
-    #     Cryptomining = true;
-    #     Fingerprinting = true;
-    #   };
-    # };
+    setAsDefaultBrowser = true;
+    policies = {
+      AutofillAddressEnabled = true;
+      AutofillCreditCardEnabled = false;
+      DisableAppUpdate = true;
+      DisableFeedbackCommands = true;
+      DisableFirefoxStudies = true;
+      DisablePocket = true;
+      DisableTelemetry = true;
+      DontCheckDefaultBrowser = true;
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
+    };
     profiles.default = {
       id = 0;
       isDefault = true;
