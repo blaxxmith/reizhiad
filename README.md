@@ -40,10 +40,7 @@ pamu2fcfg >> ~/.config/Yubico/u2f_keys
 - [Nix Flakes](https://nixos.wiki/wiki/Flakes)
 - [NixOS](https://nixos.org/)
 - [Home Manager](https://github.com/nix-community/home-manager)
-- [Nix Darwin](https://github.com/LnL7/nix-darwin)
-- [Hyprland](https://hyprland.org/)
 - [Nixvim](https://github.com/nix-community/nixvim)
-- [Stylix](https://github.com/danth/stylix)
 
 ## Credits
 
