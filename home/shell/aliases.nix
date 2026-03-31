@@ -4,7 +4,6 @@
   ...
 }: let
   cfg = config.forgeOS.shell.aliases;
-  ls = "eza";
   editor = "nvim";
 in {
   options.forgeOS.shell.aliases = {

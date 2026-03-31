@@ -49,9 +49,6 @@ in {
     forgeOS.apps.enable = lib.mkDefault true;
     forgeOS.apps.enableTUIApps = lib.mkDefault true;
 
-    nixpkgs.config.allowUnfree = true;
-    programs.home-manager.enable = true;
-
     forgeOS.tools.nvim.enable = lib.mkDefault true;
     forgeOS.shell.enable = lib.mkDefault true;
     forgeOS.tools.enable = lib.mkDefault true;
@@ -69,16 +66,7 @@ in {
       download = "${hd}/downloads";
     };
 
-    home = {
-      stateVersion = "24.05";
-      file = {
-        ".config/nixpkgs/config.nix".text = ''
-          {
-            allowUnfree = true;
-            allowBroken = false;
-          }
-        '';
-      };
-    };
+    programs.home-manager.enable = true;
+    home.stateVersion = "24.05";
   };
 }

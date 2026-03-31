@@ -13,7 +13,7 @@ in {
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
-      silent = false;
+      silent = true;
       enableZshIntegration = true;
     };
   };

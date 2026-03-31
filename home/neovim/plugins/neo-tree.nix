@@ -23,7 +23,7 @@
       {
         mode = "n";
         key = "<C-l>";
-        action = "<cmd>Neotree reveal<CR>";
+        action = "<cmd>Neotree toggle<CR>";
         options = {
           desc = "Neo-tree : toggle";
           silent = true;

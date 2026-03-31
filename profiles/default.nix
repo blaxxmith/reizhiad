@@ -86,6 +86,7 @@ in {
     };
 
     home-manager = {
+      useGlobalPkgs = true;
       extraSpecialArgs = {inherit inputs vars sops;};
       backupFileExtension = "forgeos.bak";
     };

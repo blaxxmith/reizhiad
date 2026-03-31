@@ -62,6 +62,7 @@ in {
         proton-pass-cli
         glab
         exegol
+        devenv
       ];
     })
 

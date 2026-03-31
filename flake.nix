@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixdocs.url = "github:Thunderbottom/nix-options-doc";
-    deploy-rs.url = "github:serokell/deploy-rs";
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     sops = {
@@ -39,8 +38,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixdocs,
-    deploy-rs,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -76,7 +73,7 @@
       docs = {
         type = "app";
         program = "${pkgs.writeShellScript "run-docs" ''
-          ${nixdocs.packages."${system}".default}/bin/nix-options-doc --strip-prefix --out ref.md --progress
+          ${inputs.nixdocs.packages."${system}".default}/bin/nix-options-doc --strip-prefix --out ref.md --progress
         ''}";
         meta.description = "Generate a markdown reference of my options";
       };
@@ -89,8 +86,7 @@
         name = "nix";
         packages = [
           pkgs.sbctl
-          nixdocs.packages.${system}.default
-          deploy-rs.packages.${system}.default
+          inputs.nixdocs.packages.${system}.default
           pkgs.sops
           pkgs.age
           pkgs.ssh-to-age

@@ -11,10 +11,7 @@
     ./yubikey.nix
   ];
 
-  # Set your time zone.
   time.timeZone = "Europe/Paris";
-
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -38,17 +35,30 @@
 
   forgeOS.system.yubikey.enable = lib.mkDefault false;
   security.polkit.enable = true;
+  security = {
+    sudo.enable = false;
+    sudo-rs = {
+      enable = true;
+      extraConfig = ''
+        Defaults !pwfeedback
+      '';
+    };
+  };
 
   programs.nano.enable = false;
   programs.zsh.enable = true;
 
-  environment.systemPackages = [pkgs.nfs-utils];
+  environment = {
+    systemPackages = [pkgs.nfs-utils];
+    defaultPackages = lib.mkForce [pkgs.rsync];
+  };
 
   documentation = {
     enable = true;
     man.enable = true;
     doc.enable = true;
     info.enable = true;
+    nixos.enable = true;
   };
 
   forgeOS.system.wm.enable = lib.mkDefault false;

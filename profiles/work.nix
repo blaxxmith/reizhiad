@@ -87,43 +87,41 @@ in {
       };
     };
 
-    home-manager = {
-      users."${user}" = {
-        imports = [./../home];
+    home-manager.users."${user}" = {
+      imports = [./../home];
 
-        home = {
-          username = user;
-          homeDirectory = "/home/${user}";
-        };
+      home = {
+        username = user;
+        homeDirectory = "/home/${user}";
+      };
 
-        forgeOS = {
-          desktop.enable = true;
-          shell.enable = true;
-          tools = {
-            ssh.extraFiles = [config.sops.secrets.work-ssh-config.path];
-            enable = true;
-            nvim.enable = true;
-            enableExtendedTools = true;
-            oxydize = true;
-            git.extraAccounts = {
-              "github.com" = {
-                remote = "git@github.com";
-                gitConfig = "github-gitconfig";
-                sshConfig = "github-ssh";
-              };
-              "drakkar.cartesian-lab.fr" = {
-                remote = "git@drakkar.cartesian-lab.fr";
-                gitConfig = "work-gitconfig";
-                sshConfig = "glwork-ssh";
-              };
+      forgeOS = {
+        desktop.enable = true;
+        shell.enable = true;
+        tools = {
+          ssh.extraFiles = [config.sops.secrets.work-ssh-config.path];
+          enable = true;
+          nvim.enable = true;
+          enableExtendedTools = true;
+          oxydize = true;
+          git.extraAccounts = {
+            "github.com" = {
+              remote = "git@github.com";
+              gitConfig = "github-gitconfig";
+              sshConfig = "github-ssh";
+            };
+            "drakkar.cartesian-lab.fr" = {
+              remote = "git@drakkar.cartesian-lab.fr";
+              gitConfig = "work-gitconfig";
+              sshConfig = "glwork-ssh";
             };
           };
-          apps = {
-            zen.enable = true;
-            enable = true;
-            enableGUIApps = true;
-            enableTUIApps = true;
-          };
+        };
+        apps = {
+          zen.enable = true;
+          enable = true;
+          enableGUIApps = true;
+          enableTUIApps = true;
         };
       };
     };

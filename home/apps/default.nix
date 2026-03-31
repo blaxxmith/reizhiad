@@ -15,7 +15,7 @@ in {
     ./kitty.nix
     ./vscode.nix
     ./yazi.nix
-    ./zen.nix
+    ./zen
   ];
 
   options.forgeOS.apps = {
@@ -26,7 +26,8 @@ in {
 
   config = lib.mkMerge [
     (lib.mkIf (cfg.enable && cfg.enableTUIApps) {
-      forgeOS.apps.iamb.enable = lib.mkDefault true;
+      # Breaking Update
+      forgeOS.apps.iamb.enable = lib.mkDefault false;
       forgeOS.apps.yazi.enable = lib.mkDefault true;
     })
 
@@ -44,7 +45,7 @@ in {
         feh
         jetbrains.pycharm
         tor-browser
-        anytype
+        # anytype
       ];
     })
   ];

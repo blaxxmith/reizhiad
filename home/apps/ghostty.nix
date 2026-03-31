@@ -23,6 +23,10 @@ in {
         window-padding-y = 3;
         window-decoration = "none";
         shell-integration-features = "no-cursor";
+        keybind = [
+          "ctrl+shift+v=paste_from_clipboard"
+          "ctrl+shift+c=copy_to_clipboard"
+        ];
       };
       themes = {
         alacritty = {

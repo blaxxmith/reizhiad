@@ -79,6 +79,7 @@ in {
             cfg.extraAccounts;
 
           lfs.enable = true;
+          signing.format = "ssh";
 
           settings = {
             gpg.format = "ssh";

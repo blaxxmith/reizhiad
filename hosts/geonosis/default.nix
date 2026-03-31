@@ -50,10 +50,10 @@ in {
     /home/eagle/dev/carl/offline/certs/ca.crt
   ];
 
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
-  users.groups.libvirtd.members = ["eagle"];
-  programs.virt-manager.enable = true;
+  # virtualisation.libvirtd.enable = true;
+  # virtualisation.spiceUSBRedirection.enable = true;
+  # users.groups.libvirtd.members = ["eagle"];
+  # programs.virt-manager.enable = true;
 
   # to move to the users file
   users.users."${user}" = {
