@@ -20,8 +20,8 @@ in {
         zsh.shellAliases = {
           ls = "eza";
           la = "eza --almost-all";
-          l = "eza --long --almost-all --octal-permissions --header";
-          ll = "eza --long --header --octal-permissions";
+          l = "eza --long --almost-all --octal-permissions --header --group";
+          ll = "eza --long --header --octal-permissions --group";
           tree = "eza --tree";
         };
       })

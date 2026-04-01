@@ -6,5 +6,9 @@
     };
 
     nightfox.enable = false;
+    everforest = {
+      enable = false;
+      settings.background = "hard";
+    };
   };
 }
