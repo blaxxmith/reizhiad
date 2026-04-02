@@ -1,10 +1,5 @@
-{self, ...}: {
-  flake.nixosModules.shell = {...}: {
-    imports = [self.homeModules.zsh];
-    programs.zsh.enable = true;
-  };
-
-  flake.homeModules.zsh = {
+{...}: {
+  flake.homeModules.shell = {
     config,
     lib,
     pkgs,
@@ -12,11 +7,6 @@
   }: let
     cfg = config.forgeOS.shell;
   in {
-    imports = [
-      ./aliases.nix
-      ./prompt.nix
-    ];
-
     options.forgeOS.shell = {
       enable = lib.mkEnableOption "ZSH as main shell";
     };
