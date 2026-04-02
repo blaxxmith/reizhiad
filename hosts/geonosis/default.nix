@@ -80,6 +80,7 @@ in {
       # gui.enable = true;
       forgeOS.desktop.enable = true;
       forgeOS.apps.zen.enable = true;
+      forgeOS.apps.zen.personal = true;
       forgeOS.tools.nvim.enable = true;
       forgeOS.tools.ssh.enable = true;
       forgeOS.tools.nvim.opencode = true;

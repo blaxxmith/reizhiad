@@ -15,6 +15,7 @@
 
     lanzaboote.url = "github:nix-community/lanzaboote";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
+    lanzaboote.inputs.pre-commit.follows = "";
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
@@ -25,5 +26,51 @@
     zen-browser.inputs.home-manager.follows = "home-manager";
   };
 
-  outputs = inputs: inputs.parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+  # outputs = inputs: inputs.parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    nixosConfigurations = {
+      geonosis = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [./hosts/geonosis];
+      };
+      nevarro = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [./hosts/nevarro];
+      };
+      mandalore = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [./hosts/mandalore];
+      };
+      coruscant = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [./hosts/coruscant];
+      };
+      mustafar = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        system = "aarch64-linux";
+        modules = [./hosts/mustafar];
+      };
+    };
+
+    devShells.${system} = {
+      default = self.devShells.${system}.nix;
+
+      nix = pkgs.mkShell {
+        name = "nix";
+        packages = [
+          pkgs.sbctl
+          pkgs.sops
+          pkgs.age
+          pkgs.ssh-to-age
+        ];
+      };
+    };
+  };
 }

@@ -9,10 +9,20 @@
 in {
   imports = [
     inputs.zen-browser.homeModules.twilight
+    ./perso.nix
   ];
 
   options.forgeOS.apps.zen = {
     enable = lib.mkEnableOption "Zen Browser BETA";
+    common = {
+      mods = lib.mkOption {
+        type = with lib.types; listOf str;
+        description = "List of Zen Browser mods to enable for all profiles.";
+        default = [
+          "e74cb40a-f3b8-445a-9826-1b1b6e41b846" # Custom UI Fonts
+        ];
+      };
+    };
   };
 
   config.programs.zen-browser = {
@@ -41,11 +51,7 @@ in {
       isDefault = true;
       name = "Default";
 
-      bookmarks = {};
-
-      mods = [
-        "e74cb40a-f3b8-445a-9826-1b1b6e41b846" # Custom UI Fonts
-      ];
+      mods = config.forgeOS.apps.zen.common.mods;
 
       containersForce = true;
       containers = {
@@ -208,8 +214,6 @@ in {
         "zen.view.window.scheme" = 0;
         "zen.welcome-screen.seen" = true;
         "zen.workspaces.continue-where-left-off" = true;
-        # "browser.startup.homepage" = "about:home";
-        # "browser.startup.page" = "3";
 
         # # Disable irritating first-run stuff
         # "browser.disableResetPrompt" = true;

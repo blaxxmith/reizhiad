@@ -1,13 +1,13 @@
 {
   programs.nixvim.colorschemes = {
     catppuccin = {
-      enable = true;
+      enable = false;
       settings.flavour = "mocha";
     };
 
     nightfox.enable = false;
     everforest = {
-      enable = false;
+      enable = true;
       settings.background = "hard";
     };
   };
