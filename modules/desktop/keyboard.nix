@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.homeModules.desktop = {
     config,
     pkgs,
@@ -12,7 +12,7 @@
       bindgesture swipe:left workspace next
     '';
     wayland.windowManager.sway.config = {
-      modifier = modifier;
+      inherit modifier;
 
       input = {
         "type:keyboard" = {

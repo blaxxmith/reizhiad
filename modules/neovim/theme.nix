@@ -1,5 +1,5 @@
-{...}: {
-  flake.homeModules.neovim = {...}: {
+_: {
+  flake.homeModules.neovim = _: {
     programs.nixvim.colorschemes = {
       catppuccin = {
         enable = false;

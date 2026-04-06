@@ -1,8 +1,7 @@
-{...}: {
+_: {
   flake.homeModules.zen = {
     config,
     lib,
-    pkgs,
     ...
   }: let
     cfg = config.forgeOS.apps.zen;
@@ -15,7 +14,7 @@
 
       bookmarks = {};
 
-      mods = config.forgeOS.apps.zen.common.mods;
+      inherit (config.forgeOS.apps.zen.common) mods;
 
       settings = {
         "zen.tabs.show-newtab-vertical" = true;

@@ -28,7 +28,7 @@ in {
       enable = true;
       package = pkgs.mealie;
       listenAddress = cfg.net.addr;
-      port = cfg.net.port;
+      inherit (cfg.net) port;
       database.createLocally = true;
     };
   };

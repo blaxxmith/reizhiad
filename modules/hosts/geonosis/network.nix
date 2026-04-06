@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.nixosModules.geonosis = {lib, ...}: {
     networking = {
       hostName = "geonosis";

@@ -1,12 +1,11 @@
 # Roadmap to `/forgeOS`
 
 - Clipboard
-    - choose a hist clip
-    - integrate it with rofi
+  - choose a hist clip
+  - integrate it with rofi
 
 - Various
-    - make options with if for settings like docker
-
+  - make options with if for settings like docker
 
 ## Dendritic Pattern
 
@@ -33,5 +32,5 @@
 - All files must be a NixOS module
 - For HM, use a module in a nix file, for only one feature / app etc.
 - Use imports and pass args to file for user + home manager path.
-    - User: variable `config.forgeOS.profile.user`
-    - HM: no variable needed, if it's on the tree of imports.
+  - User: variable `config.forgeOS.profile.user`
+  - HM: no variable needed, if it's on the tree of imports.

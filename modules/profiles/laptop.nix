@@ -1,10 +1,9 @@
-{...}: {
+_: {
   flake.nixosModules.laptop = {
     lib,
     pkgs,
     ...
-  }: let
-  in {
+  }: {
     services = {
       libinput = {
         # Enable touchpad tap-to-click and natural scrolling

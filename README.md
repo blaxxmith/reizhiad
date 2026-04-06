@@ -2,10 +2,10 @@
 
 [![Built with Nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-*Xavier2p `/forge` System Configuration*
+_Xavier2p `/forge` System Configuration_
 
 > **Warning**  
-> This project is *work in progress*, so it's not working now.
+> This project is _work in progress_, so it's not working now.
 
 This repo contains all of my system configuration for all of my hosts,
 built with Nix.
@@ -50,4 +50,3 @@ pamu2fcfg >> ~/.config/Yubico/u2f_keys
 - [Zaney/zaneyos](https://gitlab.com/Zaney/zaneyos)
 - [poz/niksos](https://git.jacekpoz.pl/poz/niksos)
 - [nezia/flocon](https://git.nezia.dev/nezia/flocon)
-

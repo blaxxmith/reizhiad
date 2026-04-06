@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.homeModules.shell = {
     config,
     lib,

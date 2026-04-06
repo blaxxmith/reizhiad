@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.homeModules.tools = {
     config,
     lib,

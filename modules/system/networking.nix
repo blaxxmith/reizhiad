@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.nixosModules.system = {lib, ...}: {
     networking = {
       # Domain for all hosts.

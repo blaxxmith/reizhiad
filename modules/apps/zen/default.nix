@@ -25,7 +25,7 @@
     };
 
     config.programs.zen-browser = {
-      enable = cfg.enable;
+      inherit (cfg) enable;
       setAsDefaultBrowser = true;
       policies = {
         AutofillAddressEnabled = true;
@@ -50,7 +50,7 @@
         isDefault = true;
         name = "Default";
 
-        mods = config.forgeOS.apps.zen.common.mods;
+        inherit (config.forgeOS.apps.zen.common) mods;
 
         containersForce = true;
         containers = {
@@ -82,7 +82,7 @@
 
         spacesForce = true;
         spaces = let
-          containers = config.programs.zen-browser.profiles.default.containers;
+          inherit (config.programs.zen-browser.profiles.default) containers;
         in {
           main = {
             id = "e7ffa4fd-5357-4790-a1a9-06ed3b79b75e";

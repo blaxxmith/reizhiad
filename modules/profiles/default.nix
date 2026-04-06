@@ -5,9 +5,9 @@
     ...
   }: let
     cfg = config.forgeOS.host;
-    sops = config.sops;
+    inherit (config) sops;
     vars = {
-      keymap = cfg.keymap;
+      inherit (cfg) keymap;
       screenMode = cfg.screen.mode;
       screenPos = cfg.screen.position;
       screenScale = cfg.screen.scale;

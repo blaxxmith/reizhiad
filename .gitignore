@@ -1,3 +1,4 @@
 justfile
 result
 vars.nix
+.direnv/

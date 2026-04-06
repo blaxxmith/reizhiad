@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.homeModules.tools = {
     config,
     lib,
@@ -75,7 +75,7 @@
             includes =
               lib.mapAttrsToList (_: item: {
                 condition = "hasconfig:remote.*.url:${item.remote}:*/**";
-                path = sops.secrets."${item.gitConfig}".path;
+                inherit (sops.secrets."${item.gitConfig}") path;
               })
               cfg.extraAccounts;
 

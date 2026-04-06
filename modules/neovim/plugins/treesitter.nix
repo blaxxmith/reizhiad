@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.homeModules.neovim = {pkgs, ...}: {
     programs.nixvim.plugins.treesitter = {
       enable = true;

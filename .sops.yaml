@@ -5,5 +5,5 @@ creation_rules:
   - path_regex: secrets/.*\.sops$
     key_groups:
       - age:
-        - *primary
-        - *nixbookpro
+          - *primary
+          - *nixbookpro

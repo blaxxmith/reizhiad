@@ -1,4 +1,4 @@
-{...}: {
+_: {
   perSystem = {
     self',
     pkgs,
@@ -9,7 +9,7 @@
 
       nix = pkgs.mkShell {
         name = "nix";
-        packages = with pkgs; [sbctl sops age ssh-to-age];
+        packages = with pkgs; [sbctl sops age ssh-to-age deadnix statix];
       };
     };
   };
