@@ -5,11 +5,11 @@ _: {
     ...
   }: {
     devShells = {
-      default = self'.devShells.nix;
+      default = self'.devShells.system;
 
-      nix = pkgs.mkShell {
+      system = pkgs.mkShellNoCC {
         name = "nix";
-        packages = with pkgs; [sbctl sops age ssh-to-age deadnix statix];
+        packages = with pkgs; [sbctl sops age ssh-to-age deadnix statix vulnix nh];
       };
     };
   };

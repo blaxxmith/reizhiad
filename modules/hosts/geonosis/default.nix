@@ -41,17 +41,15 @@
       initrd.verbose = false;
     };
 
-    # boot.initrd.luks.devices."luks-67770c13-d64e-4676-8e53-aba49a68d96a".device = "/dev/disk/by-uuid/67770c13-d64e-4676-8e53-aba49a68d96a";
-
     # to move to work profile
-    security.pki.certificateFiles = [
-      /home/eagle/.nixnotsync/certs/telex.crt
-      /home/eagle/.nixnotsync/certs/multi.crt
-      /home/eagle/.nixnotsync/certs/tavel.crt
-      /home/eagle/.nixnotsync/certs/vigan.crt
-      /home/eagle/.nixnotsync/certs/alpes.si.crt
-      # /home/eagle/dev/carl/offline/certs/ca.crt
-    ];
+    # security.pki.certificateFiles = [
+    #   /home/eagle/.nixnotsync/certs/telex.crt
+    #   /home/eagle/.nixnotsync/certs/multi.crt
+    #   /home/eagle/.nixnotsync/certs/tavel.crt
+    #   /home/eagle/.nixnotsync/certs/vigan.crt
+    #   /home/eagle/.nixnotsync/certs/alpes.si.crt
+    #   # /home/eagle/dev/carl/offline/certs/ca.crt
+    # ];
 
     # virtualisation.libvirtd.enable = true;
     # virtualisation.spiceUSBRedirection.enable = true;

@@ -18,12 +18,12 @@ _: {
           enable = true;
           package = pkgs.opencode;
           settings = {
-            theme = "catppuccin";
             server = {
               port = 4096;
               hostname = "127.0.0.1";
             };
           };
+          tui.theme = "everforest";
         };
       };
     };

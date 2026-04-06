@@ -19,7 +19,6 @@ _: {
           dk = "docker";
           dkc = "docker compose";
           k = "kubectl";
-          kn = "kubectl config set-context minikube --namespace";
           tf = "terraform";
           ai = "ansible-inventory";
           ap = "ansible-playbook";
