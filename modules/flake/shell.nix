@@ -9,7 +9,18 @@ _: {
 
       system = pkgs.mkShellNoCC {
         name = "nix";
-        packages = with pkgs; [sbctl sops age ssh-to-age deadnix statix vulnix nh];
+        packages = with pkgs; [
+          sbctl
+          sops
+          age
+          ssh-to-age
+          deadnix
+          statix
+          vulnix
+          nh
+        ];
+
+        NH_OS_FLAKE = "./";
       };
     };
   };

@@ -18,6 +18,7 @@ _: {
         enable = true;
         wrapperFeatures.gtk = true;
         xwayland.enable = true;
+        extraPackages = lib.mkForce [];
       };
 
       xdg.portal = {

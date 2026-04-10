@@ -17,7 +17,9 @@ _: {
 
     config = lib.mkIf cfg.enable {
       programs = lib.mkMerge [
-        (lib.mkIf cfg.addAlias {zsh.shellAliases.find = "fd";})
+        (lib.mkIf cfg.addAlias {
+          zsh.shellAliases.find = "fd";
+        })
 
         {
           fd = {

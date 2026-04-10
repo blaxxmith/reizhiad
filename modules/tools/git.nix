@@ -49,7 +49,9 @@ _: {
 
     config = lib.mkIf cfg.enable {
       programs = lib.mkMerge [
-        (lib.mkIf cfg.addAlias {zsh.shellAliases.g = "git";})
+        (lib.mkIf cfg.addAlias {
+          zsh.shellAliases.g = "git";
+        })
 
         (lib.mkIf cfg.addSSHConfig {
           ssh.includes =

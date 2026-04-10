@@ -17,10 +17,12 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      programs = lib.mkMerge [
-        (lib.mkIf cfg.addAlias {zsh.shellAliases.cat = "bat";})
+      home.sessionVariables.MANPAGER = lib.mkIf cfg.man "bat -plman";
 
-        # (lib.mkIf cfg.man {home.variables.MANPAGER = "bat -plman";})
+      programs = lib.mkMerge [
+        (lib.mkIf cfg.addAlias {
+          zsh.shellAliases.cat = "bat";
+        })
 
         {
           bat = {

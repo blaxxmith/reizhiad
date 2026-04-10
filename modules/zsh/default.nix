@@ -17,6 +17,8 @@ _: {
         prompt.enable = lib.mkDefault true;
       };
 
+      home.shell.enableZshIntegration = true;
+
       programs.zsh = {
         enable = true;
         autocd = true;

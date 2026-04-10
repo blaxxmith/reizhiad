@@ -21,11 +21,15 @@ _: {
 
     config = lib.mkMerge [
       (lib.mkIf (cfg.enable && cfg.enableEssentialTools) {
-        forgeOS.tools.eza.enable = true;
-        forgeOS.tools.eza.addAlias = true;
-        forgeOS.tools.git.enable = true;
-        forgeOS.tools.zellij.enable = true;
-        forgeOS.tools.ssh.enable = lib.mkDefault true;
+        forgeOS.tools = {
+          eza = {
+            enable = true;
+            addAlias = true;
+          };
+          git.enable = true;
+          zellij.enable = true;
+          ssh.enable = lib.mkDefault true;
+        };
 
         programs.htop.enable = true;
 
@@ -35,12 +39,15 @@ _: {
       })
 
       (lib.mkIf (cfg.enable && cfg.enableExtendedTools) {
-        forgeOS.tools.bat.enable = true;
-        forgeOS.tools.direnv.enable = true;
-        forgeOS.tools.fd.enable = true;
-        forgeOS.tools.ripgrep.enable = true;
-        forgeOS.tools.skim.enable = true;
-        forgeOS.tools.fastfetch.enable = true;
+        forgeOS.tools = {
+          bat.enable = true;
+          direnv.enable = true;
+          fd.enable = true;
+          ripgrep.enable = true;
+          skim.enable = true;
+          fastfetch.enable = true;
+        };
+
         programs.btop.enable = true;
 
         home.packages = with pkgs; [
@@ -50,20 +57,23 @@ _: {
           proton-pass-cli
           glab
           exegol
-          devenv
         ];
       })
 
       (lib.mkIf (cfg.enable && cfg.oxydize) {
-        forgeOS.tools.bat.addAlias = true;
-        forgeOS.tools.bat.man = true;
-        forgeOS.tools.fd.addAlias = true;
-        forgeOS.tools.ripgrep.addAlias = true;
-        forgeOS.tools.skim.addAlias = true;
+        forgeOS.tools = {
+          bat = {
+            addAlias = true;
+            man = true;
+          };
+          fd.addAlias = true;
+          ripgrep.addAlias = true;
+          skim.addAlias = true;
+        };
 
         programs.zsh.shellAliases = {
           ncdu = "dua i";
-          du = "dust";
+          du = "dust --reverse";
         };
       })
     ];

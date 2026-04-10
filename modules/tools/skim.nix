@@ -17,14 +17,16 @@ _: {
 
     config = lib.mkIf cfg.enable {
       programs = lib.mkMerge [
-        (lib.mkIf cfg.addAlias {zsh.shellAliases.fzf = "sk";})
+        (lib.mkIf cfg.addAlias {
+          zsh.shellAliases.fzf = "sk";
+        })
 
         {
           skim = {
             enable = true;
             enableZshIntegration = true;
-            defaultOptions = ["--ansi" "--height 10" "--reverse"];
-            historyWidgetOptions = ["--ansi" "--height 10" "--prompt h>"];
+            defaultOptions = ["--ansi" "--height 50" "--reverse" "--preview 'bat --color=always --line-range=:500 {}'"];
+            historyWidgetOptions = ["--ansi" "--reverse" "--height 10" "--prompt h>"];
           };
         }
       ];

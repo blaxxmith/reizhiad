@@ -13,6 +13,7 @@
   };
 
   flake.nixosModules.geonosis = {
+    config,
     lib,
     pkgs,
     ...
@@ -42,14 +43,13 @@
     };
 
     # to move to work profile
-    # security.pki.certificateFiles = [
-    #   /home/eagle/.nixnotsync/certs/telex.crt
-    #   /home/eagle/.nixnotsync/certs/multi.crt
-    #   /home/eagle/.nixnotsync/certs/tavel.crt
-    #   /home/eagle/.nixnotsync/certs/vigan.crt
-    #   /home/eagle/.nixnotsync/certs/alpes.si.crt
-    #   # /home/eagle/dev/carl/offline/certs/ca.crt
-    # ];
+    security.pki.certificateFiles = [
+      #   /home/eagle/.nixnotsync/certs/telex.crt
+      #   /home/eagle/.nixnotsync/certs/multi.crt
+      #   /home/eagle/.nixnotsync/certs/tavel.crt
+      /home/eagle/.nixnotsync/certs/vigan.crt
+      #   /home/eagle/.nixnotsync/certs/alpes.si.crt
+    ];
 
     # virtualisation.libvirtd.enable = true;
     # virtualisation.spiceUSBRedirection.enable = true;
@@ -64,9 +64,6 @@
       extraGroups = ["networkmanager" "wheel" "docker"];
     };
 
-    forgeOS.host.screen.mode = "1920x1200@60.002Hz";
-    forgeOS.host.screen.position = "1440,1778";
-
     # Add to right profile
     home-manager = {
       users."${user}" = {
@@ -77,40 +74,55 @@
           homeDirectory = "/home/${user}";
         };
 
-        forgeOS.desktop.enable = true;
-        forgeOS.apps.zen.enable = true;
-        forgeOS.apps.zen.personal = true;
-        forgeOS.tools.nvim.enable = true;
-        forgeOS.tools.ssh.enable = true;
-        forgeOS.tools.nvim.opencode = true;
-        forgeOS.tools.git.extraAccounts = {
-          "github.com" = {
-            remote = "git@github.com";
-            gitConfig = "github-gitconfig";
-            sshConfig = "github-ssh";
+        forgeOS = {
+          desktop.enable = true;
+          apps.zen = {
+            enable = true;
+            personal = true;
           };
-          "git.forge.epita.fr" = {
-            remote = "xavier.de-place@git.forge.epita.fr";
-            gitConfig = "epita-gitconfig";
-            sshConfig = "intra-ssh";
-          };
-          "gitlab.epita.fr" = {
-            remote = "git@gitlab.cri.epita.fr";
-            gitConfig = "epita-gitconfig";
-            sshConfig = "glcri-ssh";
-          };
-          "drakkar.cartesian-lab.fr" = {
-            remote = "git@drakkar.cartesian-lab.fr";
-            gitConfig = "work-gitconfig";
-            sshConfig = "glwork-ssh";
+          tools = {
+            nvim.enable = true;
+            ssh = {
+              enable = true;
+              extraFiles = [config.sops.secrets.work-ssh-config.path];
+            };
+            nvim.opencode = true;
+            git.extraAccounts = {
+              "github.com" = {
+                remote = "git@github.com";
+                gitConfig = "github-gitconfig";
+                sshConfig = "github-ssh";
+              };
+              "git.forge.epita.fr" = {
+                remote = "xavier.de-place@git.forge.epita.fr";
+                gitConfig = "epita-gitconfig";
+                sshConfig = "intra-ssh";
+              };
+              "gitlab.epita.fr" = {
+                remote = "git@gitlab.cri.epita.fr";
+                gitConfig = "epita-gitconfig";
+                sshConfig = "glcri-ssh";
+              };
+              "drakkar.cartesian-lab.fr" = {
+                remote = "git@drakkar.cartesian-lab.fr";
+                gitConfig = "work-gitconfig";
+                sshConfig = "glwork-ssh";
+              };
+            };
           };
         };
       };
     };
 
-    forgeOS.system.yubikey = {
-      enable = true;
-      waylandEnable = false;
+    forgeOS = {
+      host.screen = {
+        mode = "1920x1200@60.002Hz";
+        position = "1440,1778";
+      };
+      system.yubikey = {
+        enable = true;
+        waylandEnable = false;
+      };
     };
 
     system.stateVersion = "24.05";

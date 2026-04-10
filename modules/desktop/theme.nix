@@ -17,17 +17,18 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      home.file.".config/gtk-3.0/settings.ini".text = ''
-        [Settings]
-        gtk-application-prefer-dark-theme=1
-      '';
+      home.file = {
+        ".config/gtk-4.0/settings.ini".text = ''
+          [Settings]
+          gtk-application-prefer-dark-theme=1
+        '';
+        ".config/gtk-3.0/settings.ini".text = ''
+          [Settings]
+          gtk-application-prefer-dark-theme=1
+        '';
 
-      home.file.".config/gtk-4.0/settings.ini".text = ''
-        [Settings]
-        gtk-application-prefer-dark-theme=1
-      '';
-
-      home.file.".assets/wallpaper.png".source = cfg.wallpaper;
+        ".assets/wallpaper.png".source = cfg.wallpaper;
+      };
 
       programs.swaylock.settings.image = "${wallpaper}";
 

@@ -9,12 +9,7 @@ _: {
   in {
     options.forgeOS.tools.zellij = {
       enable = lib.mkEnableOption "Zellij terminal multiplexer";
-      remote = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Enable Zellij server configuration (for remote usage)";
-        example = true;
-      };
+      remote = lib.mkEnableOption "Zellij server configuration (for remote usage)";
     };
 
     config = lib.mkIf cfg.enable {

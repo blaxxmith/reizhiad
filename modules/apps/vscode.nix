@@ -18,24 +18,27 @@ _: {
 
           userSettings = {
             files.autoSave = "off";
-
-            workbench.startupEditor = "none";
-            workbench.iconTheme = "material-icon-theme";
-            workbench.layoutControl.enabled = false;
-
-            editor.rulers = [80 120 160];
-            editor.tabSize = 2;
-            editor.formatOnSave = true;
-            editor.fontSize = 12;
-            window.zoomLevel = -1;
-
-            explorer.confirmDelete = false;
-            explorer.confirmDragAndDrop = false;
-            window.menuBarVisibility = "hidden";
-            window.commandCenter = true;
-
+            workbench = {
+              startupEditor = "none";
+              iconTheme = "material-icon-theme";
+              layoutControl.enabled = false;
+            };
+            editor = {
+              rulers = [80 120 160];
+              tabSize = 2;
+              formatOnSave = true;
+              fontSize = 12;
+            };
+            window = {
+              zoomLevel = -1;
+              menuBarVisibility = "hidden";
+              commandCenter = true;
+            };
+            explorer = {
+              confirmDelete = false;
+              confirmDragAndDrop = false;
+            };
             chat.commandCenter.enabled = false;
-
             update.showReleaseNotes = false;
           };
 

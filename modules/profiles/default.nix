@@ -81,6 +81,10 @@
           inherit owner mode format;
           sopsFile = ../../.secrets/github.ssh.sops;
         };
+        work-ssh-config = {
+          inherit owner mode format;
+          sopsFile = ../../.secrets/work/config.ssh.sops;
+        };
       };
 
       home-manager = {

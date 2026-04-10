@@ -34,3 +34,9 @@
 - Use imports and pass args to file for user + home manager path.
   - User: variable `config.forgeOS.profile.user`
   - HM: no variable needed, if it's on the tree of imports.
+
+### Next Steps
+
+- thunderbird pro/perso
+- niri + noctalia
+- iamb via his own flake

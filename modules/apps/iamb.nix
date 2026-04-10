@@ -26,7 +26,7 @@ _: {
             message_shortcode_display = true;
             reaction_shortcode_display = true;
             image_preview.protocol = {
-              type = "halfblocks";
+              type = "kitty";
             };
             notifications = {
               enabled = true;
