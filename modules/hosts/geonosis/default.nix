@@ -75,10 +75,6 @@
 
         forgeOS = {
           # desktop.enable = true;
-          apps.zen = {
-            enable = true;
-            personal = true;
-          };
           tools = {
             # nvim.enable = true;
             ssh = {
@@ -123,6 +119,10 @@
         waylandEnable = false;
       };
       shell.enable = true;
+      apps.zen = {
+        enable = true;
+        personal = true;
+      };
     };
 
     system.stateVersion = "24.05";

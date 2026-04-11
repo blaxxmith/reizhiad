@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.apps = {
+  flake.nixosModules.apps = {
     config,
     lib,
     pkgs,
@@ -9,7 +9,7 @@ _: {
   in {
     options.forgeOS.apps.vscode.enable = lib.mkEnableOption "Visual Studio Code";
 
-    config = lib.mkIf cfg.enable {
+    config.home-manager.users."${config.forgeOS.profile.user}" = lib.mkIf cfg.enable {
       programs.vscode = {
         enable = true;
         profiles.default = {

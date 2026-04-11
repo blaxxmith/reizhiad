@@ -43,7 +43,10 @@ _: {
     ];
 
     # Enable Modules
-    forgeOS.desktop.enable = true;
+    forgeOS = {
+      desktop.enable = true;
+      apps.enableGUIApps = true;
+    };
 
     # Enable FIDO support
     forgeOS.system.yubikey.enable = true;

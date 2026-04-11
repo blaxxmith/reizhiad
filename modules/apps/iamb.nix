@@ -1,14 +1,14 @@
 _: {
-  flake.homeModules.apps = {
+  flake.nixosModules.apps = {
     config,
     lib,
     ...
   }: let
     cfg = config.forgeOS.apps.iamb;
   in {
-    options.forgeOS.apps.iamb.enable = lib.mkEnableOption "IAMB Matrix Client";
+    options.forgeOS.apps.iamb.enable = lib.mkEnableOption "IAMB Matrix Client (BROKEN UPDATE)";
 
-    config = lib.mkIf cfg.enable {
+    config.home-manager.users."${config.forgeOS.profile.user}" = lib.mkIf cfg.enable {
       programs.iamb = {
         enable = true;
         settings = {

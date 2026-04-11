@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.zen = {
+  flake.nixosModules.zen = {
     config,
     lib,
     ...
@@ -8,7 +8,7 @@ _: {
   in {
     options.forgeOS.apps.zen.personal = lib.mkEnableOption "Zen Browser BETA - Personal Profile";
 
-    config.programs.zen-browser.profiles.personal = lib.mkIf cfg.personal {
+    config.home-manager.users."${config.forgeOS.profile.user}".programs.zen-browser.profiles.personal = lib.mkIf cfg.personal {
       id = 1;
       name = "Personal";
 

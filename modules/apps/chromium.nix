@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.apps = {
+  flake.nixosModules.apps = {
     config,
     lib,
     pkgs,
@@ -9,16 +9,14 @@ _: {
   in {
     options.forgeOS.apps.chromium.enable = lib.mkEnableOption "Chromium Browser";
 
-    config = lib.mkIf cfg.enable {
-      programs.chromium = {
-        enable = true;
-        package = pkgs.chromium;
-        extensions = [
-          "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
-          "gcknhkkoolaabfmlnjonogaaifnjlfnp" # FoxyProxy
-          "ddkjiahejlhfcafbddmgiahcphecmpfh" # uBlock Origin Lite
-        ];
-      };
+    config.home-manager.users."${config.forgeOS.profile.user}".programs.chromium = lib.mkIf cfg.enable {
+      enable = true;
+      package = pkgs.chromium;
+      extensions = [
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
+        "gcknhkkoolaabfmlnjonogaaifnjlfnp" # FoxyProxy
+        "ddkjiahejlhfcafbddmgiahcphecmpfh" # uBlock Origin Lite
+      ];
     };
   };
 }

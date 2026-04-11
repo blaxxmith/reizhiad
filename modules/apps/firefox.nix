@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.apps = {
+  flake.nixosModules.apps = {
     config,
     lib,
     ...
@@ -10,7 +10,7 @@ _: {
       enable = lib.mkEnableOption "Enable Firefox Browser";
     };
 
-    config = lib.mkIf cfg.enable {
+    config.home-manager.users."${config.forgeOS.profile.user}" = lib.mkIf cfg.enable {
       programs.firefox = {
         enable = true;
         profiles.default = {

@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.homeModules.apps = {
+  flake.nixosModules.apps = {
     config,
     lib,
     pkgs,
@@ -8,7 +8,7 @@
     cfg = config.forgeOS.apps;
   in {
     imports = [
-      self.homeModules.zen
+      self.nixosModules.zen
     ];
 
     options.forgeOS.apps = {
@@ -29,19 +29,25 @@
       (lib.mkIf (cfg.enable && cfg.enableGUIApps) {
         forgeOS.apps = {
           firefox.enable = lib.mkDefault true;
-          alacritty.enable = lib.mkDefault true;
-          kitty.enable = lib.mkDefault true;
+          alacritty.enable = lib.mkDefault false;
+          kitty.enable = lib.mkDefault false;
           chromium.enable = lib.mkDefault true;
           vscode.enable = lib.mkDefault false;
           ghostty.enable = lib.mkDefault true;
         };
 
-        home.packages = with pkgs; [
+        environment.systemPackages = with pkgs; [
+          # Move to work profile
           signal-desktop
+          # all profiles
           obsidian
           feh
+          # ?
           jetbrains.pycharm
+          # all profiles
           tor-browser
+
+          # Perso
           # anytype
         ];
       })

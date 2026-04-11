@@ -4,9 +4,6 @@
   - choose a hist clip
   - integrate it with rofi
 
-- Various
-  - make options with if for settings like docker
-
 ## Dendritic Pattern
 
 ### Tree
@@ -35,8 +32,10 @@
   - User: variable `config.forgeOS.profile.user`
   - HM: no variable needed, if it's on the tree of imports.
 
-### Next Steps
+## Addings / Improvments/ Next Steps
 
 - thunderbird pro/perso
-- niri + noctalia
+- test niri + noctalia
 - iamb via his own flake > a mess
+- replace dunst with mako
+- test nushell

@@ -49,6 +49,7 @@ _: {
                 "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer --decrease 5";
                 "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer --toggle-mute";
                 "${modifier}+v" = "exec ${pkgs.cliphist}/bin/cliphist list | ${pkgs.rofi}/bin/rofi -dmenu -display-columns 2 | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+                "${modifier}+n" = "exec ${pkgs.ghostty}/bin/ghostty --font-size=12 --command=yazi";
                 "${modifier}+r" = "mode resize";
                 "${modifier}+Shift+e" = "mode menu";
                 # Focus next window
