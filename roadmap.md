@@ -39,4 +39,4 @@
 
 - thunderbird pro/perso
 - niri + noctalia
-- iamb via his own flake
+- iamb via his own flake > a mess

@@ -5,9 +5,8 @@
 }: {
   flake.nixosConfigurations.geonosis = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.nixosModules;
-      [geonosis laptop profiles system]
+      [geonosis laptop profiles system home]
       ++ [
-        inputs.home-manager.nixosModules.default
         inputs.lanzaboote.nixosModules.lanzaboote
       ];
   };
@@ -123,6 +122,7 @@
         enable = true;
         waylandEnable = false;
       };
+      shell.enable = true;
     };
 
     system.stateVersion = "24.05";

@@ -15,7 +15,7 @@
   in {
     imports = [
       inputs.sops.nixosModules.sops
-      # inputs.home-manager.nixosModules.home-manager
+      inputs.home-manager.nixosModules.home-manager
     ];
 
     options.forgeOS.host = {
@@ -46,12 +46,18 @@
       };
     };
 
+    options.forgeOS.profile.user = lib.mkOption {
+      type = lib.types.enum ["pex" "eagle" "blaxxmith"];
+      description = "Username of the profile user";
+      default = "eagle";
+    };
+
     config = {
       sops.age.keyFile = "/root/.sops/keys.txt";
       sops.secrets = let
         mode = "0400";
         format = "binary";
-        owner = "eagle";
+        owner = config.forgeOS.profile.user;
       in {
         work-gitconfig = {
           inherit owner mode format;

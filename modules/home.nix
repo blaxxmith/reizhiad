@@ -1,4 +1,12 @@
 {self, ...}: {
+  flake.nixosModules.home = {lib, ...}: {
+    imports = with self.nixosModules; [shell];
+
+    forgeOS = {
+      shell.enable = lib.mkDefault true;
+    };
+  };
+
   flake.homeModules.main = {
     config,
     lib,
@@ -7,7 +15,7 @@
   }: let
     hd = config.home.homeDirectory;
   in {
-    imports = with self.homeModules; [apps desktop neovim shell tools];
+    imports = with self.homeModules; [apps desktop neovim tools];
 
     options.forgeOS = {
       desktop = {
@@ -49,7 +57,6 @@
           enableGUIApps = lib.mkDefault true;
         };
 
-        shell.enable = lib.mkDefault true;
         tools = {
           nvim.enable = lib.mkDefault true;
           enable = lib.mkDefault true;

@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.nixosModules.work = {
+  flake.nixosModules.work-profile = {
     config,
     lib,
     pkgs,
@@ -91,8 +91,6 @@
       };
 
       home-manager.users."${user}" = {
-        imports = [./../home];
-
         home = {
           username = user;
           homeDirectory = "/home/${user}";
