@@ -1,6 +1,6 @@
 _: {
-  flake.homeModules.neovim = _: {
-    programs.nixvim = {
+  flake.nixosModules.neovim = {config, ...}: {
+    home-manager.users."${config.forgeOS.profile.user}".programs.nixvim = {
       plugins.neo-tree = {
         enable = true;
         settings = {

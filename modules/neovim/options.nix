@@ -1,6 +1,6 @@
 _: {
-  flake.homeModules.neovim = _: {
-    programs.nixvim.opts = {
+  flake.nixosModules.neovim = {config, ...}: {
+    home-manager.users."${config.forgeOS.profile.user}".programs.nixvim.opts = {
       number = true;
       relativenumber = true;
       shiftwidth = 2;

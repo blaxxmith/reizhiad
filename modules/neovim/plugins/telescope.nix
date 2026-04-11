@@ -1,6 +1,10 @@
 _: {
-  flake.homeModules.neovim = {pkgs, ...}: {
-    programs.nixvim = {
+  flake.nixosModules.neovim = {
+    config,
+    pkgs,
+    ...
+  }: {
+    home-manager.users."${config.forgeOS.profile.user}".programs.nixvim = {
       plugins.telescope = {
         enable = true;
 
@@ -39,7 +43,6 @@ _: {
               sorting_strategy = "ascending";
             };
 
-            # Recherche dans le contenu des fichiers (live_grep)
             live_grep = {
               layout_strategy = "flex";
               layout_config = {
@@ -51,7 +54,6 @@ _: {
               sorting_strategy = "ascending";
             };
 
-            # Palette de commandes (command palette)
             builtin = {
               layout_strategy = "flex";
               layout_config = {

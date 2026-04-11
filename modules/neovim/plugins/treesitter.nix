@@ -1,6 +1,10 @@
 _: {
-  flake.homeModules.neovim = {pkgs, ...}: {
-    programs.nixvim.plugins.treesitter = {
+  flake.nixosModules.neovim = {
+    config,
+    pkgs,
+    ...
+  }: {
+    home-manager.users."${config.forgeOS.profile.user}".programs.nixvim.plugins.treesitter = {
       enable = true;
       settings = {
         highlight.enable = true;

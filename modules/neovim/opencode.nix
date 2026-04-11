@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.neovim = {
+  flake.nixosModules.neovim = {
     config,
     lib,
     pkgs,
@@ -10,13 +10,15 @@ _: {
     options.forgeOS.tools.nvim.opencode = lib.mkEnableOption "OpenCode integration for NeoVIM";
 
     config = lib.mkIf cfg {
-      programs = {
+      environment.systemPackages = [pkgs.opencode];
+
+      home-manager.users."${config.forgeOS.profile.user}".programs = {
         nixvim.plugins.opencode = {
           enable = true;
         };
+
         opencode = {
           enable = true;
-          package = pkgs.opencode;
           settings = {
             server = {
               port = 4096;

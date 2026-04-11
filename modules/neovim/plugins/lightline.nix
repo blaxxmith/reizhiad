@@ -1,6 +1,6 @@
 _: {
-  flake.homeModules.neovim = _: {
-    programs.nixvim.plugins.lightline = {
+  flake.nixosModules.neovim = {config, ...}: {
+    home-manager.users."${config.forgeOS.profile.user}".programs.nixvim.plugins.lightline = {
       enable = true;
       settings = {
         colorscheme = "material";

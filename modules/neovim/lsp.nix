@@ -1,6 +1,10 @@
 _: {
-  flake.homeModules.neovim = {pkgs, ...}: {
-    programs.nixvim.plugins.lsp = {
+  flake.nixosModules.neovim = {
+    config,
+    pkgs,
+    ...
+  }: {
+    home-manager.users."${config.forgeOS.profile.user}".programs.nixvim.plugins.lsp = {
       enable = true;
       servers = {
         nixd.enable = true;
@@ -19,7 +23,7 @@ _: {
       };
     };
 
-    home.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       nixd
       alejandra
     ];

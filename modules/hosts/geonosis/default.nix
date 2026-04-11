@@ -80,12 +80,12 @@
             personal = true;
           };
           tools = {
-            nvim.enable = true;
+            # nvim.enable = true;
             ssh = {
               enable = true;
               extraFiles = [config.sops.secrets.work-ssh-config.path];
             };
-            nvim.opencode = true;
+            # nvim.opencode = true;
             git.extraAccounts = {
               "github.com" = {
                 remote = "git@github.com";

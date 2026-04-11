@@ -1,6 +1,6 @@
 _: {
-  flake.homeModules.neovim = _: {
-    programs.nixvim.colorschemes = {
+  flake.nixosModules.neovim = {config, ...}: {
+    home-manager.users."${config.forgeOS.profile.user}".programs.nixvim.colorschemes = {
       catppuccin = {
         enable = false;
         settings.flavour = "mocha";
