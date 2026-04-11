@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.tools = {
+  flake.nixosModules.tools = {
     config,
     lib,
     pkgs,
@@ -9,8 +9,7 @@ _: {
   in {
     options.forgeOS.tools = {
       enable = lib.mkEnableOption "Tools and Utilities module";
-      enableEssentialTools = lib.mkEnableOption "essential set of tools and utilities";
-      enableExtendedTools = lib.mkEnableOption "extended set of tools and utilities";
+      enableExtendedToolset = lib.mkEnableOption "extended set of tools and utilities. Otherswise, only a minimal set of tools will be enabled.";
 
       oxydize = lib.mkOption {
         type = lib.types.bool;
@@ -20,7 +19,7 @@ _: {
     };
 
     config = lib.mkMerge [
-      (lib.mkIf (cfg.enable && cfg.enableEssentialTools) {
+      (lib.mkIf cfg.enable {
         forgeOS.tools = {
           eza = {
             enable = true;
@@ -28,18 +27,17 @@ _: {
           };
           git.enable = true;
           zellij.enable = true;
-          ssh.enable = lib.mkDefault true;
         };
 
-        programs.htop.enable = true;
-
-        home.packages = with pkgs; [
+        environment.systemPackages = with pkgs; [
           wget
+          htop
         ];
       })
 
-      (lib.mkIf (cfg.enable && cfg.enableExtendedTools) {
+      (lib.mkIf (cfg.enable && cfg.enableExtendedToolset) {
         forgeOS.tools = {
+          ssh.enable = lib.mkDefault true;
           bat.enable = true;
           direnv.enable = true;
           fd.enable = true;
@@ -48,13 +46,15 @@ _: {
           fastfetch.enable = true;
         };
 
-        programs.btop.enable = true;
+        # MOVE TO A DEDICATED FILE
+        # programs.btop.enable = true;
 
-        home.packages = with pkgs; [
+        environment.systemPackages = with pkgs; [
           dua
           dust
           presenterm
-          proton-pass-cli
+          btop
+          # only work
           glab
           exegol
         ];

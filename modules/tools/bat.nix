@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.tools = {
+  flake.nixosModules.tools = {
     config,
     lib,
     ...
@@ -16,24 +16,26 @@ _: {
       man = lib.mkEnableOption "MAN pager integration for `bat`.";
     };
 
-    config = lib.mkIf cfg.enable {
-      home.sessionVariables.MANPAGER = lib.mkIf cfg.man "bat -plman";
+    config.home-manager.sharedModules = lib.mkIf cfg.enable [
+      {
+        home.sessionVariables.MANPAGER = lib.mkIf cfg.man "bat -plman";
 
-      programs = lib.mkMerge [
-        (lib.mkIf cfg.addAlias {
-          zsh.shellAliases.cat = "bat";
-        })
+        programs = lib.mkMerge [
+          (lib.mkIf cfg.addAlias {
+            zsh.shellAliases.cat = "bat";
+          })
 
-        {
-          bat = {
-            enable = true;
-            config = {
-              theme = "Dracula";
-              italic-text = "always";
+          {
+            bat = {
+              enable = true;
+              config = {
+                theme = "Dracula";
+                italic-text = "always";
+              };
             };
-          };
-        }
-      ];
-    };
+          }
+        ];
+      }
+    ];
   };
 }

@@ -72,40 +72,6 @@
           username = user;
           homeDirectory = "/home/${user}";
         };
-
-        forgeOS = {
-          # desktop.enable = true;
-          tools = {
-            # nvim.enable = true;
-            ssh = {
-              enable = true;
-              extraFiles = [config.sops.secrets.work-ssh-config.path];
-            };
-            # nvim.opencode = true;
-            git.extraAccounts = {
-              "github.com" = {
-                remote = "git@github.com";
-                gitConfig = "github-gitconfig";
-                sshConfig = "github-ssh";
-              };
-              "git.forge.epita.fr" = {
-                remote = "xavier.de-place@git.forge.epita.fr";
-                gitConfig = "epita-gitconfig";
-                sshConfig = "intra-ssh";
-              };
-              "gitlab.epita.fr" = {
-                remote = "git@gitlab.cri.epita.fr";
-                gitConfig = "epita-gitconfig";
-                sshConfig = "glcri-ssh";
-              };
-              "drakkar.cartesian-lab.fr" = {
-                remote = "git@drakkar.cartesian-lab.fr";
-                gitConfig = "work-gitconfig";
-                sshConfig = "glwork-ssh";
-              };
-            };
-          };
-        };
       };
     };
 
@@ -122,6 +88,32 @@
       apps.zen = {
         enable = true;
         personal = true;
+      };
+      tools = {
+        ssh.extraFiles = [config.sops.secrets.work-ssh-config.path];
+        # nvim.opencode = true;
+        git.extraAccounts = {
+          "github.com" = {
+            remote = "git@github.com";
+            gitConfig = "github-gitconfig";
+            sshConfig = "github-ssh";
+          };
+          "git.forge.epita.fr" = {
+            remote = "xavier.de-place@git.forge.epita.fr";
+            gitConfig = "epita-gitconfig";
+            sshConfig = "intra-ssh";
+          };
+          "gitlab.epita.fr" = {
+            remote = "git@gitlab.cri.epita.fr";
+            gitConfig = "epita-gitconfig";
+            sshConfig = "glcri-ssh";
+          };
+          "drakkar.cartesian-lab.fr" = {
+            remote = "git@drakkar.cartesian-lab.fr";
+            gitConfig = "work-gitconfig";
+            sshConfig = "glwork-ssh";
+          };
+        };
       };
     };
 

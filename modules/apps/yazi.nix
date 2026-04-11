@@ -20,6 +20,7 @@ _: {
             settings = {
               mgr = {
                 ratio = [1 3 3];
+                linemode = "size";
                 sort_by = "natural";
                 show_hidden = true;
                 show_symlink = true;

@@ -1,7 +1,8 @@
 _: {
-  flake.homeModules.tools = {
+  flake.nixosModules.tools = {
     config,
     lib,
+    pkgs,
     ...
   }: let
     cfg = config.forgeOS.tools.ripgrep;
@@ -16,16 +17,27 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      programs = lib.mkMerge [
-        (lib.mkIf cfg.addAlias {
-          zsh.shellAliases.grep = "rg";
-        })
-
+      environment.systemPackages = [pkgs.ripgrep];
+      home-manager.sharedModules = [
         {
-          ripgrep = {
-            enable = true;
-            arguments = [];
-          };
+          programs = lib.mkMerge [
+            (lib.mkIf cfg.addAlias {
+              zsh.shellAliases.grep = "rg";
+            })
+
+            {
+              ripgrep = {
+                enable = true;
+                arguments = [
+                  "--hidden"
+                  "--glob"
+                  "!.git/*"
+                  "--glob"
+                  "!.direnv/*"
+                ];
+              };
+            }
+          ];
         }
       ];
     };

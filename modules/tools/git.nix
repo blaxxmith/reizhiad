@@ -1,8 +1,8 @@
 _: {
-  flake.homeModules.tools = {
+  flake.nixosModules.tools = {
     config,
     lib,
-    sops,
+    pkgs,
     ...
   }: let
     cfg = config.forgeOS.tools.git;
@@ -48,7 +48,9 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      programs = lib.mkMerge [
+      environment.systemPackages = with pkgs; [git delta];
+
+      home-manager.users."${config.forgeOS.profile.user}".programs = lib.mkMerge [
         (lib.mkIf cfg.addAlias {
           zsh.shellAliases.g = "git";
         })
@@ -56,7 +58,7 @@ _: {
         (lib.mkIf cfg.addSSHConfig {
           ssh.includes =
             lib.mapAttrsToList (
-              _: item: sops.secrets.${item.sshConfig}.path
+              _: item: config.sops.secrets.${item.sshConfig}.path
             )
             cfg.extraAccounts;
         })
@@ -77,7 +79,7 @@ _: {
             includes =
               lib.mapAttrsToList (_: item: {
                 condition = "hasconfig:remote.*.url:${item.remote}:*/**";
-                inherit (sops.secrets."${item.gitConfig}") path;
+                inherit (config.sops.secrets."${item.gitConfig}") path;
               })
               cfg.extraAccounts;
 

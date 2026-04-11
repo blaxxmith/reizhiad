@@ -1,7 +1,8 @@
 _: {
-  flake.homeModules.tools = {
+  flake.nixosModules.tools = {
     config,
     lib,
+    pkgs,
     ...
   }: let
     cfg = config.forgeOS.tools.eza;
@@ -16,25 +17,31 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      programs = lib.mkMerge [
-        (lib.mkIf cfg.addAlias {
-          zsh.shellAliases = {
-            ls = "eza";
-            la = "eza --almost-all";
-            l = "eza --long --almost-all --octal-permissions --header --group";
-            ll = "eza --long --header --octal-permissions --group";
-            tree = "eza --tree";
-          };
-        })
+      environment.systemPackages = [pkgs.eza];
+
+      home-manager.sharedModules = [
         {
-          eza = {
-            enable = true;
-            git = true;
-            icons = "always";
-            colors = "always";
-            enableZshIntegration = true;
-            extraOptions = ["--sort=type"];
-          };
+          programs = lib.mkMerge [
+            (lib.mkIf cfg.addAlias {
+              zsh.shellAliases = {
+                ls = "eza";
+                la = "eza --almost-all";
+                l = "eza --long --almost-all --octal-permissions --header --group";
+                ll = "eza --long --header --octal-permissions --group";
+                tree = "eza --tree";
+              };
+            })
+            {
+              eza = {
+                enable = true;
+                git = true;
+                icons = "always";
+                colors = "always";
+                enableZshIntegration = true;
+                extraOptions = ["--sort=type"];
+              };
+            }
+          ];
         }
       ];
     };

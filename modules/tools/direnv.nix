@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.tools = {
+  flake.nixosModules.tools = {
     config,
     lib,
     ...
@@ -11,12 +11,16 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      programs.direnv = {
-        enable = true;
-        nix-direnv.enable = true;
-        silent = true;
-        enableZshIntegration = true;
-      };
+      home-manager.sharedModules = [
+        {
+          programs.direnv = {
+            enable = true;
+            nix-direnv.enable = true;
+            silent = true;
+            enableZshIntegration = true;
+          };
+        }
+      ];
     };
   };
 }

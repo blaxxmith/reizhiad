@@ -1,7 +1,8 @@
 _: {
-  flake.homeModules.tools = {
+  flake.nixosModules.tools = {
     config,
     lib,
+    pkgs,
     ...
   }: let
     cfg = config.forgeOS.tools.fd;
@@ -16,16 +17,26 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      programs = lib.mkMerge [
-        (lib.mkIf cfg.addAlias {
-          zsh.shellAliases.find = "fd";
-        })
-
+      environment.systemPackages = [pkgs.fd];
+      home-manager.sharedModules = [
         {
-          fd = {
-            enable = true;
-            hidden = true;
-          };
+          programs = lib.mkMerge [
+            (lib.mkIf cfg.addAlias {
+              zsh.shellAliases.find = "fd";
+            })
+
+            {
+              fd = {
+                enable = true;
+                hidden = true;
+                ignores = [
+                  ".git/"
+                  ".direnv/"
+                  "result"
+                ];
+              };
+            }
+          ];
         }
       ];
     };

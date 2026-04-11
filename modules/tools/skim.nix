@@ -1,7 +1,8 @@
 _: {
-  flake.homeModules.tools = {
+  flake.nixosModules.tools = {
     config,
     lib,
+    pkgs,
     ...
   }: let
     cfg = config.forgeOS.tools.skim;
@@ -16,18 +17,23 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      programs = lib.mkMerge [
-        (lib.mkIf cfg.addAlias {
-          zsh.shellAliases.fzf = "sk";
-        })
-
+      environment.systemPackages = [pkgs.skim];
+      home-manager.sharedModules = [
         {
-          skim = {
-            enable = true;
-            enableZshIntegration = true;
-            defaultOptions = ["--ansi" "--height 50" "--reverse" "--preview 'bat --color=always --line-range=:500 {}'"];
-            historyWidgetOptions = ["--ansi" "--reverse" "--height 10" "--prompt h>"];
-          };
+          programs = lib.mkMerge [
+            (lib.mkIf cfg.addAlias {
+              zsh.shellAliases.fzf = "sk";
+            })
+
+            {
+              skim = {
+                enable = true;
+                enableZshIntegration = true;
+                defaultOptions = ["--ansi" "--height 50" "--reverse" "--preview 'bat --color=always --line-range=:500 {}'"];
+                historyWidgetOptions = ["--ansi" "--reverse" "--height 10" "--prompt h>"];
+              };
+            }
+          ];
         }
       ];
     };
