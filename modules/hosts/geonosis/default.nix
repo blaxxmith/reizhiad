@@ -74,7 +74,7 @@
         };
 
         forgeOS = {
-          desktop.enable = true;
+          # desktop.enable = true;
           apps.zen = {
             enable = true;
             personal = true;
@@ -114,7 +114,7 @@
     };
 
     forgeOS = {
-      host.screen = {
+      desktop.primaryScreen = {
         mode = "1920x1200@60.002Hz";
         position = "1440,1778";
       };

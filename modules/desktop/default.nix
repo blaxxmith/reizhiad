@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.desktop = {
+  flake.nixosModules.desktop = {
     config,
     lib,
     pkgs,
@@ -23,46 +23,55 @@ _: {
         theme.enable = lib.mkDefault cfg.enable;
       };
 
-      wayland.windowManager.sway = {
+      fonts.packages = [pkgs.nerd-fonts.hack];
+
+      programs.sway = {
         enable = true;
-        systemd.enable = true;
         wrapperFeatures.gtk = true;
-        checkConfig = true;
-        config = {
-          defaultWorkspace = "workspace number 1";
-          output = {
-            "eDP-1" = with cfg.primaryScreen; {inherit mode scale position;};
-            "DP-4" = {
-              mode = "2560x1440@59.951Hz";
-              position = "0,0";
-              transform = "270";
-            };
-            "DP-3" = {
-              mode = "2560x1440@59.951Hz";
-              position = "1440,338";
-            };
-            "HDMI-A-1" = {
-              mode = "2560x1440@59.951Hz";
-              position = "4000,338";
+        xwayland.enable = true;
+        extraPackages = with pkgs;
+          lib.mkForce [
+            brightnessctl
+            wdisplays
+            cliphist
+            wl-clipboard
+            swaylock
+            rofi
+          ];
+      };
+
+      xdg.portal = {
+        enable = lib.mkForce false;
+        wlr.enable = true;
+        xdgOpenUsePortal = true;
+      };
+
+      hardware = {
+        graphics.enable = true;
+        # nvidia.modesetting.enable = true;
+      };
+
+      home-manager.sharedModules = [
+        {
+          wayland.windowManager.sway = {
+            enable = true;
+            systemd.enable = true;
+            wrapperFeatures.gtk = true;
+            checkConfig = true;
+            config.defaultWorkspace = "workspace number 1";
+          };
+
+          programs = {
+            swaylock.enable = cfg.enableLock;
+            rofi = {
+              enable = true;
+              theme = "Monokai";
             };
           };
-        };
-      };
-
-      programs = {
-        swaylock.enable = cfg.enableLock;
-        rofi = {
-          enable = true;
-          theme = "Monokai";
-        };
-      };
-
-      home.packages = with pkgs; [
-        brightnessctl
-        wdisplays
-        cliphist
-        wl-clipboard
+        }
       ];
+
+      environment.sessionVariables = {NIXOS_OZONE_WL = "1";};
     };
   };
 }

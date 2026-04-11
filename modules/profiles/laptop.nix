@@ -43,7 +43,7 @@ _: {
     ];
 
     # Enable Modules
-    forgeOS.system.wm.enable = true;
+    forgeOS.desktop.enable = true;
 
     # Enable FIDO support
     forgeOS.system.yubikey.enable = true;

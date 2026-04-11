@@ -56,7 +56,7 @@
       nixos.enable = true;
     };
 
-    forgeOS.system.wm.enable = lib.mkDefault false;
+    forgeOS.desktop.enable = lib.mkDefault false;
 
     environment.etc.issue.text = ''
            _________/\\/\\__________________________________________________/\\/\\____/\\/\\/\\/\\/\\____/\\/\\____/\\/\\_
