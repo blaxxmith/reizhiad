@@ -15,7 +15,7 @@
   in {
     imports = [
       inputs.sops.nixosModules.sops
-      inputs.home-manager.nixosModules.home-manager
+      inputs.hm.nixosModules.home-manager
     ];
 
     options.forgeOS.host = {

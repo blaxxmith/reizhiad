@@ -235,7 +235,7 @@ $nix_shell$sudo$character";
         settings = starshipSettings;
       };
 
-      home-manager.users.${config.forgeOS.profile.user} = {
+      home-manager.users."${config.forgeOS.profile.user}" = {
         programs.starship = {
           enable = true;
           enableZshIntegration = true;

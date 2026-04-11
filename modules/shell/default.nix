@@ -23,7 +23,7 @@ _: {
         syntaxHighlighting.enable = true;
       };
 
-      home-manager.users.${config.forgeOS.profile.user} = {
+      home-manager.users."${config.forgeOS.profile.user}" = {
         home.shell.enableZshIntegration = true;
 
         programs.zsh = {

@@ -9,7 +9,7 @@ _: {
   in {
     options.forgeOS.shell.enableAliases = lib.mkEnableOption "Shell aliases";
 
-    config.home-manager.users.${config.forgeOS.profile.user} = lib.mkIf cfg.enableAliases {
+    config.home-manager.users."${config.forgeOS.profile.user}" = lib.mkIf cfg.enableAliases {
       programs.zsh.shellAliases = {
         mk = "${editor} Makefile";
 

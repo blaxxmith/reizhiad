@@ -7,7 +7,7 @@
     modules = with self.nixosModules;
       [geonosis laptop profiles system home]
       ++ [
-        inputs.lanzaboote.nixosModules.lanzaboote
+        inputs.lzbt.nixosModules.lanzaboote
       ];
   };
 
