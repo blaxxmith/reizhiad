@@ -18,12 +18,9 @@ _: {
         };
       };
       extraPackages = with pkgs; [
+        # Too long to build in tests
         # anytype
       ];
     };
-    # tools = {
-    #   nvim.opencode = true;
-    # };
-    # apps.zen.enable = true;
   };
 }

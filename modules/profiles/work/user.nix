@@ -1,23 +1,21 @@
 _: {
-  flake.nixosMdodules.work-profile = {
+  flake.nixosModules.work-profile = {
     config,
     lib,
     pkgs,
     ...
   }: let
     cfg = config.forgeOS.profiles.work;
+    user = "pex";
   in
     lib.mkIf cfg.enable {
-      users.users = let
-        inherit (config.forgeOS.profiles.work) user;
-      in {
-        "${user}" = {
-          isNormalUser = true;
-          shell = pkgs.zsh;
-          description = "Work Account";
-          extraGroups = ["networkmanager" "docker" "wheel"];
-          hashedPasswordFile = config.sops.secrets.session-password-work.path;
-        };
+      users.users."${user}" = {
+        isNormalUser = true;
+        shell = pkgs.zsh;
+        home = "/home/${user}";
+        description = "Work Account";
+        extraGroups = ["networkmanager" "docker" "wheel"];
+        hashedPasswordFile = config.sops.secrets.session-password-work.path;
       };
     };
 }

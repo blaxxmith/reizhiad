@@ -8,16 +8,13 @@ _: {
     cfg = config.forgeOS.profiles.personal;
   in
     lib.mkIf cfg.enable {
-      users.users = let
-        inherit (config.forgeOS.profiles.personal) user;
-      in {
-        "${user}" = {
-          isNormalUser = true;
-          shell = pkgs.zsh;
-          description = "Personal Account";
-          extraGroups = ["networkmanager" "docker" "wheel"];
-          password = "f2tvi1rd&2crdtfdlt";
-        };
+      users.users."${cfg.user}" = {
+        isNormalUser = true;
+        shell = pkgs.zsh;
+        home = "/home/${cfg.user}";
+        description = "Personal Account";
+        extraGroups = ["networkmanager" "docker" "wheel"];
+        hashedPasswordFile = config.sops.secrets.session-password-work.path;
       };
     };
 }

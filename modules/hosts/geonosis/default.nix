@@ -51,7 +51,7 @@
       };
       profiles = {
         personal.enable = true;
-        # work.enable = true;
+        work.enable = true;
       };
       # apps.zen = {
       #   enable = true;

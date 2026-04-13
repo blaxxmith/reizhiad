@@ -7,9 +7,9 @@
     imports = [
       inputs.sops.nixosModules.sops
       inputs.hm.nixosModules.home-manager
-      self.nixosModules.home
       self.nixosModules.work-profile
       self.nixosModules.personal-profile
+      self.nixosModules.home
     ];
 
     options.forgeOS.profiles = lib.mkOption {

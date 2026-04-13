@@ -19,6 +19,11 @@ _: {
           inherit owner mode;
           sopsFile = ../../../.secrets/github.ssh.sops;
         };
+        session-password-perso = {
+          inherit owner mode;
+          sopsFile = ../../../.secrets/school/session.password.sops;
+          neededForUsers = true;
+        };
       };
     };
 }

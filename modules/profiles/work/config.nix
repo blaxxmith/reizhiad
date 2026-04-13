@@ -8,11 +8,12 @@ _: {
   in
     lib.mkIf cfg.enable {
       security.pki.certificateFiles = [
-        (builtins.readFile config.sops.secrets.crt-alpes.path)
-        (builtins.readFile config.sops.secrets.crt-multi.path)
-        (builtins.readFile config.sops.secrets.crt-tavel.path)
-        (builtins.readFile config.sops.secrets.crt-telex.path)
-        (builtins.readFile config.sops.secrets.crt-vigan.path)
+        # CAN ONLY BE APPLIED AS USER
+        # (builtins.readFile config.sops.secrets.crt-alpes.path)
+        # (builtins.readFile config.sops.secrets.crt-multi.path)
+        # (builtins.readFile config.sops.secrets.crt-tavel.path)
+        # (builtins.readFile config.sops.secrets.crt-telex.path)
+        # (builtins.readFile config.sops.secrets.crt-vigan.path)
       ];
 
       networking = {

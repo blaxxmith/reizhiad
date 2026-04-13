@@ -26,8 +26,8 @@
         home = {
           stateVersion = "24.05";
           packages = profile.extraPackages;
-          username = profile.user;
           homeDirectory = "/home/${profile.user}";
+          username = profile.user;
         };
 
         programs.home-manager.enable = true;
