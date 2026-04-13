@@ -48,6 +48,8 @@
       defaultPackages = lib.mkForce [pkgs.rsync];
     };
 
+    users.mutableUsers = false;
+
     documentation = {
       enable = true;
       man.enable = true;

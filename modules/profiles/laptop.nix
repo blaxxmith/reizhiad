@@ -37,7 +37,6 @@ _: {
 
     # Install needed packages
     environment.systemPackages = with pkgs; [
-      brightnessctl
       libimobiledevice
       pamixer
     ];
@@ -46,6 +45,10 @@ _: {
     forgeOS = {
       desktop.enable = true;
       apps.enableGUIApps = true;
+      tools = {
+        oxydize = true;
+        enableExtendedToolset = true;
+      };
     };
 
     # Enable FIDO support

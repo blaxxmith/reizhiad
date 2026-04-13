@@ -34,11 +34,11 @@ _: {
             };
             gitConfig = lib.mkOption {
               type = lib.types.str;
-              description = "SOPS ID of the Git Config for this account";
+              description = "Path of the GIT Config for this remote, stored as a SOPS secret";
             };
             sshConfig = lib.mkOption {
               type = lib.types.str;
-              description = "SOPS ID of the SSH Config for this remote";
+              description = "Path of the SSH Config for this remote, stored as a SOPS secret";
             };
           };
         }));
@@ -58,7 +58,7 @@ _: {
         (lib.mkIf cfg.addSSHConfig {
           ssh.includes =
             lib.mapAttrsToList (
-              _: item: config.sops.secrets.${item.sshConfig}.path
+              _: item: item.sshConfig
             )
             cfg.extraAccounts;
         })
@@ -79,7 +79,7 @@ _: {
             includes =
               lib.mapAttrsToList (_: item: {
                 condition = "hasconfig:remote.*.url:${item.remote}:*/**";
-                inherit (config.sops.secrets."${item.gitConfig}") path;
+                path = item.gitConfig;
               })
               cfg.extraAccounts;
 

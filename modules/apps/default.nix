@@ -36,19 +36,14 @@
           ghostty.enable = lib.mkDefault true;
         };
 
+        services.netbird.ui.enable = true;
+
         environment.systemPackages = with pkgs; [
-          # Move to work profile
-          signal-desktop
           # all profiles
           obsidian
           feh
-          # ?
-          jetbrains.pycharm
           # all profiles
           tor-browser
-
-          # Perso
-          # anytype
         ];
       })
     ];

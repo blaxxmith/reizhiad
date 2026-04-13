@@ -1,5 +1,9 @@
 {self, ...}: {
-  flake.nixosModules.home = {lib, ...}: {
+  flake.nixosModules.home = {
+    config,
+    lib,
+    ...
+  }: {
     imports = with self.nixosModules; [apps desktop neovim shell tools];
 
     forgeOS = {
@@ -10,21 +14,13 @@
       };
       tools = {
         enable = lib.mkDefault true;
-        # TEMPORARY
-        enableExtendedToolset = lib.mkDefault true;
-        oxydize = lib.mkDefault true;
         nvim.enable = lib.mkDefault true;
       };
     };
-  };
 
-  flake.homeModules.main = {
-    config,
-    ...
-  }: let
-    hd = config.home.homeDirectory;
-  in {
-    config = {
+    home-manager.users."${config.forgeOS.profile.user}" = let
+      hd = "/home/${config.forgeOS.profile.user}";
+    in {
       xdg.userDirs = {
         createDirectories = false;
         documents = "${hd}/documents";
@@ -32,7 +28,10 @@
       };
 
       programs.home-manager.enable = true;
-      home.stateVersion = "24.05";
+      home = {
+        stateVersion = "24.05";
+        packages = config.forgeOS.profile.extraPackages;
+      };
     };
   };
 }

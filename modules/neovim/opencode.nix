@@ -12,22 +12,26 @@ _: {
     config = lib.mkIf cfg {
       environment.systemPackages = [pkgs.opencode];
 
-      home-manager.users."${config.forgeOS.profile.user}".programs = {
-        nixvim.plugins.opencode = {
-          enable = true;
-        };
+      home-manager.sharedModules = [
+        {
+          programs = {
+            nixvim.plugins.opencode = {
+              enable = true;
+            };
 
-        opencode = {
-          enable = true;
-          settings = {
-            server = {
-              port = 4096;
-              hostname = "127.0.0.1";
+            opencode = {
+              enable = true;
+              settings = {
+                server = {
+                  port = 4096;
+                  hostname = "127.0.0.1";
+                };
+              };
+              tui.theme = "everforest";
             };
           };
-          tui.theme = "everforest";
-        };
-      };
+        }
+      ];
     };
   };
 }

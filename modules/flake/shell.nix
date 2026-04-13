@@ -18,6 +18,7 @@ _: {
           statix
           vulnix
           nh
+          mkpasswd
         ];
 
         NH_OS_FLAKE = "./";
