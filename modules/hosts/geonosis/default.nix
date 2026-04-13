@@ -5,18 +5,15 @@
 }: {
   flake.nixosConfigurations.geonosis = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.nixosModules;
-      [geonosis laptop profiles personal-profile work-profile]
+      [geonosis laptop profiles system]
       ++ [inputs.lzbt.nixosModules.lanzaboote];
   };
 
   flake.nixosModules.geonosis = {
-    config,
     lib,
     pkgs,
     ...
-  }: let
-    user = "eagle";
-  in {
+  }: {
     boot = {
       loader.systemd-boot.enable = lib.mkForce false;
       bootspec.enable = true;
@@ -38,33 +35,10 @@
       initrd.verbose = false;
     };
 
-    # to move to work profile
-    #security.pki.certificateFiles = [
-    #   /home/eagle/.nixnotsync/certs/telex.crt
-    #   /home/eagle/.nixnotsync/certs/multi.crt
-    #   /home/eagle/.nixnotsync/certs/tavel.crt
-    # /home/eagle/.nixnotsync/certs/vigan.crt
-    #   /home/eagle/.nixnotsync/certs/alpes.si.crt
-    #];
-
     # virtualisation.libvirtd.enable = true;
     # virtualisation.spiceUSBRedirection.enable = true;
     # users.groups.libvirtd.members = ["eagle"];
     # programs.virt-manager.enable = true;
-
-    # to move to the users file
-    # users.users."${user}" = {
-    #   isNormalUser = true;
-    #   shell = pkgs.zsh;
-    #   description = "System Administrator";
-    #   extraGroups = ["networkmanager" "wheel" "docker"];
-    # };
-
-    # Add to right profile
-    # home-manager.users."${user}".home = {
-    #   username = user;
-    #   homeDirectory = "/home/${user}";
-    # };
 
     forgeOS = {
       desktop.primaryScreen = {
@@ -74,6 +48,10 @@
       system.yubikey = {
         enable = true;
         waylandEnable = false;
+      };
+      profiles = {
+        personal.enable = true;
+        # work.enable = true;
       };
       # apps.zen = {
       #   enable = true;

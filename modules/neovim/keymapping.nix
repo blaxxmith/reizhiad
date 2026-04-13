@@ -1,5 +1,5 @@
 _: {
-  flake.nixosModules.neovim = {config, ...}: {
+  flake.nixosModules.neovim = _: {
     home-manager.sharedModules = [
       {
         programs.nixvim = {

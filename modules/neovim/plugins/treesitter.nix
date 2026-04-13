@@ -1,9 +1,5 @@
 _: {
-  flake.nixosModules.neovim = {
-    config,
-    pkgs,
-    ...
-  }: {
+  flake.nixosModules.neovim = {pkgs, ...}: {
     home-manager.sharedModules = [
       {
         programs.nixvim.plugins.treesitter = {

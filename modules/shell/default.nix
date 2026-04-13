@@ -23,47 +23,49 @@ _: {
         syntaxHighlighting.enable = true;
       };
 
-      home-manager.users."${config.forgeOS.profile.user}" = {
-        home.shell.enableZshIntegration = true;
+      home-manager.sharedModules = [
+        {
+          home.shell.enableZshIntegration = true;
 
-        programs.zsh = {
-          enable = true;
-          package = pkgs.emptyDirectory;
-          autocd = true;
-          syntaxHighlighting.enable = true;
-          autosuggestion.enable = false;
-          enableCompletion = true;
-          historySubstringSearch.enable = true;
+          programs.zsh = {
+            enable = true;
+            package = pkgs.emptyDirectory;
+            autocd = true;
+            syntaxHighlighting.enable = true;
+            autosuggestion.enable = false;
+            enableCompletion = true;
+            historySubstringSearch.enable = true;
 
-          initContent = ''
-            cd() {
-            builtin cd "$@" && ${pkgs.eza}/bin/eza --icons=always --color=always --sort=type
-            }
-            if command -v kubectl >/dev/null 2>&1; then
-              source <(${pkgs.kubectl}/bin/kubectl completion zsh)
-            fi
-            if command -v helm >/dev/null 2>&1; then
-              source <(${pkgs.helm}/bin/helm completion zsh)
-            fi
-            if command -v hugo >/dev/null 2>&1; then
-              source <(${pkgs.hugo}/bin/hugo completion zsh)
-            fi
+            initContent = ''
+              cd() {
+              builtin cd "$@" && ${pkgs.eza}/bin/eza --icons=always --color=always --sort=type
+              }
+              if command -v kubectl >/dev/null 2>&1; then
+                source <(${pkgs.kubectl}/bin/kubectl completion zsh)
+              fi
+              if command -v helm >/dev/null 2>&1; then
+                source <(${pkgs.helm}/bin/helm completion zsh)
+              fi
+              if command -v hugo >/dev/null 2>&1; then
+                source <(${pkgs.hugo}/bin/hugo completion zsh)
+              fi
 
-          '';
+            '';
 
-          history = {
-            append = true;
-            expireDuplicatesFirst = true;
-            findNoDups = true;
-            ignoreAllDups = true;
-            ignoreDups = true;
-            ignoreSpace = true;
-            save = 10000;
-            saveNoDups = true;
-            share = false;
+            history = {
+              append = true;
+              expireDuplicatesFirst = true;
+              findNoDups = true;
+              ignoreAllDups = true;
+              ignoreDups = true;
+              ignoreSpace = true;
+              save = 10000;
+              saveNoDups = true;
+              share = false;
+            };
           };
-        };
-      };
+        }
+      ];
     };
   };
 }

@@ -3,7 +3,9 @@
     config,
     lib,
     ...
-  }: {
+  }: let
+    enabledProfiles = lib.filterAttrs (_: profile: profile.enable) config.forgeOS.profiles;
+  in {
     imports = with self.nixosModules; [apps desktop neovim shell tools];
 
     forgeOS = {
@@ -11,6 +13,7 @@
       apps = {
         enable = lib.mkDefault true;
         enableTUIApps = lib.mkDefault true;
+        zen.enable = lib.mkDefault true;
       };
       tools = {
         enable = lib.mkDefault true;
@@ -18,20 +21,25 @@
       };
     };
 
-    home-manager.users."${config.forgeOS.profile.user}" = let
-      hd = "/home/${config.forgeOS.profile.user}";
-    in {
-      xdg.userDirs = {
-        createDirectories = false;
-        documents = "${hd}/documents";
-        download = "${hd}/downloads";
-      };
+    home-manager.users = lib.mapAttrs' (_: profile:
+      lib.nameValuePair profile.user {
+        home = {
+          stateVersion = "24.05";
+          packages = profile.extraPackages;
+          username = profile.user;
+          homeDirectory = "/home/${profile.user}";
+        };
 
-      programs.home-manager.enable = true;
-      home = {
-        stateVersion = "24.05";
-        packages = config.forgeOS.profile.extraPackages;
-      };
-    };
+        programs.home-manager.enable = true;
+
+        xdg.userDirs = let
+          hd = "/home/${profile.user}";
+        in {
+          createDirectories = false;
+          documents = "${hd}/documents";
+          download = "${hd}/downloads";
+        };
+      })
+    enabledProfiles;
   };
 }

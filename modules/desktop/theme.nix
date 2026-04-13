@@ -5,7 +5,6 @@ _: {
     ...
   }: let
     cfg = config.forgeOS.desktop.theme;
-    wallpaper = "/home/${config.forgeOS.profile.user}/.assets/wallpaper.png";
   in {
     options.forgeOS.desktop.theme = {
       enable = lib.mkEnableOption "Theme Configuration";
@@ -31,15 +30,7 @@ _: {
           ".assets/wallpaper.png".source = cfg.wallpaper;
         };
 
-        programs.swaylock.settings.image = "${wallpaper}";
-
         wayland.windowManager.sway.config = {
-          startup = [
-            {
-              command = "swaymsg output '*' bg ${wallpaper} fill";
-              always = true;
-            }
-          ];
           colors = {
             background = "#000000";
             focused = {

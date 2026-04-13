@@ -8,38 +8,40 @@ _: {
   in {
     options.forgeOS.apps.iamb.enable = lib.mkEnableOption "IAMB Matrix Client (BROKEN UPDATE)";
 
-    config.home-manager.users."${config.forgeOS.profile.user}" = lib.mkIf cfg.enable {
-      programs.iamb = {
-        enable = true;
-        settings = {
-          default_profile = "pki";
-          profiles = {
-            pki = {
-              user_id = "@x:p.ki";
-              url = "https://chat.p.ki";
-            };
-          };
-          layout = {
-            style = "restore";
-          };
+    config.home-manager.sharedModules = lib.mkIf cfg.enable [
+      {
+        programs.iamb = {
+          enable = true;
           settings = {
-            message_shortcode_display = true;
-            reaction_shortcode_display = true;
-            image_preview.protocol = {
-              type = "kitty";
+            default_profile = "pki";
+            profiles = {
+              pki = {
+                user_id = "@x:p.ki";
+                url = "https://chat.p.ki";
+              };
             };
-            notifications = {
-              enabled = true;
-              via = "bell";
+            layout = {
+              style = "restore";
             };
-            users = {
-              "@myn:p.ki".color = "yellow";
-              "@x:p.ki".color = "green";
-              "@avalanche:p.ki".color = "red";
+            settings = {
+              message_shortcode_display = true;
+              reaction_shortcode_display = true;
+              image_preview.protocol = {
+                type = "kitty";
+              };
+              notifications = {
+                enabled = true;
+                via = "bell";
+              };
+              users = {
+                "@myn:p.ki".color = "yellow";
+                "@x:p.ki".color = "green";
+                "@avalanche:p.ki".color = "red";
+              };
             };
           };
         };
-      };
-    };
+      }
+    ];
   };
 }
