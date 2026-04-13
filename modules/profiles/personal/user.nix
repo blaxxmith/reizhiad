@@ -14,7 +14,7 @@ _: {
         home = "/home/${cfg.user}";
         description = "Personal Account";
         extraGroups = ["networkmanager" "docker" "wheel"];
-        hashedPasswordFile = config.sops.secrets.session-password-work.path;
+        hashedPasswordFile = config.sops.secrets.session-password-perso.path;
       };
     };
 }
