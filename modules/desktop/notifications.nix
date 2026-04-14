@@ -6,38 +6,39 @@ _: {
   }: let
     cfg = config.forgeOS.desktop.notifications;
   in {
-    options.forgeOS.desktop.notifications.enable = lib.mkEnableOption "Dunst Notifications Daemon";
+    options.forgeOS.desktop.notifications.enable = lib.mkEnableOption "Notifications Daemon";
 
     config = lib.mkIf cfg.enable {
       home-manager.sharedModules = [
         {
-          services.dunst = {
-            enable = true;
-            settings = {
-              global = {
-                follow = "keyboard";
-                width = 370;
-                origin = "top-center";
-                offset = "(0, 20)";
-                separator_height = 1;
-                padding = 3;
-                horizontal_padding = 3;
-                frame_width = 1;
-                sort = "update";
-                idle_threshold = 120;
-                alignment = "center";
-                word_wrap = "yes";
-                format = "<b>%s</b>: %b";
-                markup = "full";
-                min_icon_size = 32;
-                max_icon_size = 32;
-                icon_corner_radius = 4;
-                corner_radius = 4;
-                background = "#232323";
-                # frame_color = "#44475a";
-                # highlight = mkForce base03;
-              };
+          wayland.windowManager.sway.config.keybindings = let
+            noctaliaShell = "noctalia-shell ipc call";
+          in {
+            "XF86NotificationCenter" = "exec ${noctaliaShell} notifications toggleHistory";
+            "XF86HangupPhone" = "exec ${noctaliaShell} notifications toggleDND";
+          };
+
+          programs.noctalia-shell.settings.notifications = {
+            backgroundOpacity = 1;
+            clearDismissed = true;
+            criticalUrgencyDuration = 15;
+            density = "compact";
+            enableBatteryToast = true;
+            enableKeyboardLayoutToast = true;
+            enableMarkdown = true;
+            enableMediaToast = false;
+            enabled = true;
+            location = "top";
+            lowUrgencyDuration = 3;
+            normalUrgencyDuration = 8;
+            overlayLayer = true;
+            respectExpireTimeout = false;
+            saveToHistory = {
+              critical = true;
+              low = true;
+              normal = true;
             };
+            sounds.enabled = false;
           };
         }
       ];

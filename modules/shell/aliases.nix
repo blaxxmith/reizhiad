@@ -25,7 +25,7 @@ _: {
           v = "${editor}";
 
           # Oneliners
-          pskill = "ps aux | sk | awk '{print $2}' | xargs -r kill";
+          pskill = "ps aux | sk --preview  '' | awk '{print $2}' | xargs -r kill";
 
           ":q" = "exit";
         };

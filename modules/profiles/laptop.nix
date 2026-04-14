@@ -23,22 +23,15 @@ _: {
       # fprintd.enable = true;
     };
 
-    # Enable Sound
-    security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = false;
+    services = {
+      upower.enable = true;
+      tuned.enable = true;
     };
-
-    services.tlp.enable = true;
 
     # Install needed packages
     environment.systemPackages = with pkgs; [
       libimobiledevice
-      pamixer
+      # pamixer
     ];
 
     # Enable Modules
@@ -49,9 +42,8 @@ _: {
         oxydize = true;
         enableExtendedToolset = true;
       };
+      # Enable FIDO support
+      system.yubikey.enable = true;
     };
-
-    # Enable FIDO support
-    forgeOS.system.yubikey.enable = true;
   };
 }

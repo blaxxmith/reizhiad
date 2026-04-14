@@ -12,7 +12,7 @@ _: {
         isNormalUser = true;
         shell = pkgs.zsh;
         home = "/home/${cfg.user}";
-        description = "Personal Account";
+        description = "Blaxxmith";
         extraGroups = ["networkmanager" "docker" "wheel"];
         hashedPasswordFile = config.sops.secrets.session-password-perso.path;
       };

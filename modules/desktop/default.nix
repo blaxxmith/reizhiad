@@ -31,12 +31,9 @@ _: {
         xwayland.enable = true;
         extraPackages = with pkgs;
           lib.mkForce [
-            brightnessctl
             wdisplays
             cliphist
             wl-clipboard
-            swaylock
-            rofi
           ];
       };
 
@@ -46,10 +43,7 @@ _: {
         xdgOpenUsePortal = true;
       };
 
-      hardware = {
-        graphics.enable = true;
-        # nvidia.modesetting.enable = true;
-      };
+      hardware.graphics.enable = true;
 
       home-manager.sharedModules = [
         {
@@ -60,18 +54,10 @@ _: {
             checkConfig = true;
             config.defaultWorkspace = "workspace number 1";
           };
-
-          programs = {
-            swaylock.enable = cfg.enableLock;
-            rofi = {
-              enable = true;
-              theme = "Monokai";
-            };
-          };
         }
       ];
 
-      environment.sessionVariables = {NIXOS_OZONE_WL = "1";};
+      environment.sessionVariables.NIXOS_OZONE_WL = "1";
     };
   };
 }

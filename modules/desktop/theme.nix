@@ -30,6 +30,38 @@ _: {
           ".assets/wallpaper.png".source = cfg.wallpaper;
         };
 
+        programs.noctalia-shell = {
+          colors = {
+            mPrimary = "#A7C080";
+            mOnPrimary = "#232A2E";
+            mSecondary = "#D3C6AA";
+            mOnSecondary = "#232A2E";
+            mTertiary = "#9DA9A0";
+            mOnTertiary = "#232A2E";
+            mError = "#E67E80";
+            mOnError = "#232A2E";
+            mSurface = "#232A2E";
+            mOnSurface = "#859289";
+            mSurfaceVariant = "#2D353B";
+            mOnSurfaceVariant = "#D3C6AA";
+            mOutline = "#7A8478";
+            mShadow = "#475258";
+            mHover = "#A7C080";
+            mOnHover = "#232A2E";
+          };
+          settings.ui = {
+            fontDefault = "Hack Nerd Font";
+            fontDefaultScale = 0.85;
+            tooltipsEnabled = true;
+            scrollbarAlwaysVisible = false;
+            boxBorderEnabled = false;
+            panelBackgroundOpacity = 0.93;
+            panelsAttachedToBar = false;
+            settingsPanelMode = "centered";
+            settingsPanelSideBarCardStyle = true;
+          };
+        };
+
         wayland.windowManager.sway.config = {
           colors = {
             background = "#000000";

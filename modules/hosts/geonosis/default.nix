@@ -53,21 +53,6 @@
         personal.enable = true;
         work.enable = true;
       };
-      # apps.zen = {
-      #   enable = true;
-      #   personal = true;
-      # };
-      # tools = {
-      #   ssh.extraFiles = [config.sops.secrets.work-ssh-config.path];
-      #   # nvim.opencode = true;
-      #   git.extraAccounts = {
-      #     "github.com" = {
-      #       remote = "git@github.com";
-      #       gitConfig = "github-gitconfig";
-      #       sshConfig = "github-ssh";
-      #     };
-      #   };
-      # };
     };
 
     system.stateVersion = "24.05";

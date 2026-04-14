@@ -4,7 +4,6 @@ _: {
     pkgs,
     ...
   }: let
-    # user = "blaxxmith";
     user = "eagle";
   in {
     forgeOS.profiles.personal = {
@@ -18,8 +17,7 @@ _: {
         };
       };
       extraPackages = with pkgs; [
-        # Too long to build in tests
-        # anytype
+        anytype
       ];
     };
   };

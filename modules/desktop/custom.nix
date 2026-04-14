@@ -29,30 +29,28 @@ _: {
 
     config.home-manager.users = lib.mapAttrs' (_: profile:
       lib.nameValuePair profile.user {
-        programs.swaylock.settings.image = "/home/${profile.user}/.assets/wallpaper.png";
-        wayland.windowManager.sway.config = {
-          startup = [
-            {
-              command = "swaymsg output '*' bg /home/${profile.user}/.assets/wallpaper.png fill";
-              always = true;
-            }
-          ];
-          output = {
-            "eDP-1" = with cfg.primaryScreen; {inherit mode scale position;};
-            "DP-4" = {
-              mode = "2560x1440@59.951Hz";
-              position = "0,0";
-              transform = "270";
-            };
-            "DP-3" = {
-              mode = "2560x1440@59.951Hz";
-              position = "1440,338";
-            };
-            "HDMI-A-1" = {
-              mode = "2560x1440@59.951Hz";
-              position = "4000,338";
-            };
+        wayland.windowManager.sway.config.output = {
+          "eDP-1" = with cfg.primaryScreen; {inherit mode scale position;};
+          "DP-4" = {
+            mode = "2560x1440@59.951Hz";
+            position = "0,0";
+            transform = "270";
           };
+          "DP-3" = {
+            mode = "2560x1440@59.951Hz";
+            position = "1440,338";
+          };
+          "HDMI-A-1" = {
+            mode = "2560x1440@59.951Hz";
+            position = "4000,338";
+          };
+        };
+
+        programs.noctalia-shell.settings.wallpapers = {
+          enabled = true;
+          directory = "/home/${profile.user}/.assets/";
+          setWallpaperOnAllMonitors = true;
+          automationEnabled = false;
         };
       })
     enabledProfiles;

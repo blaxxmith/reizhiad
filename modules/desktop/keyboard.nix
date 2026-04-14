@@ -17,6 +17,19 @@ _: {
     config.home-manager.sharedModules = [
       {
         wayland.windowManager.sway = {
+          extraConfigEarly = ''
+            set $ws1 " "
+            set $ws2 "󰖟"
+            set $ws3 " "
+            set $ws4 "4"
+            set $ws5 "5"
+            set $ws6 "6"
+            set $ws7 "7"
+            set $ws8 "8"
+            set $ws9 " "
+            set $ws10 " "
+          '';
+
           extraConfig = ''
             bindgesture swipe:right workspace prev
             bindgesture swipe:left workspace next
@@ -30,28 +43,15 @@ _: {
                 xkb_layout = "us";
                 xkb_options = "caps:escape";
               };
-              "type:touchpad" = {
-                natural_scroll = "enabled";
-              };
+              "type:touchpad".natural_scroll = "enabled";
             };
 
             keybindings =
               {
                 "${modifier}+Return" = "exec ${pkgs.ghostty}/bin/ghostty +new-window";
                 "${modifier}+Shift+r" = "reload";
-                "${modifier}+Escape" = "exec ${pkgs.swaylock}/bin/swaylock";
                 "${modifier}+f" = "fullscreen toggle";
-                "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
-                "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%+";
-                "Shift+XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -d 'tpacpi::kbd_backlight' set 0";
-                "Shift+XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -d 'tpacpi::kbd_backlight' set 2";
-                "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer --increase 5";
-                "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer --decrease 5";
-                "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer --toggle-mute";
-                "${modifier}+v" = "exec ${pkgs.cliphist}/bin/cliphist list | ${pkgs.rofi}/bin/rofi -dmenu -display-columns 2 | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
                 "${modifier}+n" = "exec ${pkgs.ghostty}/bin/ghostty --font-size=12 --command=yazi";
-                "${modifier}+r" = "mode resize";
-                "${modifier}+Shift+e" = "mode menu";
                 # Focus next window
                 "${modifier}+l" = "focus right";
                 "${modifier}+h" = "focus left";
@@ -96,26 +96,12 @@ _: {
               // (
                 if (km == "mac")
                 then {
-                  "${modifier}+space" = "exec ${pkgs.rofi}/bin/rofi -show drun -show-icons";
                   "${modifier}+q" = "kill";
                 }
                 else {
-                  "Mod1+space" = "exec ${pkgs.rofi}/bin/rofi -show drun -show-icons";
                   "${modifier}+Shift+q" = "kill";
                 }
               );
-
-            modes.menu = {
-              "Escape" = "mode default";
-              "Return" = "mode default";
-              "${modifier}+Shift+e" = "mode default";
-
-              "e" = "exit";
-              "l" = "exec ${pkgs.swaylock}/bin/swaylock";
-              "r" = "exec ${pkgs.systemd}/bin/systemctl reboot";
-              "s" = "exec ${pkgs.systemd}/bin/systemctl poweroff";
-              "h" = "exec ${pkgs.systemd}/bin/systemctl hibernate";
-            };
           };
         };
       }
