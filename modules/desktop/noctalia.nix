@@ -13,6 +13,10 @@
             command = "noctalia-shell";
             always = true;
           }
+          {
+            command = "systemctl --user start xdg-desktop-portal-wlr.service";
+            always = true;
+          }
         ];
 
         programs.noctalia-shell = {

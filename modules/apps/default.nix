@@ -34,15 +34,13 @@
           chromium.enable = lib.mkDefault true;
           vscode.enable = lib.mkDefault false;
           ghostty.enable = lib.mkDefault true;
+          obsidian.enable = lib.mkDefault true;
         };
 
         services.netbird.ui.enable = true;
 
         environment.systemPackages = with pkgs; [
-          # all profiles
-          obsidian
           feh
-          # all profiles
           tor-browser
         ];
       })

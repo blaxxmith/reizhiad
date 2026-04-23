@@ -10,9 +10,9 @@ _: {
           idle = {
             enabled = true;
             fadeDuration = 5;
-            lockTimeout = 90;
-            screenOffTimeout = 180;
-            suspendTimeout = 300;
+            lockTimeout = 600;
+            screenOffTimeout = 720;
+            suspendTimeout = 1200;
           };
 
           general = {

@@ -41,6 +41,7 @@ _: {
         enable = lib.mkForce false;
         wlr.enable = true;
         xdgOpenUsePortal = true;
+        extraPortals = [pkgs.xdg-desktop-portal-gtk];
       };
 
       hardware.graphics.enable = true;
