@@ -1,5 +1,10 @@
 _: {
-  perSystem = {pkgs, ...}: {
+  perSystem = {
+    pkgs,
+    self',
+    ...
+  }: {
+    apps.default = self'.apps.rebuild;
     apps.rebuild = {
       type = "app";
       meta.description = "Rebuild the current host system";
@@ -8,7 +13,7 @@ _: {
         text = ''
           echo "Rebuilding the system for the current host..."
 
-          NH_FLAKE=./ ${pkgs.nh}/bin/nh os switch --quiet --diff always --impure
+          NH_FLAKE=./ ${pkgs.nh}/bin/nh os switch --quiet --diff always --impure --accept-flake-config
         '';
       }}/bin/rebuild-system";
     };

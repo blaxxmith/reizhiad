@@ -8,7 +8,7 @@ _: {
   in {
     forgeOS.profiles.personal = {
       inherit user;
-      extraSSHConfig = [];
+      extraSSHConfig = [config.sops.secrets.ssh-config-lab.path];
       extraGitAccounts = {
         "github.com" = {
           remote = "git@github.com";

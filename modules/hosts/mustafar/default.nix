@@ -88,6 +88,9 @@
         nfs-utils
         zellij
         wget
+        yazi
+        dua
+        dust
       ];
     };
 
@@ -104,6 +107,8 @@
         ];
       };
     };
+
+    documentation.enable = false;
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
 

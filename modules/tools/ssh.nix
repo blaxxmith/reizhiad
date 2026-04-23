@@ -13,13 +13,11 @@ _: {
     config = lib.mkIf cfg.enable {
       home-manager.users = lib.mapAttrs' (_: profile:
         lib.nameValuePair profile.user {
-          home.packages = let
-            sshIncludes = config.programs.ssh.includes or [];
-          in [
+          home.packages = [
             (pkgs.writeShellApplication {
               name = "sk-ssh";
               text = ''
-                host=$(rg -e "^Host " ${lib.concatStringsSep " " sshIncludes} | awk "{print \$2}" | \
+                host=$(rg -e "^Host " ${lib.concatStringsSep " " profile.extraSSHConfig} | awk "{print \$2}" | \
                   sk --prompt="SSH > " --preview="ssh -G {} 2>/dev/null | rg --color=never -e '(^hostname|user |^port|identityfile|dynamic)'" --height=5);
 
                 [[ -n "$host" ]] && ssh "$host"

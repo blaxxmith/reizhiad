@@ -44,7 +44,7 @@ _: {
                 source <(${pkgs.kubectl}/bin/kubectl completion zsh)
               fi
               if command -v helm >/dev/null 2>&1; then
-                source <(${pkgs.helm}/bin/helm completion zsh)
+                source <(${pkgs.kubernetes-helm}/bin/helm completion zsh)
               fi
               if command -v hugo >/dev/null 2>&1; then
                 source <(${pkgs.hugo}/bin/hugo completion zsh)
