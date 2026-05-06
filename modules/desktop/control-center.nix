@@ -2,7 +2,11 @@ _: {
   flake.nixosModules.desktop = _: {
     home-manager.sharedModules = [
       {
-        wayland.windowManager.sway.config.keybindings = {};
+        wayland.windowManager.sway.config.keybindings = let
+          noctaliaShell = "noctalia-shell ipc call";
+        in {
+          "Mod4+XF86NotificationCenter" = "exec ${noctaliaShell} controlCenter toggle";
+        };
 
         programs.noctalia-shell.settings = {
           calendar.cards = [

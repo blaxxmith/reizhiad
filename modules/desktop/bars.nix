@@ -50,10 +50,6 @@ _: {
             widgets = {
               left = [
                 {
-                  id = "Launcher";
-                  useDistroLogo = true;
-                }
-                {
                   id = "Clock";
                   formatHorizontal = "HH:mm:ss";
                   formatVertical = "HH mm ss";
@@ -122,10 +118,6 @@ _: {
                   hideIfIdle = false;
                   showNoctaliaPerformance = true;
                   showPowerProfiles = true;
-                }
-                {
-                  id = "ControlCenter";
-                  iconColor = "secondary";
                 }
                 {
                   id = "NotificationHistory";

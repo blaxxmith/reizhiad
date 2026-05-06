@@ -15,6 +15,8 @@
         kustomize
         kubernetes-helm
         k9s
+
+        # mtr
       ];
 
       shellHooks = ''

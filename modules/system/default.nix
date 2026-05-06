@@ -53,9 +53,6 @@
     documentation = {
       enable = true;
       man.enable = true;
-      doc.enable = true;
-      info.enable = true;
-      nixos.enable = true;
     };
 
     forgeOS.desktop.enable = lib.mkDefault false;

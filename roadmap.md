@@ -1,9 +1,5 @@
 # Roadmap to `/forgeOS`
 
-- Clipboard
-  - choose a hist clip
-  - integrate it with rofi
-
 ## Dendritic Pattern
 
 ### Tree
@@ -35,7 +31,4 @@
 ## Addings / Improvments/ Next Steps
 
 - thunderbird pro/perso
-- test niri + noctalia
-- iamb via his own flake > a mess
-- replace dunst with mako
 - test nushell

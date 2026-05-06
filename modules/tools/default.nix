@@ -56,7 +56,7 @@ _: {
           btop
           # only work
           glab
-          exegol
+          # exegol
         ];
       })
 

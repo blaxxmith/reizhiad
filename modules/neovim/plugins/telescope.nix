@@ -1,5 +1,5 @@
 _: {
-  flake.nixosModules.neovim = {pkgs, ...}: {
+  flake.nixosModules.neovim = _: {
     home-manager.sharedModules = [
       {
         programs.nixvim = {
@@ -63,41 +63,8 @@ _: {
                   sorting_strategy = "ascending";
                 };
               };
-
-              # extensions = {
-              #   fzf = {
-              #     fuzzy = true;
-              #     override_generic_sorter = true;
-              #     override_file_sorter = true;
-              #     case_mode = "smart_case";
-              #   };
-              # };
             };
           };
-
-          # plugins.telescope.extensions.fzf-native.enable = true;
-
-          extraPlugins = let
-            telescope-cmdline = pkgs.vimUtils.buildVimPlugin {
-              pname = "telescope-cmdline-nvim";
-              version = "unstable-2024";
-              src = pkgs.fetchFromGitHub {
-                owner = "jonarrien";
-                repo = "telescope-cmdline.nvim";
-                rev = "7106ff7357d9d3cde3e71cd8fe8998d2f96a1bdd";
-                hash = "sha256-xpgWxjng4X1LapjuJkhVM7gQbpiZ9pS6fTy+L2Y8IM8=";
-              };
-              doInstallCheck = false;
-              doCheck = false;
-            };
-          in [telescope-cmdline];
-
-          extraConfigLua = ''
-            require("telescope").load_extension("cmdline")
-            vim.keymap.set("n", ":", function()
-              require("telescope").extensions.cmdline.cmdline({})
-            end, { desc = "Telescope cmdline", noremap = true, nowait = true })
-          '';
 
           keymaps = [
             {

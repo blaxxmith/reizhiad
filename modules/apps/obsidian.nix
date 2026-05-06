@@ -7,7 +7,10 @@ _: {
   }: let
     cfg = config.forgeOS.apps.obsidian;
   in {
-    options.forgeOS.apps.obsidian.enable = lib.mkEnableOption "Obsidian for note-taking and knowledge management";
+    options.forgeOS.apps.obsidian = {
+      enable = lib.mkEnableOption "Obsidian for note-taking and knowledge management";
+      tui = lib.mkEnableOption "Enable Obsidian TUI (Basalt)";
+    };
 
     config = lib.mkIf cfg.enable {
       environment.systemPackages = [pkgs.obsidian];

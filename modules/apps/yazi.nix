@@ -34,6 +34,21 @@ _: {
               input = {
                 cursor_blink = true;
               };
+              opener = {
+                tdf = [
+                  {
+                    run = "${pkgs.ghostty}/bin/ghostty --font-size=12 --command='${pkgs.tdf}/bin/tdf %s'";
+                    orphan = true;
+                    desc = "Open PDF with tdf";
+                  }
+                ];
+              };
+              open.rules = [
+                {
+                  mime = "application/pdf";
+                  use = "tdf";
+                }
+              ];
             };
           };
         }

@@ -23,7 +23,12 @@
           # Breaking Update
           iamb.enable = lib.mkDefault false;
           yazi.enable = lib.mkDefault true;
+          obsidian.tui = lib.mkDefault true;
         };
+
+        environment.systemPackages = with pkgs; [
+          tdf
+        ];
       })
 
       (lib.mkIf (cfg.enable && cfg.enableGUIApps) {
