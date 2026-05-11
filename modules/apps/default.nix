@@ -34,7 +34,7 @@
       (lib.mkIf (cfg.enable && cfg.enableGUIApps) {
         forgeOS.apps = {
           firefox.enable = lib.mkDefault true;
-          alacritty.enable = lib.mkDefault false;
+          alacritty.enable = lib.mkDefault true;
           kitty.enable = lib.mkDefault false;
           chromium.enable = lib.mkDefault true;
           vscode.enable = lib.mkDefault false;

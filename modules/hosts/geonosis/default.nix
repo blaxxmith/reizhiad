@@ -35,15 +35,18 @@
       initrd.verbose = false;
     };
 
-    # virtualisation.libvirtd.enable = true;
-    # virtualisation.spiceUSBRedirection.enable = true;
-    # users.groups.libvirtd.members = ["eagle"];
-    # programs.virt-manager.enable = true;
+    virtualisation.libvirtd.enable = true;
+    virtualisation.spiceUSBRedirection.enable = true;
+    users.groups.libvirtd.members = ["eagle"];
+    programs.virt-manager.enable = true;
 
     forgeOS = {
-      desktop.primaryScreen = {
-        mode = "1920x1200@60.002Hz";
-        position = "1440,1778";
+      desktop = {
+        niri.enable = true;
+        primaryScreen = {
+          mode = "1920x1200@60.002Hz";
+          position = "1440,1778";
+        };
       };
       system.yubikey = {
         enable = true;

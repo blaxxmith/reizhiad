@@ -2,15 +2,22 @@
   description = "`/forgeOS`: Infrastructure as Nix";
 
   nixConfig = {
-    extra-substituters = ["https://noctalia.cachix.org"];
-    extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
+    extra-substituters = ["https://noctalia.cachix.org" "https://niri.cachix.org"];
+    extra-trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+    ];
   };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
     import-tree.url = "github:vic/import-tree";
-    parts.url = "github:hercules-ci/flake-parts";
+
+    parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
     sops = {
       url = "github:Mic92/sops-nix";
@@ -49,6 +56,17 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+        niri-stable.follows = "";
+        xwayland-satellite-stable.follows = "";
+        xwayland-satellite-unstable.follows = "";
+      };
     };
 
     treefmt = {

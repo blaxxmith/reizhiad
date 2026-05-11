@@ -5,9 +5,8 @@
     ];
 
     home-manager.sharedModules = [
+      inputs.noctalia.homeModules.default
       {
-        imports = [inputs.noctalia.homeModules.default];
-
         wayland.windowManager.sway.config.startup = [
           {
             command = "noctalia-shell";

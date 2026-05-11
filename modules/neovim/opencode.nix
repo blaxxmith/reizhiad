@@ -27,7 +27,12 @@ _: {
                   hostname = "127.0.0.1";
                 };
               };
-              tui.theme = "everforest";
+              tui = {
+                theme = "everforest";
+                keybinds = {
+                  command_list = "ctrl+shift+p";
+                };
+              };
             };
           };
         }

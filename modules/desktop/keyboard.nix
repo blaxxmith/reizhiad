@@ -17,19 +17,6 @@ _: {
     config.home-manager.sharedModules = [
       {
         wayland.windowManager.sway = {
-          extraConfigEarly = ''
-            set $ws1 " "
-            set $ws2 "󰖟"
-            set $ws3 " "
-            set $ws4 "4"
-            set $ws5 "5"
-            set $ws6 "6"
-            set $ws7 "7"
-            set $ws8 "8"
-            set $ws9 " "
-            set $ws10 " "
-          '';
-
           extraConfig = ''
             bindgesture swipe:right workspace prev
             bindgesture swipe:left workspace next

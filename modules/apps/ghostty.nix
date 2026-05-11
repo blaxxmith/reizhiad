@@ -28,6 +28,9 @@ _: {
               window-padding-x = 3;
               window-padding-y = 3;
               window-decoration = "none";
+              gtk-single-instance = true;
+              gtk-titlebar = false;
+              term = "xterm-256color";
               shell-integration-features = "no-cursor";
               confirm-close-surface = false;
               keybind = [

@@ -15,7 +15,7 @@ _: {
           powerOptions = [
             {
               action = "lock";
-              command = "";
+              command = "swaylock -fk";
               countdownEnabled = false;
               enabled = true;
               keybind = "L";
@@ -43,7 +43,7 @@ _: {
             }
             {
               action = "logout";
-              command = "";
+              # command = "niri msg action quit";
               countdownEnabled = true;
               enabled = true;
               keybind = "E";

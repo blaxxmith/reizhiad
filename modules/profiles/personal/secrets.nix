@@ -28,6 +28,18 @@ _: {
           sopsFile = ../../../.secrets/school/session.password.sops;
           neededForUsers = true;
         };
+        gitconfig-school = {
+          inherit owner mode;
+          sopsFile = ../../../.secrets/epita.gitconfig.sops;
+        };
+        ssh-intra-forge-school = {
+          inherit owner mode;
+          sopsFile = ../../../.secrets/school/intra.ssh.sops;
+        };
+        ssh-gitlab-cri-school = {
+          inherit owner mode;
+          sopsFile = ../../../.secrets/school/gitlab.ssh.sops;
+        };
       };
     };
 }

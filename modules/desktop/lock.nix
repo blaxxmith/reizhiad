@@ -1,40 +1,51 @@
 _: {
-  flake.nixosModules.desktop = _: {
-    home-manager.sharedModules = [
-      {
-        wayland.windowManager.sway.config.keybindings = {
-          "Mod4+Escape" = "exec noctalia-shell ipc call lockScreen lock";
-        };
+  flake.nixosModules.desktop = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: let
+    enabledProfiles = lib.filterAttrs (_: profile: profile.enable) config.forgeOS.profiles;
+    lockCommand = "${pkgs.swaylock}/bin/swaylock -fk";
+  in {
+    home-manager.users =
+      lib.mapAttrs' (
+        _: profile:
+          lib.nameValuePair profile.user {
+            wayland.windowManager.sway.config.keybindings = {
+              "Mod4+Escape" = "exec ${lockCommand}";
+            };
 
-        programs.noctalia-shell.settings = {
-          idle = {
-            enabled = true;
-            fadeDuration = 5;
-            lockTimeout = 600;
-            screenOffTimeout = 720;
-            suspendTimeout = 1200;
-          };
+            programs.swaylock = {
+              enable = true;
+              settings.image = "/home/${profile.user}/.assets/wallpaper.png";
+            };
 
-          general = {
-            compactLockScreen = true;
-            lockScreenAnimations = true;
-            enableLockScreenCountdown = true;
-            lockScreenCountdownDuration = 10000;
-            passwordChars = false;
-            lockScreenMonitors = ["eDP-1"];
-            lockScreenBlur = 0.5;
-            lockScreenTint = 0;
-            autoStartAuth = false;
-            allowPasswordWithFprintd = false;
-            clockStyle = "custom";
-            clockFormat = "HH:mm ";
-            lockOnSuspend = true;
-            showSessionButtonsOnLockScreen = false;
-            showHibernateOnLockScreen = false;
-            enableLockScreenMediaControls = false;
-          };
-        };
-      }
-    ];
+            programs.noctalia-shell.settings.idle.enabled = false;
+
+            services.swayidle = {
+              enable = true;
+              events = {
+                lock = lockCommand;
+                before-sleep = lockCommand;
+              };
+              timeouts = [
+                {
+                  timeout = 600;
+                  command = lockCommand;
+                }
+                {
+                  timeout = 720;
+                  command = "swaymsg 'output * dpms off'";
+                }
+                {
+                  timeout = 1200;
+                  command = "systemctl suspend";
+                }
+              ];
+            };
+          }
+      )
+      enabledProfiles;
   };
 }

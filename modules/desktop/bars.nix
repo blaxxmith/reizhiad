@@ -64,7 +64,7 @@ _: {
               center = [
                 {
                   id = "Workspace";
-                  characterCount = 2;
+                  characterCount = 6;
                   colorizeIcons = false;
                   emptyColor = "none";
                   enableScrollWheel = true;
@@ -72,7 +72,7 @@ _: {
                   followFocusedScreen = false;
                   fontWeight = "bold";
                   groupedBorderOpacity = 0.5;
-                  hideUnoccupied = false;
+                  hideUnoccupied = true;
                   iconScale = 0.7;
                   labelMode = "name";
                   occupiedColor = "none";
@@ -80,7 +80,7 @@ _: {
                   showApplications = true;
                   showApplicationsHover = true;
                   showBadge = true;
-                  showLabelsOnlyWhenOccupied = false;
+                  showLabelsOnlyWhenOccupied = true;
                   unfocusedIconsOpacity = 1;
                 }
               ];
