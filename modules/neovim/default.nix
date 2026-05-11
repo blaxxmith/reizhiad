@@ -12,6 +12,8 @@
     };
 
     config = lib.mkIf cfg.enable {
+      programs.nano.enable = false;
+
       nixpkgs.config.allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
           "vimPlugins.copilot-vim"

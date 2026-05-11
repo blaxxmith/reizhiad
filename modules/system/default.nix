@@ -1,78 +1,58 @@
 {self, ...}: {
   flake.nixosModules.system = {
+    config,
     lib,
     pkgs,
     ...
-  }: {
-    imports = with self.nixosModules; [docker];
+  }: let
+    cfg = config.forgeOS.system;
+  in {
+    options.forgeOS.system.version = lib.mkOption {
+      type = lib.types.str;
+      default = "26.05";
+      description = "The version of NixOS to use for the system configuration.";
+    };
 
-    time.timeZone = "Europe/Paris";
-    i18n = {
-      defaultLocale = "en_US.UTF-8";
-      extraLocaleSettings = {
-        LC_ADDRESS = "fr_FR.UTF-8";
-        LC_IDENTIFICATION = "fr_FR.UTF-8";
-        LC_MEASUREMENT = "fr_FR.UTF-8";
-        LC_MONETARY = "fr_FR.UTF-8";
-        LC_NAME = "fr_FR.UTF-8";
-        LC_NUMERIC = "fr_FR.UTF-8";
-        LC_PAPER = "fr_FR.UTF-8";
-        LC_TELEPHONE = "fr_FR.UTF-8";
-        LC_TIME = "fr_FR.UTF-8";
+    imports = with self.nixosModules; [docker boot localization];
+
+    config = {
+      docker = {
+        enable = lib.mkDefault true;
+        dns = lib.mkDefault false;
+        expose = lib.mkDefault false;
       };
-    };
 
-    docker = {
-      enable = lib.mkDefault true;
-      dns = lib.mkDefault false;
-      expose = lib.mkDefault false;
-    };
+      environment = {
+        systemPackages = [pkgs.nfs-utils];
+        defaultPackages = lib.mkForce [pkgs.rsync];
+      };
 
-    forgeOS.system.yubikey.enable = lib.mkDefault false;
-    security.polkit.enable = true;
-    security = {
-      sudo.enable = false;
-      sudo-rs = {
+      users.mutableUsers = false;
+
+      documentation = {
         enable = true;
-        extraConfig = ''
-          Defaults !pwfeedback
-        '';
+        man.enable = true;
       };
+
+      environment.etc.issue.text = ''
+             _________/\\/\\__________________________________________________/\\/\\____/\\/\\/\\/\\/\\____/\\/\\____/\\/\\_
+            _______/\\/\\______/\\/\\/\\/\\____/\\/\\/\\____/\\/\\__/\\/\\____/\\/\\/\\____/\\/\\____/\\/\\____/\\/\\__/\\/\\__/\\/\\___
+           _____/\\/\\______/\\/\\__/\\/\\__/\\/\\__/\\/\\__/\\/\\__/\\/\\__/\\/\\/\\/\\/\\__/\\/\\____/\\/\\/\\/\\/\\____/\\/\\/\\/\\_____
+          ___/\\/\\__________/\\/\\/\\/\\__/\\/\\__/\\/\\____/\\/\\/\\____/\\/\\________/\\/\\____/\\/\\__/\\/\\____/\\/\\__/\\/\\___
+         _/\\/\\________________/\\/\\____/\\/\\/\\________/\\________/\\/\\/\\/\\__/\\/\\/\\__/\\/\\____/\\/\\__/\\/\\____/\\/\\_
+        _______________/\\/\\/\\/\\___________________________________________________________________________
+
+        [32m<<< Welcome to \n (\l) >>>[0m
+
+        <<< Current Version: \s \r >>>
+        <<< Main IP: \4 >>>
+        <<< Logged users: \U >>>
+
+        [1;31m<<< Unauthorized access is prohibited and will be reported >>>[0m
+
+      '';
+
+      system.stateVersion = cfg.version;
     };
-
-    programs.nano.enable = false;
-    programs.zsh.enable = true;
-
-    environment = {
-      systemPackages = [pkgs.nfs-utils];
-      defaultPackages = lib.mkForce [pkgs.rsync];
-    };
-
-    users.mutableUsers = false;
-
-    documentation = {
-      enable = true;
-      man.enable = true;
-    };
-
-    forgeOS.desktop.enable = lib.mkDefault false;
-
-    environment.etc.issue.text = ''
-           _________/\\/\\__________________________________________________/\\/\\____/\\/\\/\\/\\/\\____/\\/\\____/\\/\\_
-          _______/\\/\\______/\\/\\/\\/\\____/\\/\\/\\____/\\/\\__/\\/\\____/\\/\\/\\____/\\/\\____/\\/\\____/\\/\\__/\\/\\__/\\/\\___
-         _____/\\/\\______/\\/\\__/\\/\\__/\\/\\__/\\/\\__/\\/\\__/\\/\\__/\\/\\/\\/\\/\\__/\\/\\____/\\/\\/\\/\\/\\____/\\/\\/\\/\\_____
-        ___/\\/\\__________/\\/\\/\\/\\__/\\/\\__/\\/\\____/\\/\\/\\____/\\/\\________/\\/\\____/\\/\\__/\\/\\____/\\/\\__/\\/\\___
-       _/\\/\\________________/\\/\\____/\\/\\/\\________/\\________/\\/\\/\\/\\__/\\/\\/\\__/\\/\\____/\\/\\__/\\/\\____/\\/\\_
-      _______________/\\/\\/\\/\\___________________________________________________________________________
-
-      [32m<<< Welcome to \n (\l) >>>[0m
-
-      <<< Current Version: \s \r >>>
-      <<< Main IP: \4 >>>
-      <<< Logged users: \U >>>
-
-      [1;31m<<< Unauthorized access is prohibited and will be reported >>>[0m
-
-    '';
   };
 }

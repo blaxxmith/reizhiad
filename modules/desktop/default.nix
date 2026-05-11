@@ -38,10 +38,13 @@ _: {
       };
 
       xdg.portal = {
-        enable = lib.mkForce false;
+        inherit (cfg) enable;
         wlr.enable = true;
         xdgOpenUsePortal = true;
-        extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome];
+        extraPortals = [
+          pkgs.xdg-desktop-portal-gtk
+          pkgs.xdg-desktop-portal-gnome
+        ];
       };
 
       hardware.graphics.enable = true;

@@ -36,6 +36,10 @@ _: {
 
     # Enable Modules
     forgeOS = {
+      boot = {
+        enableSecureBoot = true;
+        plymouth.enable = true;
+      };
       desktop.enable = true;
       apps.enableGUIApps = true;
       tools = {
@@ -43,7 +47,7 @@ _: {
         enableExtendedToolset = true;
       };
       # Enable FIDO support
-      system.yubikey.enable = true;
+      security.yubikey.enable = true;
     };
   };
 }
