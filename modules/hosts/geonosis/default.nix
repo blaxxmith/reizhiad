@@ -18,7 +18,10 @@
     environment.systemPackages = with pkgs; [qemu_kvm libvirt];
 
     forgeOS = {
-      boot.plymouth.theme = "darth_vader";
+      boot = {
+        enableSecureBoot = true;
+        plymouth.theme = "darth_vader";
+      };
       desktop = {
         niri.enable = true;
         primaryScreen = {
