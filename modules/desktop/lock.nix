@@ -6,7 +6,7 @@ _: {
     ...
   }: let
     enabledProfiles = lib.filterAttrs (_: profile: profile.enable) config.forgeOS.profiles;
-    lockCommand = "${pkgs.swaylock}/bin/swaylock -fk";
+    lockCommand = "${pkgs.swaylock}/bin/swaylock";
   in {
     home-manager.users =
       lib.mapAttrs' (
@@ -18,7 +18,12 @@ _: {
 
             programs.swaylock = {
               enable = true;
-              settings.image = "/home/${profile.user}/.assets/wallpaper.png";
+              settings = {
+                image = "/home/${profile.user}/.assets/wallpaper.png";
+                indicator-idle-visible = true;
+                ignore-empty-password = true;
+                daemonize = true;
+              };
             };
 
             programs.noctalia-shell.settings.idle.enabled = false;
@@ -33,10 +38,6 @@ _: {
                 {
                   timeout = 600;
                   command = lockCommand;
-                }
-                {
-                  timeout = 720;
-                  command = "swaymsg 'output * dpms off'";
                 }
                 {
                   timeout = 1200;

@@ -21,7 +21,6 @@ _: {
 
       # Enable SSH
       openssh.enable = lib.mkDefault false;
-      # fprintd.enable = true;
     };
 
     services = {
@@ -29,10 +28,11 @@ _: {
       tuned.enable = true;
     };
 
+    services.fwupd.enable = true;
+
     # Install needed packages
     environment.systemPackages = with pkgs; [
       libimobiledevice
-      # pamixer
     ];
 
     # Enable Modules

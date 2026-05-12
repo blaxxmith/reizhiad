@@ -22,6 +22,8 @@ _: {
         # (builtins.readFile config.sops.secrets.crt-vigan.path)
       ];
 
+      services.netbird.enable = false;
+
       networking = {
         hosts = {
           # Multi

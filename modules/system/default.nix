@@ -16,12 +16,7 @@
     imports = with self.nixosModules; [docker boot localization];
 
     config = {
-      docker = {
-        enable = lib.mkDefault true;
-        dns = lib.mkDefault false;
-        expose = lib.mkDefault false;
-      };
-
+      docker.enable = true;
       environment = {
         systemPackages = [pkgs.nfs-utils];
         defaultPackages = lib.mkForce [pkgs.rsync];

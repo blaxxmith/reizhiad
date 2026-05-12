@@ -7,18 +7,20 @@
     modules = with self.nixosModules; [coruscant laptop profiles system];
   };
 
-  flake.nixosModules.coruscant = _: {
+  flake.nixosModules.coruscant = {lib, ...}: {
     forgeOS = {
       desktop = {
         niri.enable = true;
-        # primaryScreen = {
-        #   mode = "1920x1200@60.002Hz";
-        #   position = "1440,1778";
-        # };
+        primaryScreen = {
+          mode = "1920x1200@60.002Hz";
+        };
       };
       profiles.work.enable = true;
-      boot.enableSecureBoot = false;
-      system.version = "25.11";
+
+      system = {
+        name = "coruscant";
+        version = "25.11";
+      };
     };
   };
 }
