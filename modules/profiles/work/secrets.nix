@@ -9,7 +9,7 @@ _: {
     lib.mkIf cfg.enable {
       sops.secrets = let
         mode = "0400";
-        owner = config.forgeOS.profiles.work.user;
+        owner = cfg.user;
       in {
         gitconfig-work = {
           inherit owner mode;
@@ -22,6 +22,22 @@ _: {
         crt-alpes = {
           inherit owner mode;
           sopsFile = ../../../.secrets/work/alpes-si.crt.sops;
+        };
+        crt-axis = {
+          inherit owner mode;
+          sopsFile = ../../../.secrets/work/axis.crt.sops;
+        };
+        crt-carl = {
+          inherit owner mode;
+          sopsFile = ../../../.secrets/work/carl.crt.sops;
+        };
+        crt-vox = {
+          inherit owner mode;
+          sopsFile = ../../../.secrets/work/vox.crt.sops;
+        };
+        crt-sis = {
+          inherit owner mode;
+          sopsFile = ../../../.secrets/work/sis.crt.sops;
         };
         crt-multi = {
           inherit owner mode;

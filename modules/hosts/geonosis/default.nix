@@ -7,11 +7,15 @@
     modules = with self.nixosModules; [geonosis laptop profiles system];
   };
 
-  flake.nixosModules.geonosis = _: {
-    virtualisation.libvirtd.enable = true;
-    virtualisation.spiceUSBRedirection.enable = true;
+  flake.nixosModules.geonosis = {pkgs, ...}: {
+    virtualisation.libvirtd = {
+      enable = true;
+      qemu.vhostUserPackages = with pkgs; [virtiofsd];
+    };
     users.groups.libvirtd.members = ["eagle"];
     programs.virt-manager.enable = true;
+
+    environment.systemPackages = with pkgs; [qemu_kvm libvirt];
 
     forgeOS = {
       boot.plymouth.theme = "darth_vader";

@@ -28,7 +28,6 @@ _: {
       };
       extraPackages = with pkgs; [
         anytype
-        signal-desktop
       ];
     };
   };

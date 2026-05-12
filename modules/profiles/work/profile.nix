@@ -9,8 +9,8 @@ _: {
     forgeOS.profiles.work = {
       inherit user;
       extraPackages = with pkgs; [
-        signal-desktop
         glab
+        thunderbird
       ];
       extraSSHConfig = [config.sops.secrets.ssh-config-work.path];
       extraGitAccounts = {

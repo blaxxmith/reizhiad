@@ -9,7 +9,7 @@ _: {
     lib.mkIf cfg.enable {
       sops.secrets = let
         mode = "0400";
-        owner = config.forgeOS.profiles.personal.user;
+        owner = cfg.user;
       in {
         gitconfig-github-perso = {
           inherit owner mode;

@@ -17,10 +17,7 @@ _: {
           deadnix
           statix
           vulnix
-          nh
         ];
-
-        NH_OS_FLAKE = "./";
       };
     };
   };

@@ -13,7 +13,7 @@ _: {
         isNormalUser = true;
         shell = pkgs.zsh;
         home = "/home/${user}";
-        description = "Work Account";
+        description = "PEX";
         extraGroups = ["networkmanager" "docker" "wheel"];
         hashedPasswordFile = config.sops.secrets.session-password-work.path;
       };

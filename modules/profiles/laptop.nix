@@ -17,6 +17,7 @@ _: {
 
       # Enable printing
       printing.enable = lib.mkDefault false;
+      avahi.enable = lib.mkDefault false;
 
       # Enable SSH
       openssh.enable = lib.mkDefault false;

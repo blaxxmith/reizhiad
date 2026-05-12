@@ -12,8 +12,6 @@ _: {
     config.home-manager.sharedModules = lib.mkIf cfg.enableAliases [
       {
         programs.zsh.shellAliases = {
-          mk = "${editor} Makefile";
-
           dk = "docker";
           dkc = "docker compose";
           k = "kubectl";
@@ -21,8 +19,10 @@ _: {
           ai = "ansible-inventory";
           ap = "ansible-playbook";
           nb = "netbird";
-          make = "make -Bj";
+          mk = "make -Bj";
           v = "${editor}";
+          vi = "${editor}";
+          vim = "${editor}";
 
           # Oneliners
           pskill = "ps aux | sk --preview  '' | awk '{print $2}' | xargs -r kill";

@@ -44,10 +44,7 @@
 
         services.netbird.ui.enable = true;
 
-        environment.systemPackages = with pkgs; [
-          feh
-          tor-browser
-        ];
+        environment.systemPackages = with pkgs; [tor-browser signal-desktop];
       })
     ];
   };
