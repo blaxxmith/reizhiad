@@ -20,8 +20,8 @@ _: {
     };
 
     config.security = {
-      lockKernelModules = true;
-      protectKernelImage = true;
+      # lockKernelModules = true;
+      # protectKernelImage = true;
 
       polkit.enable = true;
       sudo.enable = cfg.sudo == "sudo";

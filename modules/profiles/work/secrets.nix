@@ -23,22 +23,22 @@ _: {
           inherit owner mode;
           sopsFile = ../../../.secrets/work/alpes-si.crt.sops;
         };
-        crt-axis = {
-          inherit owner mode;
-          sopsFile = ../../../.secrets/work/axis.crt.sops;
-        };
-        crt-carl = {
-          inherit owner mode;
-          sopsFile = ../../../.secrets/work/carl.crt.sops;
-        };
-        crt-vox = {
-          inherit owner mode;
-          sopsFile = ../../../.secrets/work/vox.crt.sops;
-        };
-        crt-sis = {
-          inherit owner mode;
-          sopsFile = ../../../.secrets/work/sis.crt.sops;
-        };
+        # crt-axis = {
+        #   inherit owner mode;
+        #   sopsFile = ../../../.secrets/work/axis.crt.sops;
+        # };
+        # crt-carl = {
+        #   inherit owner mode;
+        #   sopsFile = ../../../.secrets/work/carl.crt.sops;
+        # };
+        # crt-vox = {
+        #   inherit owner mode;
+        #   sopsFile = ../../../.secrets/work/vox.crt.sops;
+        # };
+        # crt-sis = {
+        #   inherit owner mode;
+        #   sopsFile = ../../../.secrets/work/sis.crt.sops;
+        # };
         crt-multi = {
           inherit owner mode;
           sopsFile = ../../../.secrets/work/multi.crt.sops;
