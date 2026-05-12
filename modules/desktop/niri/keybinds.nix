@@ -77,16 +77,7 @@ _: {
           "Alt+Ctrl+V".action.spawn = noctalia ++ ["launcher" "clipboard"];
           "Mod+Shift+E".action.spawn = noctalia ++ ["sessionMenu" "toggle"];
           "Mod+XF86NotificationCenter".action.spawn = noctalia ++ ["controlCenter" "toggle"];
-
-          # Audio
-          "XF86AudioRaiseVolume".action.spawn = noctalia ++ ["volume" "increase"];
-          "XF86AudioLowerVolume".action.spawn = noctalia ++ ["volume" "decrease"];
-          "XF86AudioMute".action.spawn = noctalia ++ ["volume" "muteOutput"];
-          "XF86AudioMicMute".action.spawn = noctalia ++ ["volume" "muteInput"];
-
-          # Brightness
-          "XF86MonBrightnessUp".action.spawn = noctalia ++ ["brightness" "increase"];
-          "XF86MonBrightnessDown".action.spawn = noctalia ++ ["brightness" "decrease"];
+          "Print".action.screenshot = {};
 
           # Notifications
           "XF86NotificationCenter".action.spawn = noctalia ++ ["notifications" "toggleHistory"];

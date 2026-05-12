@@ -1,8 +1,6 @@
 _: {
   flake.nixosModules.geonosis = {lib, ...}: {
     networking = {
-      hostName = "geonosis";
-
       interfaces.enp0s31f6.useDHCP = lib.mkDefault true;
       interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 

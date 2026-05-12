@@ -33,7 +33,10 @@
         personal.enable = true;
         work.enable = true;
       };
-      system.version = "24.05";
+      system = {
+        name = "geonosis";
+        version = "24.05";
+      };
     };
   };
 }

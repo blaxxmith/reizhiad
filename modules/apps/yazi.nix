@@ -31,9 +31,7 @@ _: {
                 max_width = 1200;
                 max_height = 1000;
               };
-              input = {
-                cursor_blink = true;
-              };
+              input.cursor_blink = true;
               opener = {
                 tdf = [
                   {

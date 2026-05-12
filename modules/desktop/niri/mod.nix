@@ -63,8 +63,8 @@
                 ];
               };
 
-              environment = {
-                DISPLAY = null;
+              animations = {
+                workspace-switch.enable = false;
               };
 
               cursor.size = 8;
