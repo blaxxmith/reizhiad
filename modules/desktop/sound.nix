@@ -22,7 +22,7 @@ _: {
           "XF86MonBrightnessDown" = "exec ${noctalia} brightness decrease";
         };
 
-        programs.niri.settings.keybinds = let
+        programs.niri.settings.binds = let
           noctalia = ["noctalia-shell" "ipc" "call"];
         in {
           "XF86AudioRaiseVolume".action.spawn = noctalia ++ ["volume" "increase"];

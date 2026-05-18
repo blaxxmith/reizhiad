@@ -55,8 +55,7 @@ _: {
           presenterm
           btop
           # only work
-          glab
-          # exegol
+          exegol
         ];
       })
 
