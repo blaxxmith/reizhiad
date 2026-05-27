@@ -4,9 +4,9 @@ _: {
       {
         programs.niri.settings = {
           workspaces = {
-            "01/TRM" = {};
-            "02/BWR" = {};
-            "03" = {};
+            "01/TRM".open-on-output = "DP-8";
+            "02/BWR".open-on-output = "DP-9";
+            "03".open-on-output = "DP-8";
             "04" = {};
             "05" = {};
             "06" = {};

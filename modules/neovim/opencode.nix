@@ -10,12 +10,16 @@ _: {
     options.forgeOS.tools.nvim.opencode = lib.mkEnableOption "OpenCode integration for NeoVIM";
 
     config = lib.mkIf cfg {
-      environment.systemPackages = [pkgs.opencode];
+      environment.systemPackages = [pkgs.opencode pkgs.claude-code];
 
       home-manager.sharedModules = [
         {
           programs = {
             nixvim.plugins.opencode = {
+              enable = true;
+            };
+
+            claude-code = {
               enable = true;
             };
 

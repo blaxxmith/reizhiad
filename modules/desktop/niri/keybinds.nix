@@ -77,10 +77,12 @@ _: {
           "Alt+Ctrl+V".action.spawn = noctalia ++ ["launcher" "clipboard"];
           "Mod+Shift+E".action.spawn = noctalia ++ ["sessionMenu" "toggle"];
           "Mod+XF86NotificationCenter".action.spawn = noctalia ++ ["controlCenter" "toggle"];
+          "Mod+XF86Favorites".action.spawn = noctalia ++ ["controlCenter" "toggle"];
           "Print".action.screenshot = {};
 
           # Notifications
           "XF86NotificationCenter".action.spawn = noctalia ++ ["notifications" "toggleHistory"];
+          "XF86Favorites".action.spawn = noctalia ++ ["notifications" "toggleHistory"];
           "XF86HangupPhone".action.spawn = noctalia ++ ["notifications" "toggleDND"];
         };
       }

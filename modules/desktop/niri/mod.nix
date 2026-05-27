@@ -40,9 +40,9 @@
                 focus-ring = {
                   enable = true;
                   width = 1;
-                  active.color = "#83C092"; #"#ff4d00";
-                  inactive.color = "#7A8478"; #"#595959";
-                  urgent.color = "#E67E80"; #"#ff0000";
+                  active.color = "#83C092";
+                  inactive.color = "#7A8478";
+                  urgent.color = "#E67E80";
                 };
 
                 tab-indicator = {
@@ -75,6 +75,7 @@
                   options = "caps:escape";
                 };
                 touchpad.natural-scroll = true;
+                focus-follows-mouse.enable = true;
               };
 
               outputs = {
@@ -86,11 +87,40 @@
                     refresh = 60.002;
                   };
                   position = {
-                    x = 0;
-                    y = 0;
+                    x = 1760;
+                    y = 1940;
                   };
                   scale = 1;
                   focus-at-startup = true;
+                };
+                "DP-8" = {
+                  enable = true;
+                  mode = {
+                    width = 2560;
+                    height = 1440;
+                    refresh = 60.000;
+                  };
+                  position = {
+                    x = 1440;
+                    y = 500;
+                  };
+                  scale = 1.5;
+                  focus-at-startup = false;
+                };
+                "DP-9" = {
+                  enable = true;
+                  mode = {
+                    width = 2560;
+                    height = 1440;
+                    refresh = 60.000;
+                  };
+                  position = {
+                    x = 0;
+                    y = 0;
+                  };
+                  scale = 1.5;
+                  transform.rotation = 90;
+                  focus-at-startup = false;
                 };
               };
 

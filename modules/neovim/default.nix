@@ -25,6 +25,7 @@
 
           programs.nixvim = {
             enable = true;
+            nixpkgs.source = inputs.nixpkgs.outPath;
 
             defaultEditor = true;
             enableMan = true;

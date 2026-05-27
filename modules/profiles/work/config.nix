@@ -7,19 +7,19 @@ _: {
     cfg = config.forgeOS.profiles.work;
   in
     lib.mkIf cfg.enable {
-      security.pki.certificateFiles = [
+      security.pki.certificates = [
         # Main
-        # (builtins.readFile config.sops.secrets.crt-alpes.path)
+        (builtins.readFile config.sops.secrets.crt-alpes.path)
         # (builtins.readFile config.sops.secrets.crt-axis.path)
         # (builtins.readFile config.sops.secrets.crt-carl.path)
         # (builtins.readFile config.sops.secrets.crt-vox.path)
         # (builtins.readFile config.sops.secrets.crt-sis.path)
 
         # Extra
-        # (builtins.readFile config.sops.secrets.crt-multi.path)
-        # (builtins.readFile config.sops.secrets.crt-tavel.path)
-        # (builtins.readFile config.sops.secrets.crt-telex.path)
-        # (builtins.readFile config.sops.secrets.crt-vigan.path)
+        (builtins.readFile config.sops.secrets.crt-multi.path)
+        (builtins.readFile config.sops.secrets.crt-tavel.path)
+        (builtins.readFile config.sops.secrets.crt-telex.path)
+        (builtins.readFile config.sops.secrets.crt-vigan.path)
       ];
 
       services.netbird.enable = false;

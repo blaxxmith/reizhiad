@@ -32,7 +32,7 @@ _: {
             package = null;
             enableDefaultConfig = false;
             includes = profile.extraSSHConfig;
-            matchBlocks."*" = {
+            settings."*" = {
               controlMaster = "auto";
               controlPath = "${sshPath}/sockets/%r@%h-%p";
               controlPersist = "3600";
