@@ -7,13 +7,13 @@ _: {
             "01/TRM".open-on-output = "DP-8";
             "02/BWR".open-on-output = "DP-9";
             "03".open-on-output = "DP-8";
-            "04" = {};
+            "04".open-on-output = "DP-9";
             "05" = {};
             "06" = {};
             "07" = {};
             "08" = {};
             "09/PUB" = {};
-            "10/SYS" = {};
+            "10/SYS".open-on-output = "eDP-1";
           };
 
           window-rules = [
