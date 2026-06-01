@@ -13,7 +13,7 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      environment.systemPackages = [pkgs.obsidian];
+      environment.systemPackages = [pkgs.obsidian pkgs.basalt];
 
       home-manager.sharedModules = [
         {

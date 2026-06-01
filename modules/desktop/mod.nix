@@ -34,7 +34,14 @@ _: {
       };
 
       hardware.graphics.enable = true;
-      environment.sessionVariables.NIXOS_OZONE_WL = "1";
+      environment = {
+        sessionVariables.NIXOS_OZONE_WL = "1";
+        systemPackages = with pkgs; [
+          wdisplays
+          cliphist
+          wl-clipboard
+        ];
+      };
     };
   };
 }

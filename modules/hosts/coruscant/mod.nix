@@ -7,7 +7,7 @@
     modules = with self.nixosModules; [coruscant laptop profiles system];
   };
 
-  flake.nixosModules.coruscant = {lib, ...}: {
+  flake.nixosModules.coruscant = _: {
     forgeOS = {
       desktop = {
         niri.enable = true;
