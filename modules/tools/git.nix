@@ -98,7 +98,7 @@ _: {
                     cm = "commit -m";
                     l = "log --all --oneline --graph --decorate";
                     ls = "ls-files";
-                    t = "tag -ma";
+                    t = "tag -a";
                     pft = "push --follow-tags";
                     pl = "pull";
                     st = "status";

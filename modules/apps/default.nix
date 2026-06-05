@@ -21,7 +21,7 @@
       (lib.mkIf (cfg.enable && cfg.enableTUIApps) {
         forgeOS.apps = {
           # Breaking Update
-          iamb.enable = lib.mkDefault false;
+          iamb.enable = lib.mkDefault true;
           yazi.enable = lib.mkDefault true;
           obsidian.tui = lib.mkDefault true;
         };

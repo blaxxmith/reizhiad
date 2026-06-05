@@ -27,6 +27,11 @@
       documentation = {
         enable = true;
         man.enable = true;
+        doc.enable = false;
+        nixos = {
+          enable = true;
+          includeAllModules = true;
+        };
       };
 
       environment.etc.issue.text = ''

@@ -54,7 +54,7 @@
                 };
 
                 always-center-single-column = false;
-                center-focused-column = "on-overflow";
+                center-focused-column = "never"; # "on-overflow";
                 default-column-width.proportion = 0.5;
                 preset-column-widths = [
                   {proportion = 0.25;}
@@ -81,16 +81,17 @@
               outputs = {
                 "eDP-1" = {
                   enable = true;
+                  variable-refresh-rate = true; # "on-demand"
                   mode = {
-                    width = 1920;
-                    height = 1200;
-                    refresh = 60.002;
+                    width = 2880;
+                    height = 1800;
+                    refresh = 120.000;
                   };
                   position = {
-                    x = 1760;
+                    x = 1670;
                     y = 1940;
                   };
-                  scale = 1;
+                  scale = 1.4;
                   focus-at-startup = true;
                 };
                 "DP-8" = {

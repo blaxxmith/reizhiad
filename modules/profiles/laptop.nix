@@ -13,7 +13,10 @@ _: {
 
       # Enable capabilities for mobile thethering
       # $ idevicepair pair
-      usbmuxd.enable = true;
+      usbmuxd = {
+        enable = true;
+        package = pkgs.usbmuxd2;
+      };
 
       # Enable printing
       printing.enable = lib.mkDefault false;

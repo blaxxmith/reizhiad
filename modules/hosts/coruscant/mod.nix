@@ -12,7 +12,7 @@
       desktop = {
         niri.enable = true;
         primaryScreen = {
-          mode = "1920x1200@60.002Hz";
+          mode = "2880x1800@120.000Hz";
         };
       };
       profiles.work.enable = true;

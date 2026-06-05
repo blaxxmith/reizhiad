@@ -57,7 +57,7 @@
         };
         "/var/tmp" = {
           fsType = "tmpfs";
-          mountOptions = ["noexec" "nosuid" "nodev" "size=8G" "mode=1777"];
+          mountOptions = ["noexec" "nosuid" "nodev" "size=4G" "mode=1777"];
         };
       };
     };
