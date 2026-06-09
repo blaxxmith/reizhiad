@@ -12,7 +12,16 @@
       desktop = {
         niri.enable = true;
         primaryScreen = {
-          mode = "2880x1800@120.000Hz";
+          mode = {
+            width = 2880;
+            height = 1800;
+            refresh = 120.000;
+          };
+          position = {
+            x = 1670;
+            y = 1940;
+          };
+          scale = 1.4;
         };
       };
       profiles.work.enable = true;

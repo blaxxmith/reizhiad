@@ -9,22 +9,42 @@ _: {
     enabledProfiles = lib.filterAttrs (_: profile: profile.enable) config.forgeOS.profiles;
   in {
     options.forgeOS.desktop.primaryScreen = {
-      mode = lib.mkOption {
-        type = lib.types.str;
-        description = "Primary screen mode to use";
-        example = "1920x1080@60.000Hz";
+      mode = {
+        width = lib.mkOption {
+          type = lib.types.number;
+          description = "Primary screen mode to use (Width)";
+          example = 1920;
+        };
+        height = lib.mkOption {
+          type = lib.types.number;
+          description = "Primary screen mode to use (Height)";
+          example = 1080;
+        };
+        refresh = lib.mkOption {
+          type = lib.types.number;
+          description = "Primary screen mode to use (Refresh Rate)";
+          example = 60.000;
+        };
       };
       scale = lib.mkOption {
-        type = lib.types.str;
+        type = lib.types.number;
         description = "Primary screen scale to use";
-        default = "1.00";
-        example = "1.50";
+        default = 1.00;
+        example = 1.50;
       };
-      position = lib.mkOption {
-        type = lib.types.str;
-        description = "Primary screen position to use";
-        default = "0,0";
-        example = "1111,2222";
+      position = {
+        x = lib.mkOption {
+          type = lib.types.number;
+          description = "Primary screen position to use (X)";
+          default = 0;
+          example = 1111;
+        };
+        y = lib.mkOption {
+          type = lib.types.number;
+          description = "Primary screen position to use (Y)";
+          default = 0;
+          example = 2222;
+        };
       };
     };
 
@@ -32,7 +52,11 @@ _: {
       lib.nameValuePair profile.user {
         wayland.windowManager.sway.config = {
           output = {
-            "eDP-1" = with cfg.primaryScreen; {inherit mode scale position;};
+            "eDP-1" = with cfg.primaryScreen; {
+              mode = "${mode.width}x${mode.height}@${mode.refresh}Hz";
+              position = "${position.x},${position.y}";
+              inherit scale;
+            };
             "DP-4" = {
               mode = "2560x1440@59.951Hz";
               position = "0,0";

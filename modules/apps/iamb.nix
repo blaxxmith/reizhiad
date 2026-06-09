@@ -31,7 +31,7 @@ _: {
               };
               notifications = {
                 enabled = true;
-                via = "bell";
+                # via = "desktop";
               };
               users = {
                 "@myn:p.ki".color = "yellow";

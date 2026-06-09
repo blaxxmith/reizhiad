@@ -15,6 +15,11 @@ _: {
           gitConfig = config.sops.secrets.gitconfig-github-perso.path;
           sshConfig = config.sops.secrets.ssh-github-perso.path;
         };
+        "gitlab.com" = {
+          remote = "git@gitlab.com";
+          gitConfig = config.sops.secrets.gitconfig-gitlab-perso.path;
+          sshConfig = config.sops.secrets.ssh-gitlab-perso.path;
+        };
         "git.forge.epita.fr" = {
           remote = "xavier.de-place@git.forge.epita.fr";
           gitConfig = config.sops.secrets.gitconfig-school.path;

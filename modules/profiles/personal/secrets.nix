@@ -19,6 +19,14 @@ _: {
           inherit owner mode;
           sopsFile = ../../../.secrets/github.ssh.sops;
         };
+        gitconfig-gitlab-perso = {
+          inherit owner mode;
+          sopsFile = ../../../.secrets/gitlab.gitconfig.sops;
+        };
+        ssh-gitlab-perso = {
+          inherit owner mode;
+          sopsFile = ../../../.secrets/gitlab.ssh.sops;
+        };
         ssh-config-lab = {
           inherit owner mode;
           sopsFile = ../../../.secrets/lab/config.ssh.sops;

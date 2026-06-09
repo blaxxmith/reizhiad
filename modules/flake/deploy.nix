@@ -6,10 +6,10 @@ _: {
       program = "${pkgs.writeShellApplication {
         name = "deploy-mustafar";
         text = ''
-          echo "Rebuilding the system for the current host..."
+          echo "Rebuilding the system for the mustafar.forge host..."
 
           NH_ELEVATION_STRATEGY="passwordless" \
-          NH_FLAKE=./ ${pkgs.nh}/bin/nh os switch -H mustafar \
+          NH_FLAKE=./ ${pkgs.nh}/bin/nh os boot -H mustafar \
             --target-host nixos@mustafar.forge --build-host nixos@mustafar.forge --accept-flake-config
         '';
       }}/bin/deploy-mustafar";

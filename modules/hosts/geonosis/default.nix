@@ -7,15 +7,15 @@
     modules = with self.nixosModules; [geonosis laptop profiles system];
   };
 
-  flake.nixosModules.geonosis = {pkgs, ...}: {
-    virtualisation.libvirtd = {
-      enable = true;
-      qemu.vhostUserPackages = with pkgs; [virtiofsd];
-    };
-    users.groups.libvirtd.members = ["eagle"];
-    programs.virt-manager.enable = true;
+  flake.nixosModules.geonosis = _: {
+    # virtualisation.libvirtd = {
+    #   enable = true;
+    #   qemu.vhostUserPackages = with pkgs; [virtiofsd];
+    # };
+    # users.groups.libvirtd.members = ["eagle"];
+    # programs.virt-manager.enable = true;
 
-    environment.systemPackages = with pkgs; [qemu_kvm libvirt];
+    # environment.systemPackages = with pkgs; [qemu_kvm libvirt];
 
     forgeOS = {
       boot = {
@@ -25,14 +25,14 @@
       desktop = {
         niri.enable = true;
         primaryScreen = {
-          mode = "1920x1200@60.002Hz";
-          position = "1440,1778";
+          mode = {
+            width = 1920;
+            height = 1200;
+            refresh = 60.002;
+          };
         };
       };
-      profiles = {
-        personal.enable = true;
-        work.enable = true;
-      };
+      profiles.personal.enable = true;
       system = {
         name = "geonosis";
         version = "24.05";
