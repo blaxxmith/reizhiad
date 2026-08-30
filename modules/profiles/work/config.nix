@@ -35,7 +35,7 @@ _: {
           # "127.0.0.1" = ["local.si-dr.fr" "office.si-dr.fr"];
         };
         wg-quick.interfaces = {
-          #  backdooris.configFile = config.sops.secrets.wg-backdooris.path;
+          # backdooris.configFile = config.sops.secrets.wg-backdooris.path;
         };
       };
     };
