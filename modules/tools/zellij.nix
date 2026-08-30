@@ -50,13 +50,15 @@ _: {
               attach_to_session = true;
             })
             {
-              pane_frames = false;
+              pane_frames = true;
+              pane_frames_style = "titles";
               theme = "night-owl";
               simplified_ui = true;
               default_layout = "compact";
               show_startup_tips = false;
               show_release_notes = false;
               mouse_mode = true;
+              support_kitty_graphics_protocol = true;
 
               keybinds.normal = {
                 "bind \"Ctrl 1\"".GoToTab._args = [1];
