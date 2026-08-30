@@ -33,7 +33,10 @@
 
     config = lib.mkIf cfg.enable {
       programs.nano.enable = false;
-      environment.systemPackages = [self.packages.${pkgs.stdenv.hostPlatform.system}.nvim];
+      environment = {
+        systemPackages = [self.packages.${pkgs.stdenv.hostPlatform.system}.nvim];
+        variables.EDITOR = "nvim";
+      };
     };
   };
 }

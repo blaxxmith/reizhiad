@@ -2,9 +2,7 @@
   flake.nixvimModules.default = {
     nixpkgs.source = inputs.nixpkgs.outPath;
 
-    # defaultEditor = true;
     enableMan = true;
-    # viAlias = false;
 
     plugins = {
       cmp = {
