@@ -22,7 +22,7 @@ _: {
                 ratio = [1 3 3];
                 linemode = "size";
                 sort_by = "natural";
-                show_hidden = true;
+                show_hidden = false;
                 show_symlink = true;
               };
               preview = {
@@ -42,7 +42,7 @@ _: {
                   }
                 ];
               };
-              open.rules = [
+              open.prepend_rules = [
                 {
                   mime = "application/pdf";
                   use = "tdf";
