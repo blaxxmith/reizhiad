@@ -11,17 +11,6 @@ _: {
 
     home-manager.sharedModules = [
       {
-        wayland.windowManager.sway.config.keybindings = let
-          noctalia = "noctalia-shell ipc call";
-        in {
-          "XF86AudioRaiseVolume" = "exec ${noctalia} volume increase";
-          "XF86AudioLowerVolume" = "exec ${noctalia} volume decrease";
-          "XF86AudioMute" = "exec ${noctalia} volume muteOutput";
-          "XF86AudioMicMute" = "exec ${noctalia} volume muteInput";
-          "XF86MonBrightnessUp" = "exec ${noctalia} brightness increase";
-          "XF86MonBrightnessDown" = "exec ${noctalia} brightness decrease";
-        };
-
         programs.niri.settings.binds = let
           noctalia = ["noctalia" "msg"];
         in {

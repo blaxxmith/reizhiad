@@ -26,8 +26,6 @@ _: {
               };
             };
 
-            programs.noctalia-shell.settings.idle.enabled = false;
-
             services.swayidle = {
               enable = true;
               events = {
