@@ -1,6 +1,6 @@
 _: {
   flake.nixosModules.desktop = {pkgs, ...}: let
-    noctalia = ["noctalia-shell" "ipc" "call"];
+    noctalia = ["noctalia" "msg"];
   in {
     home-manager.sharedModules = [
       {
@@ -10,16 +10,21 @@ _: {
             hotkey-overlay.title = "Launch Terminal";
           };
           "Alt+Space" = {
-            action.spawn = ["noctalia-shell" "ipc" "call" "launcher" "toggle"];
+            action.spawn = noctalia ++ ["panel-toggle" "launcher"];
             hotkey-overlay.title = "Toggle App Launcher";
           };
           "Mod+Escape" = {
-            action.spawn = ["swaylock" "-fk"];
+            action.spawn = ["${pkgs.swaylock}/bin/swaylock" "-fk"];
             hotkey-overlay.title = "Lock Screen";
           };
           "Mod+N" = {
             action.spawn = ["${pkgs.ghostty}/bin/ghostty" "--font-size=12" "--command=yazi"];
             hotkey-overlay.title = "Launch File Explorer";
+          };
+
+          "XF86Display" = {
+            action.spawn = ["${pkgs.wdisplays}/bin/wdisplays"];
+            hotkey-overlay.title = "Launch Display Manager";
           };
 
           # Focus Windows
@@ -74,16 +79,20 @@ _: {
           "Mod+Shift+9".action.move-column-to-workspace = "09/PUB";
           "Mod+Shift+0".action.move-column-to-workspace = "10/SYS";
 
-          "Alt+Ctrl+V".action.spawn = noctalia ++ ["launcher" "clipboard"];
-          "Mod+Shift+E".action.spawn = noctalia ++ ["sessionMenu" "toggle"];
-          "Mod+XF86NotificationCenter".action.spawn = noctalia ++ ["controlCenter" "toggle"];
-          "Mod+XF86Favorites".action.spawn = noctalia ++ ["controlCenter" "toggle"];
-          "Print".action.screenshot = {};
+          "Alt+Ctrl+V".action.spawn = noctalia ++ ["panel-toggle" "clipboard"];
+          "Mod+Shift+E".action.spawn = noctalia ++ ["panel-toggle" "session"];
+          "Mod+XF86NotificationCenter".action.spawn = noctalia ++ ["panel-toggle" "control-center"]; # E14
+          "Mod+XF86LinkPhone".action.spawn = noctalia ++ ["panel-toggle" "control-center"]; # T14
 
-          # Notifications
-          "XF86NotificationCenter".action.spawn = noctalia ++ ["notifications" "toggleHistory"];
-          "XF86Favorites".action.spawn = noctalia ++ ["notifications" "toggleHistory"];
-          "XF86HangupPhone".action.spawn = noctalia ++ ["notifications" "toggleDND"];
+          # Notifications TODO: Move to ../notifications.nix file
+          "XF86NotificationCenter".action.spawn = noctalia ++ ["panel-toggle" "control-center" "notifications"]; # E14
+          "XF86LinkPhone".action.spawn = noctalia ++ ["panel-toggle" "control-center" "notifications"]; # T14
+          "XF86Favorites".action.spawn = noctalia ++ ["notifications-dnd-toggle"];
+          "Mod+XF86Favorites".action.spawn = noctalia ++ ["notification-clear-history"];
+
+          # Screenshots
+          "Print".action.spawn = noctalia ++ ["screenshot-fullscreen" "pick"];
+          "XF86SelectiveScreenshot".action.spawn = noctalia ++ ["screenshot-region"]; # T14
         };
       }
     ];
