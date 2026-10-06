@@ -1,5 +1,5 @@
 {
-	"data": "ENC[AES256_GCM,data:ZAXEcupgH2isQP0Kp6VKK9WLH6XRz1TDRZrjjm706oUV3p7+FjcGbsSIVKCdEJ79THzgfBPdVDylO3fhdSxqdHKDRUSYxlx6XYa3ZRLBOLwFBMxpDkdzhvQThFHfYFLUNfxcVXRuhpmCa+jdgkZETjn+Flv83aWvvgLyeCJbyCTd6Rx1FQWPaLBc27rqUXluE/Agl8UzrWb2xZLIwujJfNYRQmWx7MAI613p75vz34ec8Za5jR1Dpz1fY6MUYg4U5ECRTSxhq28NvOZiziIS/BtQbtQcg1De3G7s0P7g9ikUXxPIFM2xd1oePBC6876bAyMaWGZ01MnJABg6nT1QmJyFuwa3eA9yyzh/Rb0c0IJjkIzBIWreKmvCILM4CRZBSQ4iwEdIw1u2Pc0YgDHvYGoRwpdyGCJqmp3wTgUra+F7QeAODyy1wNYZL7TcomK5JdGiq5VdkGlPIQ+tOTZR9OBnlWFv0BkIoOUjbDNxJsT3z5gRFtXpnLAILiHlB8gHA0/3tSoQs8iYQmoaVdbD,iv:cJA+FnjPN7dTTiuJsSTCmOjh1rGdwYDLeA1APbzmF6w=,tag:j6niW5k9XbXLH/ecZ1euSg==,type:str]",
+	"data": "ENC[AES256_GCM,data:ATf05o6DTeSsvWHmaT1TJVHTVEcEJ3jx2rIdvoc9pW8RgGzh2Z8mHs4KW+xgpDQUee8QecNR9qyZSSfOzDuhMgtCMAFjmFs1/bsGgjJI5CTkUcUP0QvLxrGyL5xVVHaxQvNezshPV9IDz5na8/Z06OmOuFuShGJkgrbKFzgFGRpZca2A02qs5iz+C5sNE8fPECeN7P8uQn4I78FD3LXdOgpOL2sfJTj6gP0SuYiiVNDpDTQRDmvYS/K0kjNCWt3ptOwMwhrFDbjjOyFOxEySjL9WV/d/uGm7KpWeyjMv1Yb9WqSHr4Fjt35aEVVuEuu7s41TtATI8ABproZCWkexfHv50+vIZOM1sFcwPa1zR+F6m9wLRZGBL3h0zLGjD5eeH9thtUiR05iRUFaG4LtBqhQrSh7p8QmW6s0UlHF3fTvCU7I1PtM2g4jjHEM1eYAScLzH/ZA7XIMI2KLdUjVYa/LCs0VFmN4e7jsqpE13DqDuj9BH4TNMZewwJM45VCZSLXAwp9ZOl7llYOoqen/0pv6m24Jrq1TwMWE/gDwvyOOXfZ3va6uSeCugMn54VulmK1Lqg8faVjahqqD0aRMI/rwVsX2mUHiUN6fnH/8yzmJ79qVYHIPYwkzvfeVjKOXE9Re5F6yo0uSm9ukokI2hXLfWrXSMWvQZh65sDK1urdR5xYzYfCwk36Y/XymC7ho5VJEtjjwkfv+vCqzUrACXg1Nn,iv:3oETforOUkxBrzdlPOZh2JqeGKv682LoiYAnQ0t708g=,tag:7jnFu7rTRmUsEemvomNzLw==,type:str]",
 	"sops": {
 		"age": [
 			{
@@ -11,8 +11,9 @@
 				"recipient": "age124jxte5pvr4estavf2m5daweqczxkkff2dyvm3sgynac4r4cqcuqslxya8"
 			}
 		],
-		"lastmodified": "2026-10-06T15:19:29Z",
-		"mac": "ENC[AES256_GCM,data:WQ7J2Ac9EAFeXiXYNLNAv+XZSimQcWTlLWvZ4rhNomgWMxfKEzJci/9nzREXILUeQdxQ3rdhIUz195RvOGpNAB2/CHD+0HmTNQ8yxQaaFx3OjkjJIteafkDJBbYcEdakFu8rIPMj8z/zpUs2uWOlphWt7YhmDaZ7L+I+g+kHJRI=,iv:/lzu3/0UphCB7wVauTtBGrC/oQdYfICGNPiVWl6307A=,tag:4gb1d7urJSj2OmamKf4ssA==,type:str]",
+		"lastmodified": "2026-10-06T15:36:17Z",
+		"mac": "ENC[AES256_GCM,data:6CnkBLY+NOUFrH0cyEwNjEw8fRwmeWOqNIwRdGTAQ89p37OIXgQ3qsMapQirTfd6L8QIJlqyH/Gk0aeX/k3srWkaIE/Pp3MneOHIES/SEtY59kFDBLW7xBKkFINzKN/LGqVJvNoCnmNHC8iniGWbT/d7pW2QwWhWYQw+AcRMrbM=,iv:oS35uNj2TULhAFWmBS09Ad4nJCze3SBWlnwHUyEQ/w8=,tag:syd9kdAP0Lgz0UNIsowpTA==,type:str]",
+		"unencrypted_suffix": "_unencrypted",
 		"version": "3.13.3"
 	}
 }
