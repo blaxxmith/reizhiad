@@ -78,16 +78,6 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    koad = {
-      url = "git+file:///home/pex/dev/tbx/laptop?ref=main";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        parts.follows = "parts";
-        treefmt.follows = "treefmt";
-        import-tree.follows = "import-tree";
-      };
-    };
   };
 
   outputs = inputs:

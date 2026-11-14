@@ -1,34 +1,5 @@
 {
   "nodes": {
-    "claude": {
-      "inputs": {
-        "nixpkgs": [
-          "koad",
-          "nixpkgs"
-        ],
-        "parts": [
-          "koad",
-          "parts"
-        ],
-        "treefmt": [
-          "koad",
-          "treefmt"
-        ]
-      },
-      "locked": {
-        "lastModified": 1783677226,
-        "narHash": "sha256-AfFnl25gpuqb5rZahzEbj/w+LUC/eQebTJ9gRL3xMGg=",
-        "ref": "refs/heads/main",
-        "rev": "384f64266b0868bf1698c59cacab3b193d5d1e49",
-        "revCount": 20,
-        "type": "git",
-        "url": "ssh://git@drakkar.cartesian-lab.fr/tbx/claude"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@drakkar.cartesian-lab.fr/tbx/claude"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1790899423,
@@ -115,39 +86,6 @@
         "owner": "vic",
         "repo": "import-tree",
         "type": "github"
-      }
-    },
-    "koad": {
-      "inputs": {
-        "claude": "claude",
-        "import-tree": [
-          "import-tree"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "parts": [
-          "parts"
-        ],
-        "rfc": "rfc",
-        "treefmt": [
-          "treefmt"
-        ],
-        "typst": "typst"
-      },
-      "locked": {
-        "lastModified": 1783681880,
-        "narHash": "sha256-Ds8tYt5WaXYPW1rF9uNWVp5m/hpkhvwuNan0onT6x4g=",
-        "ref": "main",
-        "rev": "da09e1a494cb6701224cf77a3d80b66b0f8f5f7e",
-        "revCount": 20,
-        "type": "git",
-        "url": "file:///home/pex/dev/tbx/laptop"
-      },
-      "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "file:///home/pex/dev/tbx/laptop"
       }
     },
     "lzbt": {
@@ -309,42 +247,12 @@
         "type": "github"
       }
     },
-    "rfc": {
-      "inputs": {
-        "nixpkgs": [
-          "koad",
-          "nixpkgs"
-        ],
-        "parts": [
-          "koad",
-          "parts"
-        ],
-        "treefmt": [
-          "koad",
-          "treefmt"
-        ]
-      },
-      "locked": {
-        "lastModified": 1783681109,
-        "narHash": "sha256-Doca4WPXKe2b17cYNKuSQZLpQ6K/HAcJLRHp6DJZGJM=",
-        "ref": "refs/heads/main",
-        "rev": "30a781095e78265e4d0d174171ef9e4886c92da0",
-        "revCount": 49,
-        "type": "git",
-        "url": "ssh://git@drakkar.cartesian-lab.fr/tbx/rfc"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@drakkar.cartesian-lab.fr/tbx/rfc"
-      }
-    },
     "root": {
       "inputs": {
         "disko": "disko",
         "hardware": "hardware",
         "hm": "hm",
         "import-tree": "import-tree",
-        "koad": "koad",
         "lzbt": "lzbt",
         "niri": "niri",
         "nixpkgs": "nixpkgs_2",
@@ -432,35 +340,6 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
-      }
-    },
-    "typst": {
-      "inputs": {
-        "nixpkgs": [
-          "koad",
-          "nixpkgs"
-        ],
-        "parts": [
-          "koad",
-          "parts"
-        ],
-        "treefmt": [
-          "koad",
-          "treefmt"
-        ]
-      },
-      "locked": {
-        "lastModified": 1783681681,
-        "narHash": "sha256-rNC8hwGqMUYwF3DqtBveGlT2WV+8lzC/fVWQC7HGX44=",
-        "ref": "refs/heads/main",
-        "rev": "b6085b2b5f4c687bcf9180ff1d6184ad529acb40",
-        "revCount": 47,
-        "type": "git",
-        "url": "ssh://git@drakkar.cartesian-lab.fr/tbx/typst"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@drakkar.cartesian-lab.fr/tbx/typst"
       }
     },
     "zen-browser": {
