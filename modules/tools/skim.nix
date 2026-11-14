@@ -1,13 +1,12 @@
 _: {
-  flake.nixosModules.tools = {
+  flake.homeModules.tools = {
     config,
     lib,
-    pkgs,
     ...
   }: let
-    cfg = config.forgeOS.tools.skim;
+    cfg = config.govelTY.tools.skim;
   in {
-    options.forgeOS.tools.skim = {
+    options.govelTY.tools.skim = {
       enable = lib.mkEnableOption "`skim`, a fuzzy finder in Rust.";
       addAlias = lib.mkOption {
         type = lib.types.bool;
@@ -17,23 +16,18 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      environment.systemPackages = [pkgs.skim];
-      home-manager.sharedModules = [
-        {
-          programs = lib.mkMerge [
-            (lib.mkIf cfg.addAlias {
-              zsh.shellAliases.fzf = "sk";
-            })
+      programs = lib.mkMerge [
+        (lib.mkIf cfg.addAlias {
+          zsh.shellAliases.fzf = "sk";
+        })
 
-            {
-              skim = {
-                enable = true;
-                enableZshIntegration = true;
-                defaultOptions = ["--ansi" "--height 50" "--reverse" "--preview 'bat --color=always --line-range=:500 {}'"];
-                historyWidgetOptions = ["--ansi" "--reverse" "--height 10" "--prompt h>"];
-              };
-            }
-          ];
+        {
+          skim = {
+            enable = true;
+            enableZshIntegration = true;
+            defaultOptions = ["--ansi" "--height 50" "--reverse" "--preview 'bat --color=always --line-range=:500 {}'"];
+            historyWidgetOptions = ["--ansi" "--reverse" "--height 10" "--prompt h>"];
+          };
         }
       ];
     };

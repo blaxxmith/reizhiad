@@ -1,13 +1,12 @@
 _: {
-  flake.nixosModules.tools = {
+  flake.homeModules.tools = {
     config,
     lib,
-    pkgs,
     ...
   }: let
-    cfg = config.forgeOS.tools.ripgrep;
+    cfg = config.govelTY.tools.ripgrep;
   in {
-    options.forgeOS.tools.ripgrep = {
+    options.govelTY.tools.ripgrep = {
       enable = lib.mkEnableOption "`ripgrep`, a search tool alternative to `grep`.";
       addAlias = lib.mkOption {
         type = lib.types.bool;
@@ -17,27 +16,22 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      environment.systemPackages = [pkgs.ripgrep];
-      home-manager.sharedModules = [
-        {
-          programs = lib.mkMerge [
-            (lib.mkIf cfg.addAlias {
-              zsh.shellAliases.grep = "rg";
-            })
+      programs = lib.mkMerge [
+        (lib.mkIf cfg.addAlias {
+          zsh.shellAliases.grep = "rg";
+        })
 
-            {
-              ripgrep = {
-                enable = true;
-                arguments = [
-                  "--hidden"
-                  "--glob"
-                  "!.git/*"
-                  "--glob"
-                  "!.direnv/*"
-                ];
-              };
-            }
-          ];
+        {
+          ripgrep = {
+            enable = true;
+            arguments = [
+              "--hidden"
+              "--glob"
+              "!.git/*"
+              "--glob"
+              "!.direnv/*"
+            ];
+          };
         }
       ];
     };

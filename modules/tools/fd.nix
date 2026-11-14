@@ -1,13 +1,12 @@
 _: {
-  flake.nixosModules.tools = {
+  flake.homeModules.tools = {
     config,
     lib,
-    pkgs,
     ...
   }: let
-    cfg = config.forgeOS.tools.fd;
+    cfg = config.govelTY.tools.fd;
   in {
-    options.forgeOS.tools.fd = {
+    options.govelTY.tools.fd = {
       enable = lib.mkEnableOption "`fd`, a simple, fast and user-friendly alternative to `find`.";
       addAlias = lib.mkOption {
         type = lib.types.bool;
@@ -17,26 +16,21 @@ _: {
     };
 
     config = lib.mkIf cfg.enable {
-      environment.systemPackages = [pkgs.fd];
-      home-manager.sharedModules = [
-        {
-          programs = lib.mkMerge [
-            (lib.mkIf cfg.addAlias {
-              zsh.shellAliases.find = "fd";
-            })
+      programs = lib.mkMerge [
+        (lib.mkIf cfg.addAlias {
+          zsh.shellAliases.find = "fd";
+        })
 
-            {
-              fd = {
-                enable = true;
-                hidden = true;
-                ignores = [
-                  ".git/"
-                  ".direnv/"
-                  "result"
-                ];
-              };
-            }
-          ];
+        {
+          fd = {
+            enable = true;
+            hidden = true;
+            ignores = [
+              ".git/"
+              ".direnv/"
+              "result"
+            ];
+          };
         }
       ];
     };
