@@ -2,70 +2,25 @@ _: {
   flake.nixosModules.desktop = _: {
     home-manager.sharedModules = [
       {
-        wayland.windowManager.sway.config.keybindings = {
-          "Mod4+Shift+e" = "exec noctalia-shell ipc call sessionMenu toggle";
-        };
-
-        programs.noctalia-shell.settings.sessionMenu = {
-          countdownDuration = 5000;
-          enableCountdown = true;
-          largeButtonsLayout = "grid";
-          largeButtonsStyle = true;
-          position = "center";
-          powerOptions = [
+        programs.noctalia.settings.shell.session = let
+          action = shortcut: name: extra:
             {
-              action = "lock";
-              command = "swaylock -fk";
-              countdownEnabled = false;
+              action = name;
+              countdown_seconds = 0.0;
               enabled = true;
-              keybind = "L";
+              shortcut = toString shortcut;
+              variant = "default";
             }
-            {
-              action = "shutdown";
-              command = "";
-              countdownEnabled = true;
-              enabled = true;
-              keybind = "P";
-            }
-            {
-              action = "reboot";
-              command = "";
-              countdownEnabled = true;
-              enabled = true;
-              keybind = "R";
-            }
-            {
-              action = "suspend";
-              command = "";
-              countdownEnabled = true;
-              enabled = true;
-              keybind = "S";
-            }
-            {
-              action = "logout";
-              # command = "niri msg action quit";
-              countdownEnabled = true;
-              enabled = true;
-              keybind = "E";
-            }
-            {
-              action = "hibernate";
-              command = "";
-              countdownEnabled = true;
-              enabled = true;
-              keybind = "H";
-            }
-            {
-              action = "rebootToUefi";
-              enabled = false;
-            }
-            {
-              action = "userspaceReboot";
-              enabled = false;
-            }
+            // extra;
+        in {
+          grid = true;
+          actions = [
+            (action 1 "lock" {command = "swaylock";})
+            (action 2 "logout" {})
+            (action 3 "lock_and_suspend" {})
+            (action 4 "reboot" {})
+            (action 5 "shutdown" {variant = "destructive";})
           ];
-          showHeader = true;
-          showKeybinds = true;
         };
       }
     ];

@@ -22,7 +22,7 @@ _: {
         notifications.enable = lib.mkDefault cfg.enable;
         theme.enable = lib.mkDefault cfg.enable;
       };
-      fonts.packages = [pkgs.nerd-fonts.hack];
+      fonts.packages = with pkgs.nerd-fonts; [hack jetbrains-mono];
 
       xdg.portal = {
         inherit (cfg) enable;

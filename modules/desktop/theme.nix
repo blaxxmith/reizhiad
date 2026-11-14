@@ -73,16 +73,12 @@ _: {
           #   mHover = "#A7C080";
           #   mOnHover = "#232A2E";
           # };
-          ui = {
-            fontDefault = "Hack Nerd Font";
-            fontDefaultScale = 0.85;
-            tooltipsEnabled = true;
-            scrollbarAlwaysVisible = false;
-            boxBorderEnabled = false;
-            panelBackgroundOpacity = 0.93;
-            panelsAttachedToBar = false;
-            settingsPanelMode = "centered";
-            settingsPanelSideBarCardStyle = true;
+          theme = {
+            pure_black_dark = true;
+            templates = {
+              enable_builtin_templates = false;
+              enable_community_templates = false;
+            };
           };
         };
       }

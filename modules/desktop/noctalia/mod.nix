@@ -7,54 +7,49 @@
     home-manager.sharedModules = [
       inputs.noctalia.homeModules.default
       {
-        wayland.windowManager.sway.config.startup = [
-          {
-            command = "noctalia-shell";
-            always = true;
-          }
-          {
-            command = "systemctl --user start xdg-desktop-portal-wlr.service";
-            always = true;
-          }
-        ];
-
-        programs.noctalia-shell = {
+        programs.noctalia = {
           enable = true;
+          systemd.enable = true;
           settings = {
-            dock.enabled = false;
-            desktopWidgets.enabled = false;
-            hooks.enabled = false;
-            general = {
-              dimmerOpacity = 0;
-              showScreenCorners = false;
-              forceBlackScreenCorners = false;
-              scaleRatio = 1;
-              radiusRatio = 1;
-              iRadiusRatio = 1;
-              boxRadiusRatio = 1;
-              screenRadiusRatio = 1;
-              animationSpeed = 1;
-              animationDisabled = true;
-              enableShadows = false;
-              enableBlurBehind = false;
-              shadowDirection = "bottom_right";
-              shadowOffsetX = 2;
-              shadowOffsetY = 3;
-              language = "";
-              allowPanelsOnScreenWithoutBar = true;
-              showChangelogOnStartup = false;
-              telemetryEnabled = false;
-              keybinds = {
-                keyUp = ["Up"];
-                keyDown = ["Down"];
-                keyLeft = ["Left"];
-                keyRight = ["Right"];
-                keyEnter = ["Return" "Enter"];
-                keyEscape = ["Esc"];
-                keyRemove = ["Del"];
-              };
-              reverseScroll = false;
-              smoothScrollEnabled = true;
+            battery.warning_threshold = 20;
+            idle.pre_action_fade_seconds = 5;
+
+            dock = {
+              enabled = false;
+              active_monitor_only = true;
+              background_opacity = 0.4;
+              launcher_position = "start";
+              magnification_scale = 1.75;
+              position = "left";
+              show_dots = true;
+              smart_auto_hide = true;
+            };
+
+            desktop_widgets.enabled = false;
+
+            plugins.source = [
+              {
+                enabled = false;
+                kind = "git";
+                name = "official";
+              }
+              {
+                enabled = false;
+                kind = "git";
+                name = "community";
+              }
+            ];
+
+            shell = {
+              font_family = "JetBrains Mono";
+              launch_apps_as_systemd_services = true;
+              offline_mode = true;
+              panel_anchor_bar = "widgets";
+              password_style = "random";
+              polkit_agent = true;
+              screen_time_enabled = true;
+              settings_window_translucent = true;
+              screenshot.directory = "/home/pex/Pictures/Screenshots";
             };
           };
         };

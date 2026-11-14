@@ -22,29 +22,9 @@ _: {
           "XF86MonBrightnessDown".action.spawn = noctalia ++ ["brightness-down"];
         };
 
-        programs.noctalia.settings = {
-          #brightness = {
-          #  brightnessStep = 5;
-          #  enableDdcSupport = false;
-          #  enforceMinimum = false;
-          #};
-          # audio = {
-          #   spectrumFrameRate = 30;
-          #   spectrumMirrored = true;
-          #   visualizerType = "wave";
-          #   volumeFeedback = false;
-          #   volumeFeedbackSoundFile = "";
-          #   volumeOverdrive = false;
-          #   volumeStep = 5;
-          # };
-          # osd = {
-          #   enabled = true;
-          #   position = "top_center";
-          #   # autoHideMs = 2000;
-          #   background_opacity = 1;
-          #   # enabledTypes = [0 1 2 3];
-          #   monitors = ["eDP-1"];
-          # };
+        programs.noctalia.settings.osd = {
+          border = false;
+          position_vertical = "top_right";
         };
       }
     ];
