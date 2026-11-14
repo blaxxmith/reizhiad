@@ -80,7 +80,7 @@
     };
 
     koad = {
-      url = "git+file:///home/pex/dev/tbx/laptop";
+      url = "git+file:///home/pex/dev/tbx/laptop?ref=main";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         parts.follows = "parts";
