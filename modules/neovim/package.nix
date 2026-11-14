@@ -15,6 +15,12 @@
       inherit system;
       modules = [
         self.nixvimModules.default
+        self.nixvimModules.plugins
+
+        {
+          nixpkgs.source = inputs.nixpkgs.outPath;
+          enableMan = true;
+        }
       ];
     };
   };
@@ -27,9 +33,7 @@
   }: let
     cfg = config.forgeOS.tools.nvim;
   in {
-    options.forgeOS.tools.nvim = {
-      enable = lib.mkEnableOption "NeoVIM configuration";
-    };
+    options.forgeOS.tools.nvim.enable = lib.mkEnableOption "NeoVIM configuration";
 
     config = lib.mkIf cfg.enable {
       programs.nano.enable = false;

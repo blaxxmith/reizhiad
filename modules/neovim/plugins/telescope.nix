@@ -1,5 +1,5 @@
 _: {
-  flake.nixvimModules.default = _: {
+  flake.nixvimModules.plugins = _: {
     plugins.telescope = {
       enable = true;
 

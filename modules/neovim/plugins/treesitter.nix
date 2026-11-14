@@ -1,5 +1,5 @@
 _: {
-  flake.nixvimModules.default = {pkgs, ...}: {
+  flake.nixvimModules.plugins = {pkgs, ...}: {
     plugins.treesitter = {
       enable = true;
       settings = {
@@ -11,6 +11,7 @@ _: {
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         bash
         c
+        cooklang
         cpp
         nix
         nginx
