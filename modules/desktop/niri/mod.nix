@@ -75,7 +75,7 @@
                 focus-follows-mouse.enable = true;
               };
 
-              gestures.hot-corners.enable = false;
+              gestures.hot-corners = null;
             };
           };
         }
