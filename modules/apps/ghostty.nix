@@ -17,7 +17,7 @@ _: {
         clearDefaultKeybinds = true;
         systemd.enable = true;
         settings = {
-          font-family = "Hack Nerd Font";
+          font-family = "JetBrains Nerd Font";
           font-size = 9;
           theme = "alacritty";
           cursor-style = "underline";
