@@ -1,4 +1,4 @@
-_: {
+{self, ...}: {
   flake.homeModules.apps = {
     config,
     lib,
@@ -7,9 +7,9 @@ _: {
   }: let
     cfg = config.govelTY.apps;
   in {
-    # imports = [
-    #   self.nixosModules.zen
-    # ];
+    imports = [
+      self.homeModules.browser
+    ];
 
     options.govelTY.apps = {
       enable = lib.mkEnableOption "Applications module";

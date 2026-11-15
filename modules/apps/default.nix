@@ -6,10 +6,6 @@
   }: let
     cfg = config.forgeOS.apps;
   in {
-    imports = [
-      self.nixosModules.zen
-    ];
-
     options.forgeOS.apps.enable = lib.mkEnableOption "Applications module";
 
     config = lib.mkIf cfg.enable {

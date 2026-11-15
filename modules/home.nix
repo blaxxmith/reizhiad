@@ -11,7 +11,6 @@
     forgeOS = {
       apps = {
         enable = lib.mkDefault true;
-        zen.enable = lib.mkDefault true;
       };
       tools = {
         enable = lib.mkDefault true;
@@ -43,6 +42,9 @@
             enableTUIApps = lib.mkDefault true;
             # TODO: MOVE THIS TO LAPTOP FILE
             enableGUIApps = lib.mkDefault true;
+          };
+          browser = {
+            zen.enable = true;
           };
         };
 
