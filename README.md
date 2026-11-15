@@ -4,10 +4,6 @@
 
 _@blaxxmith's Infrastructure System Configuration using Dendritic Pattern_
 
-> **Warning**  
-> This project is _work in progress_, so it's not working now. This present
-> README and especially the instruction part is not working at all.
-
 ## Hosts
 
 ### Geonosis
@@ -18,14 +14,14 @@ My main computer, a Lenovo ThinkPad E14.
 
 A Raspberry Pi 4, used as a Kubernetes Cluster single node running self-hosted services.
 
-### More to come...
+### Mandalore
 
-I have some other devices that I will add to this config one day.
+An old Dell R710 server, for non permanent workloads.
 
 ## Linux Environment
 
 - OS -> NixOS
-- WM -> Sway
+- WM -> Niri
 - Browser -> Zen / Firefox
 - Editor -> Neovim via NixVim
 - Shell -> ZSH
@@ -42,6 +38,7 @@ I have some other devices that I will add to this config one day.
 - [Flake Parts](https://flake.parts)
 - [SOPS Nix](https://github.com/mic92/sops-nix)
 - [Treefmt Nix](https://github.com/numtide/treefmt-nix)
+- [Niri](https://github.com/epireyn/niri-flake)
 
 ## Credits
 
