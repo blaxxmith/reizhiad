@@ -9,18 +9,13 @@
     imports = with self.nixosModules; [apps desktop neovim shell tools];
 
     forgeOS = {
-      shell.enable = lib.mkDefault true;
       apps = {
         enable = lib.mkDefault true;
-        enableTUIApps = lib.mkDefault true;
         zen.enable = lib.mkDefault true;
       };
       tools = {
         enable = lib.mkDefault true;
-        nvim = {
-          enable = lib.mkDefault true;
-          opencode = lib.mkDefault true;
-        };
+        nvim.enable = lib.mkDefault true;
       };
     };
 
@@ -34,6 +29,22 @@
         };
 
         programs.home-manager.enable = true;
+
+        govelTY = {
+          shell.enable = lib.mkDefault true;
+          tools = {
+            enable = lib.mkDefault true;
+            # TODO: MOVE THIS TO LAPTOP FILE
+            enableExtendedToolset = lib.mkDefault true;
+            oxydize = lib.mkDefault true;
+          };
+          apps = {
+            enable = true;
+            enableTUIApps = lib.mkDefault true;
+            # TODO: MOVE THIS TO LAPTOP FILE
+            enableGUIApps = lib.mkDefault true;
+          };
+        };
 
         xdg.userDirs = let
           hd = "/home/${profile.user}";
