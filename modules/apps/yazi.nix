@@ -1,57 +1,52 @@
 _: {
-  flake.nixosModules.apps = {
+  flake.homeModules.apps = {
     config,
     lib,
     pkgs,
     ...
   }: let
-    cfg = config.forgeOS.apps.yazi;
+    cfg = config.govelTY.apps.yazi;
   in {
-    options.forgeOS.apps.yazi.enable = lib.mkEnableOption "Yazi TUI File Manager";
+    options.govelTY.apps.yazi.enable = lib.mkEnableOption "Yazi TUI File Manager";
 
     config = lib.mkIf cfg.enable {
-      environment.systemPackages = [pkgs.yazi];
-      home-manager.sharedModules = [
-        {
-          programs.yazi = {
-            enable = true;
-            enableZshIntegration = true;
-            shellWrapperName = "yy";
-            settings = {
-              mgr = {
-                ratio = [1 3 3];
-                linemode = "size";
-                sort_by = "natural";
-                show_hidden = false;
-                show_symlink = true;
-              };
-              preview = {
-                wrap = "no";
-                tab_size = 2;
-                max_width = 1200;
-                max_height = 1000;
-              };
-              input.cursor_blink = true;
-              opener = {
-                # Add Editor, copy to clipboard, unzip, untar
-                tdf = [
-                  {
-                    run = "${pkgs.ghostty}/bin/ghostty --font-size=12 --command='${pkgs.tdf}/bin/tdf %s'";
-                    orphan = true;
-                    desc = "Open PDF with tdf";
-                  }
-                ];
-              };
-              open.prepend_rules = [
-                {
-                  mime = "application/pdf";
-                  use = "tdf";
-                }
-              ];
-            };
+      programs.yazi = {
+        enable = true;
+        enableZshIntegration = true;
+        shellWrapperName = "yy";
+        settings = {
+          mgr = {
+            ratio = [1 3 3];
+            linemode = "size";
+            sort_by = "natural";
+            show_hidden = false;
+            show_symlink = true;
           };
-        }
-      ];
+          preview = {
+            wrap = "no";
+            tab_size = 2;
+            max_width = 1200;
+            max_height = 1000;
+          };
+          input.cursor_blink = true;
+          opener = {
+            # Add Editor, copy to clipboard, unzip, untar
+            tdf = [
+              {
+                run = "${pkgs.ghostty}/bin/ghostty --font-size=12 --command='${pkgs.tdf}/bin/tdf %s'";
+                orphan = true;
+                desc = "Open PDF with tdf";
+              }
+            ];
+          };
+          open.prepend_rules = [
+            {
+              mime = "application/pdf";
+              use = "tdf";
+            }
+          ];
+        };
+      };
     };
   };
 }

@@ -1,26 +1,24 @@
 _: {
-  flake.nixosModules.apps = {
+  flake.homeModules.apps = {
     config,
     lib,
     pkgs,
     ...
   }: let
-    cfg = config.forgeOS.apps.chromium;
+    cfg = config.govelTY.apps.chromium;
   in {
-    options.forgeOS.apps.chromium.enable = lib.mkEnableOption "Chromium Browser";
+    options.govelTY.apps.chromium.enable = lib.mkEnableOption "Chromium Browser";
 
-    config.home-manager.sharedModules = lib.mkIf cfg.enable [
-      {
-        programs.chromium = {
-          enable = true;
-          package = pkgs.chromium;
-          extensions = [
-            "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
-            "gcknhkkoolaabfmlnjonogaaifnjlfnp" # FoxyProxy
-            "ddkjiahejlhfcafbddmgiahcphecmpfh" # uBlock Origin Lite
-          ];
-        };
-      }
-    ];
+    config = lib.mkIf cfg.enable {
+      programs.chromium = {
+        enable = true;
+        package = pkgs.chromium;
+        extensions = [
+          "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
+          "gcknhkkoolaabfmlnjonogaaifnjlfnp" # FoxyProxy
+          "ddkjiahejlhfcafbddmgiahcphecmpfh" # uBlock Origin Lite
+        ];
+      };
+    };
   };
 }

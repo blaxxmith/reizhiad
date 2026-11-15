@@ -2,7 +2,6 @@
   flake.nixosModules.apps = {
     config,
     lib,
-    pkgs,
     ...
   }: let
     cfg = config.forgeOS.apps;
@@ -11,43 +10,10 @@
       self.nixosModules.zen
     ];
 
-    options.forgeOS.apps = {
-      enable = lib.mkEnableOption "Applications module";
-      enableTUIApps = lib.mkEnableOption "Terminal User Interface Applications";
-      enableGUIApps = lib.mkEnableOption "Graphical User Interface Applications";
+    options.forgeOS.apps.enable = lib.mkEnableOption "Applications module";
+
+    config = lib.mkIf cfg.enable {
+      home-manager.sharedModules = [self.homeModules.apps];
     };
-
-    config = lib.mkMerge [
-      (lib.mkIf (cfg.enable && cfg.enableTUIApps) {
-        forgeOS.apps = {
-          iamb.enable = lib.mkDefault true;
-          yazi.enable = lib.mkDefault true;
-          obsidian.tui = lib.mkDefault true;
-        };
-
-        environment.systemPackages = with pkgs; [
-          tdf
-        ];
-      })
-
-      (lib.mkIf (cfg.enable && cfg.enableGUIApps) {
-        forgeOS.apps = {
-          firefox.enable = lib.mkDefault true;
-          alacritty.enable = lib.mkDefault false;
-          kitty.enable = lib.mkDefault false;
-          chromium.enable = lib.mkDefault true;
-          vscode.enable = lib.mkDefault false;
-          ghostty.enable = lib.mkDefault true;
-          obsidian.enable = lib.mkDefault true;
-        };
-
-        services.netbird.ui.enable = true;
-
-        environment.systemPackages = with pkgs; [
-          tor-browser
-          signal-desktop
-        ];
-      })
-    ];
   };
 }
