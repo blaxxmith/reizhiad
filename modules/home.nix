@@ -45,6 +45,7 @@
           };
           browser = {
             zen.enable = true;
+            firefox.enable = true;
           };
         };
 

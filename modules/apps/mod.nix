@@ -32,7 +32,6 @@
 
       (lib.mkIf (cfg.enable && cfg.enableGUIApps) {
         govelTY.apps = {
-          # firefox.enable = lib.mkDefault true;
           alacritty.enable = lib.mkDefault false;
           kitty.enable = lib.mkDefault false;
           chromium.enable = lib.mkDefault true;
