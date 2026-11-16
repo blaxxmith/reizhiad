@@ -7,11 +7,9 @@ _: {
         clangd.enable = true;
         cmake.enable = true;
         markdown_oxide.enable = true;
-        metals.enable = true;
         nixd.enable = true;
         terraformls.enable = true;
         tinymist.enable = true;
-        ts_ls.enable = true;
 
         rust_analyzer = {
           enable = true;
