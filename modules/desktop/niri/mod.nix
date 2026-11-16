@@ -35,6 +35,7 @@
 
               layout = {
                 gaps = 3;
+                struts.top = -3;
 
                 border.enable = false;
                 focus-ring = {
@@ -63,11 +64,9 @@
                 ];
               };
 
-              animations = {
-                workspace-switch.enable = false;
-              };
+              animations.workspace-switch.enable = false;
 
-              cursor.size = 8;
+              cursor.size = 4;
 
               input = {
                 keyboard.xkb.file = "~/.config/keymap.xkb";
@@ -75,7 +74,12 @@
                 focus-follows-mouse.enable = true;
               };
 
-              gestures.hot-corners = null;
+              gestures.hot-corners = {
+                top-left = false;
+                top-right = false;
+                bottom-left = false;
+                bottom-right = false;
+              };
             };
           };
         }

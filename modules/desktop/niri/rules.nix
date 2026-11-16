@@ -17,9 +17,10 @@ _: {
           };
 
           window-rules = [
+            {draw-border-with-background = false;}
             {
-              # Do not display backgounds on windows. Fix Ghostty
-              draw-border-with-background = false;
+              open-maximized = true;
+              excludes = [{app-id = "Signal";}];
             }
             {
               matches = [{is-window-cast-target = true;}];

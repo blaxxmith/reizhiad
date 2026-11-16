@@ -80,7 +80,10 @@ _: {
           "Mod+Shift+0".action.move-column-to-workspace = "10/SYS";
 
           "Alt+Ctrl+V".action.spawn = noctalia ++ ["panel-toggle" "clipboard"];
-          "Mod+Shift+E".action.spawn = noctalia ++ ["panel-toggle" "session"];
+          "Mod+Shift+E" = {
+            action.spawn = noctalia ++ ["panel-toggle" "session"];
+            hotkey-overlay.title = "Launch Power Menu";
+          };
           "Mod+XF86NotificationCenter".action.spawn = noctalia ++ ["panel-toggle" "control-center"]; # E14
           "Mod+XF86LinkPhone".action.spawn = noctalia ++ ["panel-toggle" "control-center"]; # T14
 
