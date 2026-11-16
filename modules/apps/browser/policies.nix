@@ -3,7 +3,7 @@ _: {
     options.govelTY.browser.policies = lib.mkOption {
       description = "Default Policies";
       default = {
-        AutofillAddressEnabled = true;
+        AutofillAddressEnabled = false;
         AutofillCreditCardEnabled = false;
         DisableAppUpdate = true;
         DisableFeedbackCommands = true;

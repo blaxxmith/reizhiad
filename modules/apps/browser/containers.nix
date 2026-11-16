@@ -4,28 +4,22 @@ _: {
       description = "Containers for Tabs";
       default = {
         sandbox = {
-          name = "Work";
-          color = "yellow";
-          icon = "briefcase";
+          name = "sandbox";
+          color = "toolbar";
+          icon = "fence";
           id = 1;
         };
         school = {
-          name = "School";
+          name = "school";
           color = "blue";
-          icon = "vacation";
+          icon = "dollar";
           id = 2;
         };
         labs = {
-          name = "Forge";
+          name = "labs";
           color = "green";
           icon = "tree";
           id = 3;
-        };
-        personal = {
-          name = "Personal";
-          color = "red";
-          icon = "fingerprint";
-          id = 4;
         };
       };
     };
